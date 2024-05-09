@@ -8,6 +8,7 @@ type TextCompProps = {
   text?: string | number;
   textAlign?: 'center' | 'left' | 'right';
   capitalize?: true | false;
+  textStyles?: Object;
 };
 
 const TextComp = ({
@@ -17,9 +18,11 @@ const TextComp = ({
   text,
   textAlign,
   capitalize,
+  textStyles = {},
 }: TextCompProps) => {
   let styles: TextStyle = {
     color: color,
+    ...textStyles,
   };
 
   if (capitalize) {

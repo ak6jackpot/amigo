@@ -12,6 +12,7 @@ type ButtonCompProps = {
   textColor?: string;
   disabled?: boolean;
   onPressIn?: () => void;
+  styles?: Object;
 };
 
 const ButtonComp = ({
@@ -25,6 +26,7 @@ const ButtonComp = ({
   disabled = false,
   textColor = '#000',
   onPressIn,
+  styles = {},
 }: ButtonCompProps) => {
   let buttonStyles: ViewStyle = {
     borderRadius:
@@ -40,6 +42,7 @@ const ButtonComp = ({
     justifyContent: 'space-evenly',
     width: '100%',
     flexDirection: 'row',
+    ...styles,
   };
 
   const textStyles: TextStyle = {
