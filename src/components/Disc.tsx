@@ -1,7 +1,7 @@
 import {faCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import React from 'react';
-import {View} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {Animated, View} from 'react-native';
 import {CircularText} from './CircularText';
 
 type DiscProps = {
@@ -21,9 +21,33 @@ export const Disc = ({
   mt = '50%',
   ml = '50%',
 }: DiscProps) => {
+  const rotateValue = useRef(new Animated.Value(0)).current;
+
+  // Interpolation to map the rotation value to degrees
+  const rotateAnimation = rotateValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
+  // Function to trigger the rotation animation
+  const startRotating = () => {
+    Animated.loop(
+      Animated.timing(rotateValue, {
+        toValue: 1,
+        duration: 10000, // 2 seconds for one complete rotation
+        useNativeDriver: true,
+      }),
+    ).start();
+  };
+
+  // Start the animation on component mount
+  useEffect(() => {
+    startRotating();
+  }, []);
+
   return (
-    <View
-      style={{
+    <Animated.View
+      style={[{
         width: size == 'small' ? 80 : size == 'medium' ? 120 : 160,
         aspectRatio: 1,
         alignItems: 'center',
@@ -34,7 +58,7 @@ export const Disc = ({
         marginLeft: ml,
         marginTop: mt,
         zIndex: 2,
-      }}>
+      }, { transform: [{ rotate: rotateAnimation }] }]}>
       <View
         style={{
           position: 'absolute',
@@ -70,6 +94,6 @@ export const Disc = ({
           size={size == 'small' ? 20 : size == 'medium' ? 30 : 40}
         />
       </View>
-    </View>
+    </Animated.View>
   );
 };

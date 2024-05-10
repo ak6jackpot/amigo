@@ -70,15 +70,29 @@ export const SplashScreen = () => {
           size="medium"
         />
 
-        <Tag text="Car Trip" icon={faCar} ml="0%" mt="25%" rotation="-30deg" />
+        <Tag
+          text="Car Trip"
+          icon={faCar}
+          ml="0%"
+          mt="25%"
+          rotation="-30deg"
+          variant="outline"
+        />
         <Tag
           text="Celebrate"
           icon={faChampagneGlasses}
           ml="55%"
           mt="40%"
           rotation="30deg"
+          variant="outline"
         />
-        <Tag text="Explore" icon={faMapLocationDot} ml="35%" mt="70%" />
+        <Tag
+          text="Explore"
+          icon={faMapLocationDot}
+          ml="35%"
+          mt="70%"
+          variant="outline"
+        />
       </View>
       <TextComp text={'Travel Planner'} variant="heading" />
 

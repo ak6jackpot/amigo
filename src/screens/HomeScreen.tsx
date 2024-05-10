@@ -1,43 +1,55 @@
-import React, {useEffect, useRef} from 'react';
-import {Animated, View} from 'react-native';
-import {OpeningCard} from '../components/OpeningCard';
+import React from 'react';
+import {ScrollView, View} from 'react-native';
+import TextComp from '../components/TextComp';
+import {Tag} from '../components/Tag';
+import {ActivityCard} from '../components/ActivityCard';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
 
 export const HomeScreen = () => {
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-
-  const fadeIn = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const fadeOut = () => {
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  };
-  useEffect(() => {
-    fadeIn();
-
-    setTimeout(() => {
-      fadeOut();
-    }, 5000);
-  }, []);
   return (
     <>
       <View
         style={{
-          position: 'absolute',
-          alignItems: 'center',
+          backgroundColor: '#FEF9F5',
           justifyContent: 'center',
         }}>
-        <Animated.View style={{opacity: fadeAnim}}>
-          <OpeningCard />
-        </Animated.View>
+        <TextComp text={'Next Trips'} variant="heading" />
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View style={{flexDirection: 'row', marginVertical: 2}}>
+            <ActivityCard
+              titleText="East Side Gallery"
+              subText="Date"
+              icon={faHeart}
+              color="#ebebeb"
+            />
+            <ActivityCard
+              titleText="East Side Gallery"
+              subText="Date"
+              icon={faHeart}
+              color="#ebebeb"
+            />
+            <ActivityCard
+              titleText="East Side Gallery"
+              subText="Date"
+              icon={faHeart}
+              color="#ebebeb"
+            />
+            <ActivityCard
+              titleText="East Side Gallery"
+              subText="Date"
+              icon={faHeart}
+              color="#ebebeb"
+            />
+          </View>
+        </ScrollView>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View style={{flexDirection: 'row', marginVertical: 2}}>
+            <Tag text="🇩🇪  Berlin" />
+            <Tag text="🇮🇹  Geneve" />
+            <Tag text="🇧🇪  Bruges" />
+            <Tag text="🇳🇱  Amsterdam" />
+          </View>
+        </ScrollView>
       </View>
     </>
   );

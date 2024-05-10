@@ -34,7 +34,7 @@ const TextComp = ({
       styles = {
         ...styles,
         ...{
-          fontFamily: 'Rubik-Medium',
+          fontFamily: 'Rubik-Regular',
           textAlign: 'left',
         },
         ...(capitalize !== false ? {textTransform: 'capitalize'} : {}),
@@ -73,7 +73,7 @@ const TextComp = ({
     case 'heading':
       styles = {
         ...styles,
-        fontFamily: 'Rubik-Bold',
+        fontFamily: 'Rubik-Medium',
         textAlign: 'left',
       };
       switch (size) {
