@@ -1,5 +1,5 @@
 import axios from 'axios';
-export const API_key_TA = 'D4E757231B2C4ECC85FDFF6AA3276E40';
+import {API_key_TA} from '../secrets.json';
 
 export const locationSearchTA = async (searchQuery: string) => {
   return await axios

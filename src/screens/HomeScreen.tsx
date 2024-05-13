@@ -12,6 +12,7 @@ import {
   nearbyLocationSearchTA,
 } from '../APIs';
 import FastImage from 'react-native-fast-image';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 export const HomeScreen = () => {
   useEffect(() => {
@@ -64,6 +65,16 @@ export const HomeScreen = () => {
             <Tag text="🇳🇱  Amsterdam" />
           </View>
         </ScrollView>
+        <MapView
+          style={{width: '100%', aspectRatio: 1}}
+          provider={PROVIDER_GOOGLE}
+          initialRegion={{
+            latitude: 12.926088,
+            longitude: 77.641428,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
+          }}
+        />
       </View>
       {/* <FastImage
         style={{width:'100%', aspectRatio: 1}}
