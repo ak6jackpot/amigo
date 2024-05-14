@@ -18,7 +18,7 @@ export const AppNavigator = () => {
       onReady={() => {
         routeNameRef.current = navigationRef.getCurrentRoute()?.name as string;
       }}>
-      <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen
           name={'HomeScreen'}
           component={HomeScreen}

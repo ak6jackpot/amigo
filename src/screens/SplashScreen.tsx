@@ -15,8 +15,10 @@ import ButtonComp from '../components/ButtonComp';
 import {Disc} from '../components/Disc';
 import {Tag} from '../components/Tag';
 import TextComp from '../components/TextComp';
+import {useNavigation} from '@react-navigation/native';
 
 export const SplashScreen = () => {
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -109,6 +111,9 @@ export const SplashScreen = () => {
         textColor="#190b14"
         shape="pill"
         styles={{marginTop: 20}}
+        onPress={() => {
+          navigation.navigate('HomeScreen');
+        }}
       />
     </View>
   );

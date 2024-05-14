@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, TextInput, View} from 'react-native';
 import TextComp from '../components/TextComp';
 import {Tag} from '../components/Tag';
 import {ActivityCard} from '../components/ActivityCard';
-import {faHeart} from '@fortawesome/free-solid-svg-icons';
+import {faBell, faHeart} from '@fortawesome/free-solid-svg-icons';
 import {
   locationDetailsTA,
   locationPhotosTA,
@@ -13,6 +13,7 @@ import {
 } from '../APIs';
 import FastImage from 'react-native-fast-image';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 export const HomeScreen = () => {
   useEffect(() => {
@@ -27,10 +28,69 @@ export const HomeScreen = () => {
         style={{
           backgroundColor: '#FEF9F5',
           justifyContent: 'center',
+          padding: 16,
         }}>
-        <TextComp text={'Next Trips'} variant="heading" />
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8}}>
+          <FastImage
+            style={{height: 60, aspectRatio: 1}}
+            resizeMode={FastImage.resizeMode.contain}
+            source={require('../assets/images/logo_round.png')}
+          />
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <View
+              style={{
+                height: 60,
+                aspectRatio: 1,
+                backgroundColor: 'gray',
+                borderRadius: 100,
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 16,
+                marginRight: 4,
+              }}>
+              <FontAwesomeIcon icon={faBell} size={'100%'} />
+            </View>
+            <View
+              style={{
+                height: 60,
+                aspectRatio: 1,
+                backgroundColor: 'gray',
+                borderRadius: 100,
+              }}></View>
+          </View>
+        </View>
+        <View
+          style={{
+            width: '100%',
+            backgroundColor: '#E2F4A6',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+            borderBottomLeftRadius: 40,
+            borderBottomRightRadius: 40,
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingVertical: 8,
+            marginVertical: 8
+          }}>
+          <TextComp text={'✨ Where are you travelling next?'} size="large" textStyles={{alignSelf:'flex-start', marginLeft: 8}} />
+          <TextInput
+            placeholder="🔍  Enter any place or city"
+            style={{
+              backgroundColor: '#FEF9F5',
+              width: '95%',
+              marginTop: 8,
+              paddingHorizontal: 16,
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20,
+              borderBottomLeftRadius: 40,
+              borderBottomRightRadius: 40,
+              fontFamily: 'Rubik-Regular'
+            }}
+          />
+        </View>
+        <TextComp text={'Upcoming Trips'} variant="heading" />
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <View style={{flexDirection: 'row', marginVertical: 2}}>
+          <View style={{flexDirection: 'row', marginVertical: 8}}>
             <ActivityCard
               titleText="East Side Gallery"
               subText="Date"
@@ -57,30 +117,18 @@ export const HomeScreen = () => {
             />
           </View>
         </ScrollView>
+        <TextComp text={'Plan a trip'} variant="heading" />
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <View style={{flexDirection: 'row', marginVertical: 2}}>
+          <View style={{flexDirection: 'row', marginVertical: 8}}>
             <Tag text="🇩🇪  Berlin" />
             <Tag text="🇮🇹  Geneve" />
             <Tag text="🇧🇪  Bruges" />
             <Tag text="🇳🇱  Amsterdam" />
           </View>
         </ScrollView>
-        <MapView
-          style={{width: '100%', aspectRatio: 1}}
-          provider={PROVIDER_GOOGLE}
-          initialRegion={{
-            latitude: 12.926088,
-            longitude: 77.641428,
-            latitudeDelta: 0.02,
-            longitudeDelta: 0.02,
-          }}
-        />
+        <TextComp text={'Featured Destinations'} variant="heading" />
+
       </View>
-      {/* <FastImage
-        style={{width:'100%', aspectRatio: 1}}
-        resizeMode={FastImage.resizeMode.contain}
-        source={{uri: images[3], priority: FastImage.priority.normal}}
-      /> */}
     </>
   );
 };
