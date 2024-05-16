@@ -1,18 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, ScrollView, TextInput, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {ScrollView, TextInput, View} from 'react-native';
 import TextComp from '../components/TextComp';
 import {Tag} from '../components/Tag';
 import {ActivityCard} from '../components/ActivityCard';
 import {faBell, faHeart} from '@fortawesome/free-solid-svg-icons';
-import {
-  locationDetailsTA,
-  locationPhotosTA,
-  locationReviewsTA,
-  locationSearchTA,
-  nearbyLocationSearchTA,
-} from '../APIs';
 import FastImage from 'react-native-fast-image';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 export const HomeScreen = () => {
@@ -24,7 +16,7 @@ export const HomeScreen = () => {
   }, []);
   return (
     <>
-      <SafeAreaView>
+      <ScrollView>
         <View
           style={{
             backgroundColor: '#FEF9F5',
@@ -140,8 +132,14 @@ export const HomeScreen = () => {
             </View>
           </ScrollView>
           <TextComp text={'Featured Destinations'} variant="heading" />
+          <View
+            style={{
+              width: '100%',
+              aspectRatio: 1,
+              backgroundColor: 'yellow',
+            }}></View>
         </View>
-      </SafeAreaView>
+      </ScrollView>
     </>
   );
 };
