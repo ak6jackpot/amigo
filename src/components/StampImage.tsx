@@ -3,6 +3,14 @@ import {View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 export const StampImage = ({image = ''}) => {
+  // const value = useState(new Animated.ValueXY({x: 0, y: 0}))[0];
+  // useEffect(() => {
+  //   Animated.timing(value, {
+  //     toValue: {x: -1000, y: 0},
+  //     duration: 1000,
+  //     useNativeDriver: true,
+  //   }).start();
+  // }, []);
   return (
     <View style={{position: 'absolute'}}>
       <FastImage
