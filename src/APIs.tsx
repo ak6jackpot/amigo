@@ -7,7 +7,7 @@ export const locationSearchTA = async (searchQuery: string) => {
       `https://api.content.tripadvisor.com/api/v1/location/search?language=en&key=${API_key_TA}&searchQuery=${searchQuery}`,
     )
     .then(response => {
-      console.log(response?.data?.data, '// location search API');
+      // console.log(response?.data?.data, '// location search API');
       return response?.data?.data;
     })
     .catch(error => {
@@ -21,7 +21,7 @@ export const locationPhotosTA = async (locationId: string) => {
       `https://api.content.tripadvisor.com/api/v1/location/${locationId}/photos?key=${API_key_TA}&language=en`,
     )
     .then(response => {
-      console.log(response?.data?.data, '// location photos API');
+      // console.log(response?.data?.data, '// location photos API');
       const temp: [] = [];
       response?.data?.data?.map(item => {
         temp?.push(item?.images?.large?.url);
@@ -39,7 +39,7 @@ export const locationDetailsTA = async (locationId: string) => {
       `https://api.content.tripadvisor.com/api/v1/location/${locationId}/details?key=${API_key_TA}&language=en`,
     )
     .then(response => {
-      console.log(response?.data, '// location details API');
+      // console.log(response?.data, '// location details API');
 
       return {
         description: response?.data?.description,
@@ -59,7 +59,7 @@ export const locationReviewsTA = async (locationId: string) => {
       `https://api.content.tripadvisor.com/api/v1/location/${locationId}/reviews?key=${API_key_TA}&language=en`,
     )
     .then(response => {
-      console.log(response?.data?.data, '// location review API');
+      // console.log(response?.data?.data, '// location review API');
     })
     .catch(error => {
       console.log(error?.response?.data);
@@ -75,7 +75,7 @@ export const nearbyLocationSearchTA = async (
       `https://api.content.tripadvisor.com/api/v1/location/nearby_search?latLong=${latitude}%2C${longitude}&key=${API_key_TA}&language=en`,
     )
     .then(response => {
-      console.log(response?.data?.data, '// nearby location search API');
+      // console.log(response?.data?.data, '// nearby location search API');
 
       return response?.data?.data;
     })

@@ -1,8 +1,10 @@
 import {faCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {View} from 'react-native';
+import {Pressable, View} from 'react-native';
 import TextComp from './TextComp';
+import {locationDetailsTA, locationPhotosTA, locationSearchTA} from '../APIs';
+import {useNavigation} from '@react-navigation/native';
 
 type TagProps = {
   text?: string;
@@ -21,10 +23,28 @@ export const Tag = ({
   rotation = '0deg',
   variant = 'fill',
 }: TagProps) => {
+  const navigation = useNavigation();
+
+  const handlePress = (input: any) => {
+    locationSearchTA(input)?.then(res => {
+      locationDetailsTA(res[0]?.location_id)?.then(detailsResponse => {
+        console.log(detailsResponse, '---details---');
+        locationPhotosTA(res[0]?.location_id)?.then(photosResponse => {
+          console.log(photosResponse, '---photos---');
+          navigation?.navigate('LocationDetails', {
+            photos: photosResponse,
+            details: detailsResponse,
+          });
+        });
+      });
+    });
+  };
+
   switch (variant) {
     case 'fill':
       return (
-        <View
+        <Pressable
+          onPress={() => handlePress(text)}
           style={{
             alignItems: 'center',
             justifyContent: 'center',
@@ -35,7 +55,7 @@ export const Tag = ({
             backgroundColor: '#EBEBEB',
           }}>
           <TextComp text={text} />
-        </View>
+        </Pressable>
       );
     case 'outline':
       return (

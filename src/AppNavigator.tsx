@@ -4,8 +4,10 @@ import {
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useRef} from 'react';
-import {HomeScreen} from './screens/HomeScreen';
-import {SplashScreen} from './screens/SplashScreen';
+import {Home} from './screens/Home';
+import {Splash} from './screens/Splash';
+import {LocationDetails} from './screens/LocationDetails';
+import {Featured} from './screens/Featured';
 
 export const AppNavigator = () => {
   const navigationRef = useNavigationContainerRef();
@@ -18,15 +20,25 @@ export const AppNavigator = () => {
       onReady={() => {
         routeNameRef.current = navigationRef.getCurrentRoute()?.name as string;
       }}>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Navigator initialRouteName="Splash">
         <Stack.Screen
-          name={'HomeScreen'}
-          component={HomeScreen}
+          name={'Home'}
+          component={Home}
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name={'SplashScreen'}
-          component={SplashScreen}
+          name={'Splash'}
+          component={Splash}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={'LocationDetails'}
+          component={LocationDetails}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={'Featured'}
+          component={Featured}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
