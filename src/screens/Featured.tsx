@@ -12,6 +12,7 @@ import paris from '../assets/images/Paris.jpg';
 import peru from '../assets/images/Peru.jpg';
 import rio from '../assets/images/Rio.jpg';
 import {StampImage} from '../components/StampImage';
+import TextComp from '../components/TextComp';
 
 export const Featured = () => {
   const scrollY = useRef(new Animated.Value(0)).current;
@@ -29,7 +30,7 @@ export const Featured = () => {
   });
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1}}>
       <Animated.ScrollView
         contentContainerStyle={{flexGrow: 1}}
         onScroll={Animated.event(
@@ -46,8 +47,13 @@ export const Featured = () => {
             alignItems: 'center',
           }}>
           <Video
-            source={require('../assets/videos/video_03.mov')}
-            style={{height: '100%', aspectRatio: 0.5625, position: 'absolute'}}
+            source={require('../assets/videos/video_04.mov')}
+            style={{
+              height: '100%',
+              aspectRatio: 0.25,
+              position: 'absolute',
+              zIndex: 0,
+            }}
             repeat
           />
           <Animated.View
@@ -57,7 +63,11 @@ export const Featured = () => {
               right: 300,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={paris} />
+            <StampImage
+              image={paris}
+              text1={'Eiffel' + '\n' + 'Tower'}
+              text2="Paris"
+            />
           </Animated.View>
           <Animated.View
             style={{
@@ -66,7 +76,11 @@ export const Featured = () => {
               right: 250,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={dubai} />
+            <StampImage
+              image={dubai}
+              text1={'Palms ' + '\n' + 'Jumeira'}
+              text2="Dubai"
+            />
           </Animated.View>
           <Animated.View
             style={{
@@ -75,7 +89,11 @@ export const Featured = () => {
               right: 200,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={agra} />
+            <StampImage
+              image={agra}
+              text1={'Taj' + '\n' + 'Mahal'}
+              text2="Agra"
+            />
           </Animated.View>
           <Animated.View
             style={{
@@ -84,7 +102,7 @@ export const Featured = () => {
               right: 150,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={barcelona} />
+            <StampImage image={barcelona} text1="Basilica de la Sagrada Familia" text2="Barcelona" />
           </Animated.View>
           <Animated.View
             style={{
@@ -93,7 +111,7 @@ export const Featured = () => {
               right: 100,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={colosseum} />
+            <StampImage image={colosseum} text1={"The" + "\n" + "Colosseum"} text2="Rome" />
           </Animated.View>
           <Animated.View
             style={{
@@ -102,7 +120,11 @@ export const Featured = () => {
               right: 50,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={peru} />
+            <StampImage
+              image={peru}
+              text1={'Machhu' + '\n' + ' Pichhu'}
+              text2="Peru"
+            />
           </Animated.View>
           <Animated.View
             style={{
@@ -111,7 +133,11 @@ export const Featured = () => {
               right: 0,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={rio} />
+            <StampImage
+              image={rio}
+              text1={'Christ the' + '\n' + 'Redeemer'}
+              text2={'Rio de ' + '\n' + 'Janeiro'}
+            />
           </Animated.View>
           <Animated.View
             style={{
@@ -120,7 +146,11 @@ export const Featured = () => {
               right: -50,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={newyork} />
+            <StampImage
+              image={newyork}
+              text1={'Empire ' + '\n' + 'State' + '\n' + 'Building'}
+              text2={'New' + '\n' + ' York'}
+            />
           </Animated.View>
           <Animated.View
             style={{
@@ -129,10 +159,20 @@ export const Featured = () => {
               right: -100,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={france} />
+            <StampImage image={france} text1="Louvre" text2="Paris" />
           </Animated.View>
         </View>
       </Animated.ScrollView>
-    </SafeAreaView>
+      <View
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '20%',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <TextComp text={'Experience Life'} variant="display" color="#fff" />
+      </View>
+    </View>
   );
 };

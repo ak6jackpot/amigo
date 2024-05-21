@@ -1,12 +1,19 @@
 import {faBell, faHeart} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {SafeAreaView, ScrollView, TextInput, View} from 'react-native';
+import {
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  TextInput,
+  View,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
+import Video from 'react-native-video';
+import {RightArrow} from '../assets/images/RightArrow';
 import {ActivityCard} from '../components/ActivityCard';
 import {Tag} from '../components/Tag';
 import TextComp from '../components/TextComp';
-import ButtonComp from '../components/ButtonComp';
 import {useNavigation} from '@react-navigation/native';
 
 export const Home = () => {
@@ -134,11 +141,40 @@ export const Home = () => {
               <Tag text="🇸🇬  Singapore" />
             </View>
           </ScrollView>
-          <TextComp text={'Featured Destinations'} variant="heading" />
-          <ButtonComp
-            text="View All"
-            onPress={() => navigation.navigate('Featured')}
-          />
+          <Pressable
+            style={{
+              width: '100%',
+              aspectRatio: 2,
+              borderRadius: 30,
+              overflow: 'hidden',
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginVertical: 16,
+            }}
+            onPress={() => navigation.navigate('Featured')}>
+            <Video
+              source={require('../assets/videos/video_04.mov')}
+              style={{
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+              }}
+              repeat
+              muted
+            />
+            <View style={{flex: 2, alignItems: 'flex-end'}}>
+              <TextComp
+                text={'Featured Destinations'}
+                variant="heading"
+                color="white"
+                size="large"
+                textAlign="right"
+              />
+            </View>
+            <View style={{flex: 1, alignItems: 'center'}}>
+              <RightArrow />
+            </View>
+          </Pressable>
         </View>
       </ScrollView>
     </SafeAreaView>
