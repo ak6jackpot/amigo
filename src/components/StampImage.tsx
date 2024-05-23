@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import TextComp from './TextComp';
+import {RightArrow} from '../assets/images/RightArrow';
 
 export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
   return (
@@ -27,7 +27,7 @@ export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
         resizeMode={FastImage.resizeMode.contain}
         source={image}
       />
-      <View
+      {/* <View
         style={{
           zIndex: 3,
           marginLeft: 4,
@@ -63,6 +63,20 @@ export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
           color={'#000'}
           textAlign="center"
         />
+      </View> */}
+      <View
+        style={{
+          height: 240,
+          aspectRatio: 1,
+          position: 'absolute',
+          justifyContent: 'flex-end',
+          alignItems: 'flex-end',
+          zIndex: 4,
+          marginTop: 30,
+          marginLeft: -40,
+          transform: [{rotate: '-30deg'}],
+        }}>
+        <RightArrow color="#000" />
       </View>
     </View>
   );

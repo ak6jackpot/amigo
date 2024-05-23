@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {Animated, SafeAreaView, View} from 'react-native';
+import {Animated, View} from 'react-native';
 import Video from 'react-native-video';
 import {screenHeight, screenWidth} from '../Utils';
 import agra from '../assets/images/Agra.jpg';
@@ -102,7 +102,11 @@ export const Featured = () => {
               right: 150,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={barcelona} text1="Basilica de la Sagrada Familia" text2="Barcelona" />
+            <StampImage
+              image={barcelona}
+              text1="Basilica de la Sagrada Familia"
+              text2="Barcelona"
+            />
           </Animated.View>
           <Animated.View
             style={{
@@ -111,7 +115,11 @@ export const Featured = () => {
               right: 100,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage image={colosseum} text1={"The" + "\n" + "Colosseum"} text2="Rome" />
+            <StampImage
+              image={colosseum}
+              text1={'The' + '\n' + 'Colosseum'}
+              text2="Rome"
+            />
           </Animated.View>
           <Animated.View
             style={{
