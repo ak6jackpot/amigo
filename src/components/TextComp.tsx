@@ -43,29 +43,29 @@ const TextComp = ({
         case 'large':
           styles = {
             ...styles,
-            fontSize: 18,
-            lineHeight: 24,
-          };
-          break;
-        case 'medium':
-          styles = {
-            ...styles,
             fontSize: 16,
             lineHeight: 20,
           };
           break;
-        case 'small':
+        case 'medium':
           styles = {
             ...styles,
             fontSize: 14,
             lineHeight: 18,
           };
           break;
-        case 'x-small':
+        case 'small':
           styles = {
             ...styles,
             fontSize: 12,
             lineHeight: 16,
+          };
+          break;
+        case 'x-small':
+          styles = {
+            ...styles,
+            fontSize: 10,
+            lineHeight: 14,
           };
           break;
       }
@@ -81,7 +81,7 @@ const TextComp = ({
           styles = {
             ...styles,
             fontSize: 40,
-            lineHeight: 52,
+            lineHeight: 48,
           };
           break;
         case 'x-large':
@@ -125,43 +125,6 @@ const TextComp = ({
       styles = {
         ...styles,
         fontFamily: 'Rubik-Bold',
-        textAlign: 'left',
-      };
-      switch (size) {
-        case 'large':
-          styles = {
-            ...styles,
-            fontSize: 96,
-            lineHeight: 112,
-          };
-          break;
-        case 'medium':
-          styles = {
-            ...styles,
-            fontSize: 52,
-            lineHeight: 64,
-          };
-          break;
-        case 'small':
-          styles = {
-            ...styles,
-            fontSize: 44,
-            lineHeight: 52,
-          };
-          break;
-        case 'x-small':
-          styles = {
-            ...styles,
-            fontSize: 36,
-            lineHeight: 44,
-          };
-          break;
-      }
-      break;
-
-      styles = {
-        ...styles,
-        fontFamily: 'UberMoveMono-Medium',
         textAlign: 'left',
       };
       switch (size) {

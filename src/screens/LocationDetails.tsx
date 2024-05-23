@@ -1,7 +1,9 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import TextComp from '../components/TextComp';
+import {FlashList} from '@shopify/flash-list';
+import {screenWidth} from '../Utils';
 
 export const LocationDetails = ({route}) => {
   const {photos, details} = route?.params;
@@ -10,7 +12,7 @@ export const LocationDetails = ({route}) => {
   console.log(details, 'details in locationdetails');
 
   return (
-    <>
+    <SafeAreaView>
       <ScrollView>
         <View
           style={{
@@ -18,22 +20,36 @@ export const LocationDetails = ({route}) => {
             justifyContent: 'center',
             padding: 16,
           }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginBottom: 8,
-            }}>
-            <FastImage
-              style={{height: 60, aspectRatio: 1}}
-              resizeMode={FastImage.resizeMode.contain}
-              source={{uri: photos[0]}}
-            />
-          </View>
+          <FlashList
+            contentContainerStyle={{paddingRight: 16}}
+            data={photos}
+            estimatedItemSize={322}
+            renderItem={({item}) => (
+              <View style={{padding: 4, borderRadius: 10, overflow: 'hidden'}}>
+                <FastImage
+                  style={{
+                    width: screenWidth * 0.8,
+                    aspectRatio: 1.69,
+                    borderRadius: 10,
+                  }}
+                  resizeMode={FastImage.resizeMode.cover}
+                  source={{uri: item}}
+                />
+              </View>
+            )}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            snapToAlignment="start"
+            decelerationRate="fast"
+          />
 
-          <TextComp text={details?.description} variant="heading" />
+          <TextComp
+            text={details?.description}
+            variant="heading"
+            size="x-small"
+          />
         </View>
       </ScrollView>
-    </>
+    </SafeAreaView>
   );
 };

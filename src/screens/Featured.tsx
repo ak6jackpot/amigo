@@ -59,47 +59,26 @@ export const Featured = () => {
           <Animated.View
             style={{
               position: 'absolute',
-              bottom: 1500,
-              right: 300,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage
-              image={paris}
-              text1={'Eiffel' + '\n' + 'Tower'}
-              text2="Paris"
-            />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: 1250,
-              right: 250,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage
-              image={dubai}
-              text1={'Palms ' + '\n' + 'Jumeira'}
-              text2="Dubai"
-            />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: 1000,
+              bottom: 1400,
               right: 200,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage
-              image={agra}
-              text1={'Taj' + '\n' + 'Mahal'}
-              text2="Agra"
-            />
+            <StampImage image={dubai} text1={'The Palms'} text2="Dubai" />
           </Animated.View>
           <Animated.View
             style={{
               position: 'absolute',
-              bottom: 750,
+              bottom: 1150,
               right: 150,
+              transform: [{translateX}, {translateY}],
+            }}>
+            <StampImage image={agra} text1={'Taj Mahal'} text2="Agra" />
+          </Animated.View>
+          <Animated.View
+            style={{
+              position: 'absolute',
+              bottom: 900,
+              right: 100,
               transform: [{translateX}, {translateY}],
             }}>
             <StampImage
@@ -111,63 +90,68 @@ export const Featured = () => {
           <Animated.View
             style={{
               position: 'absolute',
-              bottom: 500,
-              right: 100,
+              bottom: 650,
+              right: 50,
               transform: [{translateX}, {translateY}],
             }}>
             <StampImage
               image={colosseum}
-              text1={'The' + '\n' + 'Colosseum'}
+              text1={'The Colosseum'}
               text2="Rome"
             />
           </Animated.View>
           <Animated.View
             style={{
               position: 'absolute',
-              bottom: 250,
-              right: 50,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage
-              image={peru}
-              text1={'Machhu' + '\n' + ' Pichhu'}
-              text2="Peru"
-            />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: 0,
+              bottom: 400,
               right: 0,
               transform: [{translateX}, {translateY}],
             }}>
-            <StampImage
-              image={rio}
-              text1={'Christ the' + '\n' + 'Redeemer'}
-              text2={'Rio de ' + '\n' + 'Janeiro'}
-            />
+            <StampImage image={peru} text1={'Machhu Pichhu'} text2="Peru" />
           </Animated.View>
           <Animated.View
             style={{
               position: 'absolute',
-              bottom: -250,
+              bottom: 150,
               right: -50,
               transform: [{translateX}, {translateY}],
             }}>
             <StampImage
-              image={newyork}
-              text1={'Empire ' + '\n' + 'State' + '\n' + 'Building'}
-              text2={'New' + '\n' + ' York'}
+              image={rio}
+              text1={'Christ the Redeemer'}
+              text2={'Rio de Janeiro'}
             />
           </Animated.View>
           <Animated.View
             style={{
               position: 'absolute',
-              bottom: -500,
+              bottom: -100,
               right: -100,
               transform: [{translateX}, {translateY}],
             }}>
+            <StampImage
+              image={newyork}
+              text1={'Empire State Building'}
+              text2={'New York'}
+            />
+          </Animated.View>
+          <Animated.View
+            style={{
+              position: 'absolute',
+              bottom: -350,
+              right: -150,
+              transform: [{translateX}, {translateY}],
+            }}>
             <StampImage image={france} text1="Louvre" text2="Paris" />
+          </Animated.View>
+          <Animated.View
+            style={{
+              position: 'absolute',
+              bottom: -600,
+              right: -200,
+              transform: [{translateX}, {translateY}],
+            }}>
+            <StampImage image={paris} text1={'Eiffel Tower'} text2="Paris" />
           </Animated.View>
         </View>
       </Animated.ScrollView>
