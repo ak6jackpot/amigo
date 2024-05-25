@@ -1,25 +1,27 @@
 import React from 'react';
 import {Text, TextStyle} from 'react-native';
 
-type TextCompProps = {
-  variant?: 'label' | 'heading' | 'display';
+type TypographyProps = {
+  variant?: 'label' | 'heading' | 'display' | 'featured';
   size?: 'xx-large' | 'x-large' | 'large' | 'medium' | 'small' | 'x-small';
   color?: string;
   text?: string | number;
   textAlign?: 'center' | 'left' | 'right';
   capitalize?: true | false;
   textStyles?: Object;
+  fontFamily?: string;
 };
 
-const TextComp = ({
+const Typography = ({
   variant = 'label',
   size = 'small',
   color = 'black',
   text,
   textAlign,
   capitalize,
+  fontFamily,
   textStyles = {},
-}: TextCompProps) => {
+}: TypographyProps) => {
   let styles: TextStyle = {
     color: color,
     ...textStyles,
@@ -34,38 +36,38 @@ const TextComp = ({
       styles = {
         ...styles,
         ...{
-          fontFamily: 'Rubik-Regular',
+          fontFamily: 'Ubuntu-Regular',
           textAlign: 'left',
         },
         ...(capitalize !== false ? {textTransform: 'capitalize'} : {}),
       };
       switch (size) {
+        case 'x-large':
+          styles = {
+            ...styles,
+            fontSize: 20,
+            lineHeight: 24,
+          };
+          break;
         case 'large':
+          styles = {
+            ...styles,
+            fontSize: 18,
+            lineHeight: 22,
+          };
+          break;
+        case 'medium':
           styles = {
             ...styles,
             fontSize: 16,
             lineHeight: 20,
           };
           break;
-        case 'medium':
+        case 'small':
           styles = {
             ...styles,
             fontSize: 14,
             lineHeight: 18,
-          };
-          break;
-        case 'small':
-          styles = {
-            ...styles,
-            fontSize: 12,
-            lineHeight: 16,
-          };
-          break;
-        case 'x-small':
-          styles = {
-            ...styles,
-            fontSize: 10,
-            lineHeight: 14,
           };
           break;
       }
@@ -73,17 +75,10 @@ const TextComp = ({
     case 'heading':
       styles = {
         ...styles,
-        fontFamily: 'Rubik-Medium',
+        fontFamily: 'Ubuntu-Medium',
         textAlign: 'left',
       };
       switch (size) {
-        case 'xx-large':
-          styles = {
-            ...styles,
-            fontSize: 40,
-            lineHeight: 48,
-          };
-          break;
         case 'x-large':
           styles = {
             ...styles,
@@ -112,34 +107,34 @@ const TextComp = ({
             lineHeight: 32,
           };
           break;
-        case 'x-small':
-          styles = {
-            ...styles,
-            fontSize: 20,
-            lineHeight: 28,
-          };
-          break;
       }
       break;
     case 'display':
       styles = {
         ...styles,
-        fontFamily: 'Rubik-Bold',
+        fontFamily: 'Ubuntu-Bold',
         textAlign: 'left',
       };
       switch (size) {
+        case 'x-large':
+          styles = {
+            ...styles,
+            fontSize: 68,
+            lineHeight: 76,
+          };
+          break;
         case 'large':
           styles = {
             ...styles,
-            fontSize: 96,
-            lineHeight: 112,
+            fontSize: 60,
+            lineHeight: 68,
           };
           break;
         case 'medium':
           styles = {
             ...styles,
             fontSize: 52,
-            lineHeight: 64,
+            lineHeight: 60,
           };
           break;
         case 'small':
@@ -149,11 +144,41 @@ const TextComp = ({
             lineHeight: 52,
           };
           break;
-        case 'x-small':
+      }
+      break;
+    case 'featured':
+      styles = {
+        ...styles,
+        fontFamily: fontFamily || 'BebasNeue-Regular',
+        textAlign: 'left',
+      };
+      switch (size) {
+        case 'x-large':
+          styles = {
+            ...styles,
+            fontSize: 68,
+            lineHeight: 76,
+          };
+          break;
+        case 'large':
+          styles = {
+            ...styles,
+            fontSize: 44,
+            lineHeight: 52,
+          };
+          break;
+        case 'medium':
           styles = {
             ...styles,
             fontSize: 36,
             lineHeight: 44,
+          };
+          break;
+        case 'small':
+          styles = {
+            ...styles,
+            fontSize: 20,
+            lineHeight: 24,
           };
           break;
       }
@@ -166,4 +191,4 @@ const TextComp = ({
   );
 };
 
-export default TextComp;
+export default Typography;

@@ -8,6 +8,7 @@ import {Home} from './screens/Home';
 import {Splash} from './screens/Splash';
 import {LocationDetails} from './screens/LocationDetails';
 import {Featured} from './screens/Featured';
+import {Search} from './screens/Search';
 
 export const AppNavigator = () => {
   const navigationRef = useNavigationContainerRef();
@@ -39,6 +40,11 @@ export const AppNavigator = () => {
         <Stack.Screen
           name={'Featured'}
           component={Featured}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={'Search'}
+          component={Search}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

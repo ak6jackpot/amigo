@@ -5,7 +5,7 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {View} from 'react-native';
-import TextComp from './TextComp';
+import Typography from './Typography';
 
 type ActivityCardProps = {
   titleText?: string;
@@ -32,7 +32,7 @@ export const ActivityCard = ({
         backgroundColor: color,
         justifyContent: 'space-between',
       }}>
-      <TextComp text={titleText} textStyles={{marginRight: 8}} size="large" />
+      <Typography text={titleText} textStyles={{marginRight: 8}} size="large" />
       <View
         style={{
           flexDirection: 'row',
@@ -41,7 +41,11 @@ export const ActivityCard = ({
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <FontAwesomeIcon icon={icon} color="pink" size={24} />
-          <TextComp textStyles={{marginLeft: 8}} text={subText} size="medium" />
+          <Typography
+            textStyles={{marginLeft: 8}}
+            text={subText}
+            size="medium"
+          />
         </View>
         <FontAwesomeIcon icon={faArrowAltCircleRight} size={30} />
       </View>

@@ -12,7 +12,7 @@ import paris from '../assets/images/Paris.jpg';
 import peru from '../assets/images/Peru.jpg';
 import rio from '../assets/images/Rio.jpg';
 import {StampImage} from '../components/StampImage';
-import TextComp from '../components/TextComp';
+import Typography from '../components/Typography';
 
 export const Featured = () => {
   const scrollY = useRef(new Animated.Value(0)).current;
@@ -163,7 +163,7 @@ export const Featured = () => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <TextComp text={'Experience Life'} variant="display" color="#fff" />
+        <Typography text={'Experience Life'} variant="display" color="#fff" />
       </View>
     </View>
   );

@@ -13,11 +13,28 @@ import Video from 'react-native-video';
 import {RightArrow} from '../assets/images/RightArrow';
 import {ActivityCard} from '../components/ActivityCard';
 import {Tag} from '../components/Tag';
-import TextComp from '../components/TextComp';
+import Typography from '../components/Typography';
 import {useNavigation} from '@react-navigation/native';
+import ButtonComp from '../components/ButtonComp';
+import {tripsDataStore} from '../storeDefinitions';
+import {FlashList} from '@shopify/flash-list';
 
 export const Home = () => {
   const navigation = useNavigation();
+
+  const cities = [
+    '🇺🇸  New York',
+    '🇿🇦 Cape Town',
+    '🇩🇪  Berlin',
+    '🇬🇧  London',
+    '🇪🇸  Madrid',
+    '🇯🇵  Tokyo',
+    '🇫🇷  Paris',
+    '🇦🇺  Sydney',
+    '🇦🇪  Dubai',
+    '🇸🇬  Singapore',
+  ];
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -62,7 +79,10 @@ export const Home = () => {
                 }}></View>
             </View>
           </View>
-          <View
+          <Pressable
+            onPress={() => {
+              navigation?.navigate('Search');
+            }}
             style={{
               width: '100%',
               backgroundColor: '#E2F4A6',
@@ -75,13 +95,14 @@ export const Home = () => {
               paddingVertical: 8,
               marginVertical: 8,
             }}>
-            <TextComp
+            <Typography
               text={'✨ Where are you travelling next?'}
               size="large"
               textStyles={{alignSelf: 'flex-start', marginLeft: 8}}
             />
             <TextInput
               placeholder="🔍  Enter any place or city"
+              placeholderTextColor={'#000'}
               style={{
                 backgroundColor: '#FEF9F5',
                 width: '90%',
@@ -91,56 +112,66 @@ export const Home = () => {
                 borderTopRightRadius: 20,
                 borderBottomLeftRadius: 40,
                 borderBottomRightRadius: 40,
-                fontFamily: 'Rubik-Regular',
-                color: '#fff',
+                fontFamily: 'Ubuntu-Regular',
+                color: '#000',
                 height: 32,
               }}
             />
-          </View>
-          <TextComp text={'Upcoming Trips'} variant="heading" />
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={{flexDirection: 'row', marginVertical: 8}}>
-              <ActivityCard
-                titleText="East Side Gallery"
-                subText="Date"
-                icon={faHeart}
-                color="#ebebeb"
-              />
-              <ActivityCard
-                titleText="East Side Gallery"
-                subText="Date"
-                icon={faHeart}
-                color="#ebebeb"
-              />
-              <ActivityCard
-                titleText="East Side Gallery"
-                subText="Date"
-                icon={faHeart}
-                color="#ebebeb"
-              />
-              <ActivityCard
-                titleText="East Side Gallery"
-                subText="Date"
-                icon={faHeart}
-                color="#ebebeb"
+          </Pressable>
+          <Typography text={'Upcoming Trips'} variant="heading" />
+          {tripsDataStore?.tripsData?.upcoming?.length > 0 ? (
+            <FlashList
+              contentContainerStyle={{paddingRight: 16}}
+              data={tripsDataStore?.tripsData?.upcoming}
+              estimatedItemSize={322}
+              renderItem={({item}) => (
+                <ActivityCard
+                  titleText="East Side Gallery"
+                  subText="Date"
+                  icon={faHeart}
+                  color="#ebebeb"
+                />
+              )}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              snapToAlignment="start"
+              decelerationRate="fast"
+            />
+          ) : (
+            <View
+              style={{
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <ButtonComp
+                shape="pill"
+                color="pink"
+                textColor="black"
+                size="x-small"
+                text="You don't have any trip coming up. Plan one now!"
+                styles={{width: '75%', marginVertical: 8, textAlign: 'center'}}
+                onPress={() => {
+                  navigation?.navigate('Search');
+                }}
               />
             </View>
-          </ScrollView>
-          <TextComp text={'Plan a trip'} variant="heading" />
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={{flexDirection: 'row', marginVertical: 8}}>
-              <Tag text="🇺🇸  New York" />
-              <Tag text="🇿🇦 Cape Town" />
-              <Tag text="🇩🇪  Berlin" />
-              <Tag text="🇬🇧  London" />
-              <Tag text="🇪🇸  Madrid" />
-              <Tag text="🇯🇵  Tokyo" />
-              <Tag text="🇫🇷  Paris" />
-              <Tag text="🇦🇺  Sydney" />
-              <Tag text="🇦🇪  Dubai" />
-              <Tag text="🇸🇬  Singapore" />
-            </View>
-          </ScrollView>
+          )}
+          <Typography
+            text={'Plan a trip'}
+            variant="heading"
+            textStyles={{marginBottom: 8}}
+          />
+          <FlashList
+            contentContainerStyle={{paddingRight: 16}}
+            data={cities}
+            estimatedItemSize={322}
+            renderItem={({item}) => <Tag text={item} />}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            snapToAlignment="start"
+            decelerationRate="fast"
+          />
           <Pressable
             style={{
               width: '100%',
@@ -163,7 +194,7 @@ export const Home = () => {
               muted
             />
             <View style={{flex: 2, alignItems: 'flex-end'}}>
-              <TextComp
+              <Typography
                 text={'Featured Destinations'}
                 variant="heading"
                 color="white"

@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import TextComp from '../components/TextComp';
+import Typography from '../components/Typography';
 import {FlashList} from '@shopify/flash-list';
 import {screenWidth} from '../Utils';
 
@@ -43,7 +43,7 @@ export const LocationDetails = ({route}) => {
             decelerationRate="fast"
           />
 
-          <TextComp
+          <Typography
             text={details?.description}
             variant="heading"
             size="x-small"

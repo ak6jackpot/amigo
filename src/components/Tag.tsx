@@ -2,7 +2,7 @@ import {faCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {Pressable, View} from 'react-native';
-import TextComp from './TextComp';
+import Typography from './Typography';
 import {locationDetailsTA, locationPhotosTA, locationSearchTA} from '../APIs';
 import {useNavigation} from '@react-navigation/native';
 
@@ -54,7 +54,7 @@ export const Tag = ({
             padding: 8,
             backgroundColor: '#EBEBEB',
           }}>
-          <TextComp text={text} />
+          <Typography text={text} />
         </Pressable>
       );
     case 'outline':
@@ -77,7 +77,7 @@ export const Tag = ({
             zIndex: 1,
           }}>
           <FontAwesomeIcon icon={icon} size={20} style={{marginRight: 5}} />
-          <TextComp text={text} />
+          <Typography text={text} />
         </View>
       );
   }

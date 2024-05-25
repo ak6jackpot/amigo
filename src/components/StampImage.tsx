@@ -9,7 +9,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import {locationDetailsTA, locationPhotosTA, locationSearchTA} from '../APIs';
-import TextComp from './TextComp';
+import Typography from './Typography';
 
 export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
   const [focused, setFocused] = useState(false);
@@ -114,7 +114,7 @@ export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
                 padding: 6,
               }}
               onPress={() => loadDetails(text1)}>
-              <TextComp
+              <Typography
                 text={text1 + ', ' + text2}
                 textStyles={{
                   // padding: 4,
@@ -122,7 +122,7 @@ export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
                   borderBottomLeftRadius: 10,
                 }}
               />
-              <TextComp
+              <Typography
                 text={'Click to View'}
                 size="x-small"
                 color="#6e6e6e"

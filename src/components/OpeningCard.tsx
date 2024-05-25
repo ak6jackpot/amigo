@@ -2,7 +2,7 @@ import React from 'react';
 import {Pressable, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {screenHeight, screenWidth} from '../Utils';
-import TextComp from './TextComp';
+import Typography from './Typography';
 
 export const OpeningCard = () => {
   return (
@@ -43,8 +43,8 @@ export const OpeningCard = () => {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <TextComp text={'Welcome to AMIGO!'} />
-            <TextComp text={'🥳🥳🥳'} />
+            <Typography text={'Welcome to AMIGO!'} />
+            <Typography text={'🥳🥳🥳'} />
           </Pressable>
         </LinearGradient>
       </LinearGradient>

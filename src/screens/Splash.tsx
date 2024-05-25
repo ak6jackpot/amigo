@@ -14,7 +14,7 @@ import {screenHeight, screenWidth} from '../Utils';
 import ButtonComp from '../components/ButtonComp';
 import {Disc} from '../components/Disc';
 import {Tag} from '../components/Tag';
-import TextComp from '../components/TextComp';
+import Typography from '../components/Typography';
 import {useNavigation} from '@react-navigation/native';
 
 export const Splash = () => {
@@ -96,14 +96,14 @@ export const Splash = () => {
           variant="outline"
         />
       </View>
-      <TextComp text={'Travel Planner'} variant="heading" />
+      <Typography text={'Travel Planner'} variant="heading" />
 
-      <TextComp
+      <Typography
         text={'Travel anywhere in the world'}
         variant="label"
         size="small"
       />
-      <TextComp text={'without any hassle'} variant="label" size="small" />
+      <Typography text={'without any hassle'} variant="label" size="small" />
 
       <ButtonComp
         text="Try now!"

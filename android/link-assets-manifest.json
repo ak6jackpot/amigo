@@ -2,48 +2,48 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/fonts/BriemHand-Bold.ttf",
-      "sha1": "e0b6468d45d9acd111125f73ce441d98d9c3f412"
-    },
-    {
-      "path": "src/assets/fonts/BriemHand-Light.ttf",
-      "sha1": "1b30110c02411fa8140adade128ffe14974ac71d"
-    },
-    {
-      "path": "src/assets/fonts/BriemHand-Medium.ttf",
-      "sha1": "876cb1759abe3b2637d540da5fb23ef5459abebe"
-    },
-    {
-      "path": "src/assets/fonts/BriemHand-SemiBold.ttf",
-      "sha1": "e3b9561171e702c0cdfcd11e7e9ce04e9566bb5a"
+      "path": "src/assets/fonts/BebasNeue-Regular.ttf",
+      "sha1": "8b3aaeb978f3cb5f575860774b50c332338563c1"
     },
     {
       "path": "src/assets/fonts/KaushanScript-Regular.ttf",
       "sha1": "8b203c70f9c8f5d437eb5a87a6c7df39fb2996b7"
     },
     {
-      "path": "src/assets/fonts/Rubik-Bold.ttf",
-      "sha1": "0b3d2153576f8ec576af1c89e4793a3dcf0ebb0c"
+      "path": "src/assets/fonts/Marcellus-Regular.ttf",
+      "sha1": "a83ca5e1e8dbf8316177ff5f2f360ea3e1708981"
     },
     {
-      "path": "src/assets/fonts/Rubik-BoldItalic.ttf",
-      "sha1": "6e13f686165a725698733d40cdc08beaefc60860"
+      "path": "src/assets/fonts/Ubuntu-Bold.ttf",
+      "sha1": "020aaec9cdeb59aa8ebd2e4c693527cddb2d1577"
     },
     {
-      "path": "src/assets/fonts/Rubik-Italic.ttf",
-      "sha1": "ddba45e218ec4a1bdff496fcfef9932fa30c82c0"
+      "path": "src/assets/fonts/Ubuntu-BoldItalic.ttf",
+      "sha1": "9ec6f8b1c000fe9d081f2598d801ed85cef63a63"
     },
     {
-      "path": "src/assets/fonts/Rubik-Medium.ttf",
-      "sha1": "7b93e52dc59bc6eb3b374b860c203cbe726c3c31"
+      "path": "src/assets/fonts/Ubuntu-Italic.ttf",
+      "sha1": "1f02c79207884c1d1adf3b0679bbacb1d17c6f39"
     },
     {
-      "path": "src/assets/fonts/Rubik-MediumItalic.ttf",
-      "sha1": "1eb6e92dea262c4509cbfb66b8638be630dc639f"
+      "path": "src/assets/fonts/Ubuntu-Light.ttf",
+      "sha1": "d060b0ff74b379dcc3d10ac2d024602af419d9f0"
     },
     {
-      "path": "src/assets/fonts/Rubik-Regular.ttf",
-      "sha1": "9d7091d63f35c9d28518b06566442a02b306980a"
+      "path": "src/assets/fonts/Ubuntu-LightItalic.ttf",
+      "sha1": "7b5e622026245d52f4eafbaa9564ece8e8889dc9"
+    },
+    {
+      "path": "src/assets/fonts/Ubuntu-Medium.ttf",
+      "sha1": "da662f767e6261491e20da197bd7ffbb7a7d122c"
+    },
+    {
+      "path": "src/assets/fonts/Ubuntu-MediumItalic.ttf",
+      "sha1": "f96c9c3a3bf40efdc9b20afcc8203f6e47e87ea5"
+    },
+    {
+      "path": "src/assets/fonts/Ubuntu-Regular.ttf",
+      "sha1": "8238e55f0320c3abc74057c988367c2f25fa3727"
     }
   ]
 }

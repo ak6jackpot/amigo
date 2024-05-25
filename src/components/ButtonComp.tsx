@@ -53,19 +53,19 @@ const ButtonComp = ({
     case 'small':
       textStyles.fontSize = 10;
       textStyles.lineHeight = 14;
-      textStyles.fontFamily = 'Rubik-Bold';
+      textStyles.fontFamily = 'Ubuntu-Bold';
       buttonStyles = {...buttonStyles, minHeight: 30};
       break;
     case 'medium':
       textStyles.fontSize = 12;
       textStyles.lineHeight = 16;
-      textStyles.fontFamily = 'Rubik-Bold';
+      textStyles.fontFamily = 'Ubuntu-Bold';
       buttonStyles = {...buttonStyles, minHeight: 36};
       break;
     case 'large':
       textStyles.fontSize = 22;
       textStyles.lineHeight = 26;
-      textStyles.fontFamily = 'Rubik-Bold';
+      textStyles.fontFamily = 'Ubuntu-Bold';
       buttonStyles = {...buttonStyles, minHeight: 56};
       break;
   }
@@ -89,6 +89,7 @@ const ButtonComp = ({
               fontSize: textStyles?.fontSize,
               lineHeight: textStyles?.lineHeight,
               fontFamily: textStyles?.fontFamily,
+              textAlign: 'center',
             }}>
             {text}
           </Text>

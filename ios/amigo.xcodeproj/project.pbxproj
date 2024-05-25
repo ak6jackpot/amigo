@@ -10,22 +10,22 @@
 		00E356F31AD99517003FC87E /* amigoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* amigoTests.m */; };
 		03707723FB0C420EB34B3DE9 /* KaushanScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB4985485653495A8B82B4BF /* KaushanScript-Regular.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-amigo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-amigo.a */; };
-		10B35DDFE7C04375A2937B5B /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FF0CE7B03804EEAB49B3CF3 /* Rubik-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		3A7EAEC1C08F4470A0981E1B /* BriemHand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 647F2316DEA34EE18B170988 /* BriemHand-Medium.ttf */; };
-		4590189B34E14356A4FC3331 /* BriemHand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D064FE68FDC4EF68BB947F5 /* BriemHand-Bold.ttf */; };
-		5CCC050621E94760B6EC25DE /* BriemHand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC4ACA4677A54CDB8BE7360C /* BriemHand-Light.ttf */; };
-		6A9BE339828D404C94D2800D /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADA8E877ABA649C2951324CC /* Rubik-Bold.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-amigo-amigoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-amigo-amigoTests.a */; };
-		778884391888409BA336D5B1 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1F6F13D3FA41DFB1B87465 /* Rubik-Italic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		85D12ED1E64A416A958EB030 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F0E470157E44B52B0C2CF99 /* Rubik-MediumItalic.ttf */; };
-		8CA04F8C9DC44869A0B404B5 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60AF7C324FB7434BA6EDA3DD /* Rubik-Medium.ttf */; };
-		910C08D222AC4BB49F19CB35 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDF8AC9C32724653BB793A2B /* Rubik-BoldItalic.ttf */; };
 		97A7EBE70F73143D6F8D9982 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8077E0D9E657669E46D80F82 /* PrivacyInfo.xcprivacy */; };
-		9FD423D6858D4DFDB55BB5FB /* BriemHand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F261FBA6EEFE43DCB0B03497 /* BriemHand-SemiBold.ttf */; };
+		10B0179E42FE4EF4AB467DD1 /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC42A216831543E1897E92BC /* BebasNeue-Regular.ttf */; };
+		B22AE511ED0B4A08A11AFCD7 /* Marcellus-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6D13231FD144E80A9151A32 /* Marcellus-Regular.ttf */; };
+		77E17D4663514F2FB3CC314D /* Ubuntu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C5225D5598B401F85FD5DA9 /* Ubuntu-Bold.ttf */; };
+		F1F9D41EF30C407292EA8388 /* Ubuntu-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D96D2DA9F37485890E7F775 /* Ubuntu-BoldItalic.ttf */; };
+		3B32547CF078494CB4DE71C5 /* Ubuntu-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6A268BDF59A482AB95E4F76 /* Ubuntu-Italic.ttf */; };
+		B10C5947807A41118973500B /* Ubuntu-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E8CA64DCB374F8EAF4E212F /* Ubuntu-Light.ttf */; };
+		C0E53A80126E4A85B42FA331 /* Ubuntu-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E2BAB7C44D344C6BD5911D6 /* Ubuntu-LightItalic.ttf */; };
+		436DF9B7F5A84068A4C826AF /* Ubuntu-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1F93E2BE3C34923B2150570 /* Ubuntu-Medium.ttf */; };
+		3E07C24031EC41C098413CA4 /* Ubuntu-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 889F6F21E8544A4581970E2F /* Ubuntu-MediumItalic.ttf */; };
+		347A336BC4CA4B4DBE25B9DD /* Ubuntu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66E775DC39F24940A99B19EF /* Ubuntu-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,21 +54,21 @@
 		5709B34CF0A7D63546082F79 /* Pods-amigo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-amigo.release.xcconfig"; path = "Target Support Files/Pods-amigo/Pods-amigo.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-amigo-amigoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-amigo-amigoTests.debug.xcconfig"; path = "Target Support Files/Pods-amigo-amigoTests/Pods-amigo-amigoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-amigo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-amigo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F0E470157E44B52B0C2CF99 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-MediumItalic.ttf"; path = "../src/assets/fonts/Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
-		60AF7C324FB7434BA6EDA3DD /* Rubik-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Medium.ttf"; path = "../src/assets/fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; };
-		647F2316DEA34EE18B170988 /* BriemHand-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "BriemHand-Medium.ttf"; path = "../src/assets/fonts/BriemHand-Medium.ttf"; sourceTree = "<group>"; };
-		7FF0CE7B03804EEAB49B3CF3 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Regular.ttf"; path = "../src/assets/fonts/Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		8077E0D9E657669E46D80F82 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = amigo/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = amigo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-amigo-amigoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-amigo-amigoTests.release.xcconfig"; path = "Target Support Files/Pods-amigo-amigoTests/Pods-amigo-amigoTests.release.xcconfig"; sourceTree = "<group>"; };
-		8D064FE68FDC4EF68BB947F5 /* BriemHand-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "BriemHand-Bold.ttf"; path = "../src/assets/fonts/BriemHand-Bold.ttf"; sourceTree = "<group>"; };
-		ADA8E877ABA649C2951324CC /* Rubik-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Bold.ttf"; path = "../src/assets/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		BB4985485653495A8B82B4BF /* KaushanScript-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "KaushanScript-Regular.ttf"; path = "../src/assets/fonts/KaushanScript-Regular.ttf"; sourceTree = "<group>"; };
-		DC1F6F13D3FA41DFB1B87465 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Italic.ttf"; path = "../src/assets/fonts/Rubik-Italic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EDF8AC9C32724653BB793A2B /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BoldItalic.ttf"; path = "../src/assets/fonts/Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
-		F261FBA6EEFE43DCB0B03497 /* BriemHand-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "BriemHand-SemiBold.ttf"; path = "../src/assets/fonts/BriemHand-SemiBold.ttf"; sourceTree = "<group>"; };
-		FC4ACA4677A54CDB8BE7360C /* BriemHand-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "BriemHand-Light.ttf"; path = "../src/assets/fonts/BriemHand-Light.ttf"; sourceTree = "<group>"; };
+		DC42A216831543E1897E92BC /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; name = "BebasNeue-Regular.ttf"; path = "../src/assets/fonts/BebasNeue-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D6D13231FD144E80A9151A32 /* Marcellus-Regular.ttf */ = {isa = PBXFileReference; name = "Marcellus-Regular.ttf"; path = "../src/assets/fonts/Marcellus-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2C5225D5598B401F85FD5DA9 /* Ubuntu-Bold.ttf */ = {isa = PBXFileReference; name = "Ubuntu-Bold.ttf"; path = "../src/assets/fonts/Ubuntu-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7D96D2DA9F37485890E7F775 /* Ubuntu-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Ubuntu-BoldItalic.ttf"; path = "../src/assets/fonts/Ubuntu-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F6A268BDF59A482AB95E4F76 /* Ubuntu-Italic.ttf */ = {isa = PBXFileReference; name = "Ubuntu-Italic.ttf"; path = "../src/assets/fonts/Ubuntu-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0E8CA64DCB374F8EAF4E212F /* Ubuntu-Light.ttf */ = {isa = PBXFileReference; name = "Ubuntu-Light.ttf"; path = "../src/assets/fonts/Ubuntu-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7E2BAB7C44D344C6BD5911D6 /* Ubuntu-LightItalic.ttf */ = {isa = PBXFileReference; name = "Ubuntu-LightItalic.ttf"; path = "../src/assets/fonts/Ubuntu-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E1F93E2BE3C34923B2150570 /* Ubuntu-Medium.ttf */ = {isa = PBXFileReference; name = "Ubuntu-Medium.ttf"; path = "../src/assets/fonts/Ubuntu-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		889F6F21E8544A4581970E2F /* Ubuntu-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Ubuntu-MediumItalic.ttf"; path = "../src/assets/fonts/Ubuntu-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		66E775DC39F24940A99B19EF /* Ubuntu-Regular.ttf */ = {isa = PBXFileReference; name = "Ubuntu-Regular.ttf"; path = "../src/assets/fonts/Ubuntu-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,17 +136,17 @@
 		73CBA0B9CD6046A296C61E0D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8D064FE68FDC4EF68BB947F5 /* BriemHand-Bold.ttf */,
-				FC4ACA4677A54CDB8BE7360C /* BriemHand-Light.ttf */,
-				647F2316DEA34EE18B170988 /* BriemHand-Medium.ttf */,
-				F261FBA6EEFE43DCB0B03497 /* BriemHand-SemiBold.ttf */,
-				ADA8E877ABA649C2951324CC /* Rubik-Bold.ttf */,
-				EDF8AC9C32724653BB793A2B /* Rubik-BoldItalic.ttf */,
-				DC1F6F13D3FA41DFB1B87465 /* Rubik-Italic.ttf */,
-				60AF7C324FB7434BA6EDA3DD /* Rubik-Medium.ttf */,
-				5F0E470157E44B52B0C2CF99 /* Rubik-MediumItalic.ttf */,
-				7FF0CE7B03804EEAB49B3CF3 /* Rubik-Regular.ttf */,
 				BB4985485653495A8B82B4BF /* KaushanScript-Regular.ttf */,
+				DC42A216831543E1897E92BC /* BebasNeue-Regular.ttf */,
+				D6D13231FD144E80A9151A32 /* Marcellus-Regular.ttf */,
+				2C5225D5598B401F85FD5DA9 /* Ubuntu-Bold.ttf */,
+				7D96D2DA9F37485890E7F775 /* Ubuntu-BoldItalic.ttf */,
+				F6A268BDF59A482AB95E4F76 /* Ubuntu-Italic.ttf */,
+				0E8CA64DCB374F8EAF4E212F /* Ubuntu-Light.ttf */,
+				7E2BAB7C44D344C6BD5911D6 /* Ubuntu-LightItalic.ttf */,
+				E1F93E2BE3C34923B2150570 /* Ubuntu-Medium.ttf */,
+				889F6F21E8544A4581970E2F /* Ubuntu-MediumItalic.ttf */,
+				66E775DC39F24940A99B19EF /* Ubuntu-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -290,17 +290,17 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				97A7EBE70F73143D6F8D9982 /* PrivacyInfo.xcprivacy in Resources */,
-				4590189B34E14356A4FC3331 /* BriemHand-Bold.ttf in Resources */,
-				5CCC050621E94760B6EC25DE /* BriemHand-Light.ttf in Resources */,
-				3A7EAEC1C08F4470A0981E1B /* BriemHand-Medium.ttf in Resources */,
-				9FD423D6858D4DFDB55BB5FB /* BriemHand-SemiBold.ttf in Resources */,
-				6A9BE339828D404C94D2800D /* Rubik-Bold.ttf in Resources */,
-				910C08D222AC4BB49F19CB35 /* Rubik-BoldItalic.ttf in Resources */,
-				778884391888409BA336D5B1 /* Rubik-Italic.ttf in Resources */,
-				8CA04F8C9DC44869A0B404B5 /* Rubik-Medium.ttf in Resources */,
-				85D12ED1E64A416A958EB030 /* Rubik-MediumItalic.ttf in Resources */,
-				10B35DDFE7C04375A2937B5B /* Rubik-Regular.ttf in Resources */,
 				03707723FB0C420EB34B3DE9 /* KaushanScript-Regular.ttf in Resources */,
+				10B0179E42FE4EF4AB467DD1 /* BebasNeue-Regular.ttf in Resources */,
+				B22AE511ED0B4A08A11AFCD7 /* Marcellus-Regular.ttf in Resources */,
+				77E17D4663514F2FB3CC314D /* Ubuntu-Bold.ttf in Resources */,
+				F1F9D41EF30C407292EA8388 /* Ubuntu-BoldItalic.ttf in Resources */,
+				3B32547CF078494CB4DE71C5 /* Ubuntu-Italic.ttf in Resources */,
+				B10C5947807A41118973500B /* Ubuntu-Light.ttf in Resources */,
+				C0E53A80126E4A85B42FA331 /* Ubuntu-LightItalic.ttf in Resources */,
+				436DF9B7F5A84068A4C826AF /* Ubuntu-Medium.ttf in Resources */,
+				3E07C24031EC41C098413CA4 /* Ubuntu-MediumItalic.ttf in Resources */,
+				347A336BC4CA4B4DBE25B9DD /* Ubuntu-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
