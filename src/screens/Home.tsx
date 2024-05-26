@@ -1,23 +1,17 @@
-import {faBell, faHeart} from '@fortawesome/free-solid-svg-icons';
+import {faHeart, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {useNavigation} from '@react-navigation/native';
+import {FlashList} from '@shopify/flash-list';
 import React from 'react';
-import {
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  TextInput,
-  View,
-} from 'react-native';
-import FastImage from 'react-native-fast-image';
+import {Pressable, SafeAreaView, ScrollView, View} from 'react-native';
 import Video from 'react-native-video';
 import {RightArrow} from '../assets/images/RightArrow';
 import {ActivityCard} from '../components/ActivityCard';
+import ButtonComp from '../components/ButtonComp';
+import {Header} from '../components/Header';
 import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
-import {useNavigation} from '@react-navigation/native';
-import ButtonComp from '../components/ButtonComp';
 import {tripsDataStore} from '../storeDefinitions';
-import {FlashList} from '@shopify/flash-list';
 
 export const Home = () => {
   const navigation = useNavigation();
@@ -44,41 +38,7 @@ export const Home = () => {
             justifyContent: 'center',
             padding: 16,
           }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginBottom: 8,
-            }}>
-            <FastImage
-              style={{height: 60, aspectRatio: 1}}
-              resizeMode={FastImage.resizeMode.contain}
-              source={require('../assets/images/logo_round.png')}
-            />
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <View
-                style={{
-                  height: 60,
-                  aspectRatio: 1,
-                  backgroundColor: 'gray',
-                  borderRadius: 100,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: 16,
-                  marginRight: 4,
-                }}>
-                <FontAwesomeIcon icon={faBell} size={'100%'} />
-              </View>
-              <View
-                style={{
-                  height: 60,
-                  aspectRatio: 1,
-                  backgroundColor: 'gray',
-                  borderRadius: 100,
-                }}></View>
-            </View>
-          </View>
+          <Header />
           <Pressable
             onPress={() => {
               navigation?.navigate('Search');
@@ -98,80 +58,90 @@ export const Home = () => {
             <Typography
               text={'✨ Where are you travelling next?'}
               size="large"
-              textStyles={{alignSelf: 'flex-start', marginLeft: 8}}
+              textStyles={{alignSelf: 'flex-start', marginHorizontal: 16}}
             />
-            <TextInput
-              placeholder="🔍  Enter any place or city"
-              placeholderTextColor={'#000'}
+            <View
               style={{
                 backgroundColor: '#FEF9F5',
                 width: '90%',
                 marginTop: 8,
-                paddingHorizontal: 16,
+                marginHorizontal: 8,
+                padding: 16,
                 borderTopLeftRadius: 20,
                 borderTopRightRadius: 20,
                 borderBottomLeftRadius: 40,
                 borderBottomRightRadius: 40,
-                fontFamily: 'Ubuntu-Regular',
-                color: '#000',
-                height: 32,
-              }}
-            />
+                flexDirection: 'row',
+              }}>
+              <FontAwesomeIcon icon={faSearch} />
+              <Typography
+                text={'Enter any place or city'}
+                textStyles={{marginHorizontal: 8, opacity: 0.6}}
+              />
+            </View>
           </Pressable>
-          <Typography text={'Upcoming Trips'} variant="heading" />
-          {tripsDataStore?.tripsData?.upcoming?.length > 0 ? (
+          <View style={{flexDirection: 'column'}}>
+            <Typography text={'Upcoming Trips'} variant="heading" />
+            {tripsDataStore?.tripsData?.upcoming?.length > 0 ? (
+              <FlashList
+                contentContainerStyle={{paddingRight: 16}}
+                data={tripsDataStore?.tripsData?.upcoming}
+                estimatedItemSize={322}
+                renderItem={({item}) => (
+                  <ActivityCard
+                    titleText="East Side Gallery"
+                    subText="Date"
+                    icon={faHeart}
+                    color="#ebebeb"
+                  />
+                )}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                snapToAlignment="start"
+                decelerationRate="fast"
+              />
+            ) : (
+              <View
+                style={{
+                  width: '100%',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <ButtonComp
+                  shape="pill"
+                  color="pink"
+                  textColor="black"
+                  size="x-small"
+                  text="You don't have any trip coming up. Plan one now! →"
+                  styles={{
+                    width: '75%',
+                    marginVertical: 8,
+                    textAlign: 'center',
+                  }}
+                  onPress={() => {
+                    navigation?.navigate('Search');
+                  }}
+                />
+              </View>
+            )}
+          </View>
+          <View style={{flexDirection: 'column'}}>
+            <Typography
+              text={'Plan a trip'}
+              variant="heading"
+              textStyles={{marginBottom: 8}}
+            />
             <FlashList
               contentContainerStyle={{paddingRight: 16}}
-              data={tripsDataStore?.tripsData?.upcoming}
+              data={cities}
               estimatedItemSize={322}
-              renderItem={({item}) => (
-                <ActivityCard
-                  titleText="East Side Gallery"
-                  subText="Date"
-                  icon={faHeart}
-                  color="#ebebeb"
-                />
-              )}
+              renderItem={({item}) => <Tag text={item} />}
               horizontal
               showsHorizontalScrollIndicator={false}
               snapToAlignment="start"
               decelerationRate="fast"
             />
-          ) : (
-            <View
-              style={{
-                width: '100%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <ButtonComp
-                shape="pill"
-                color="pink"
-                textColor="black"
-                size="x-small"
-                text="You don't have any trip coming up. Plan one now!"
-                styles={{width: '75%', marginVertical: 8, textAlign: 'center'}}
-                onPress={() => {
-                  navigation?.navigate('Search');
-                }}
-              />
-            </View>
-          )}
-          <Typography
-            text={'Plan a trip'}
-            variant="heading"
-            textStyles={{marginBottom: 8}}
-          />
-          <FlashList
-            contentContainerStyle={{paddingRight: 16}}
-            data={cities}
-            estimatedItemSize={322}
-            renderItem={({item}) => <Tag text={item} />}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            snapToAlignment="start"
-            decelerationRate="fast"
-          />
+          </View>
           <Pressable
             style={{
               width: '100%',

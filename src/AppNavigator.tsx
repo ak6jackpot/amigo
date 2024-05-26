@@ -45,7 +45,7 @@ export const AppNavigator = () => {
         <Stack.Screen
           name={'Search'}
           component={Search}
-          options={{headerShown: false}}
+          options={{headerShown: false, presentation: 'modal'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
