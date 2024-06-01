@@ -3273,6 +3273,7 @@ __metadata:
     react-native: 0.74.1
     react-native-fast-image: ^8.6.3
     react-native-gesture-handler: ^2.16.2
+    react-native-get-location: ^4.0.1
     react-native-google-places-autocomplete: ^2.5.6
     react-native-linear-gradient: ^2.8.3
     react-native-maps: ^1.15.1
@@ -8489,6 +8490,15 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 3f3309de471b8de654624c54793f6d72236869156ee61c1adc8bba0f4aca6ffc8ed02035eb85820473091d33eb5ec8b42a0e387a21ec25dc30ee345dff0c1142
+  languageName: node
+  linkType: hard
+
+"react-native-get-location@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "react-native-get-location@npm:4.0.1"
+  peerDependencies:
+    react-native: ">=0.60"
+  checksum: c3d46d4a8d6daa6786424cb31d626ec8640665de5c8c4f576bf6fd1a84e2b0c8f6daa75621e62c76788de619e15ee84c8d9f669072a9d695aab0acb6d06e49e1
   languageName: node
   linkType: hard
 

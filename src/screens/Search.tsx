@@ -1,32 +1,28 @@
 import React, {useRef, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {
+  Marker,
+  PROVIDER_DEFAULT,
+  PROVIDER_GOOGLE,
+} from 'react-native-maps';
 import {API_key_Maps} from '../../secrets.json';
 import {screenHeight, screenWidth} from '../Utils';
+import {userDataStore} from '../storeDefinitions';
 
 export const Search = ({route}) => {
   const mapRef = useRef(null);
-  const [regionInput, setRegionInput] = useState({
-    latitude: 28.4624,
-    longitude: -81.7932,
-    latitudeDelta: 0.08,
-    longitudeDelta: (0.08 * screenWidth) / screenHeight,
-  });
-
-  // async function moveToLocation(latiude, longitude) {
-  //   console.log(latiude, longitude, 'inside moveToLocation');
-
-  //   mapRef.current.animateToRegion(
-  //     {
-  //       latiude: latiude,
-  //       longitude: longitude,
-  //       latitudeDelta: 0.015,
-  //       longitudeDelta: 0.01,
-  //     },
-  //     2000,
-  //   );
-  // }
+  const initialRegion = {
+    latitude: userDataStore?.userData?.currentLocation
+      ? userDataStore?.userData?.currentLocation?.latitude
+      : 28.4624,
+    longitude: userDataStore?.userData?.currentLocation
+      ? userDataStore?.userData?.currentLocation?.longitude
+      : -81.7932,
+    latitudeDelta: 0.04,
+    longitudeDelta: (0.04 * screenWidth) / screenHeight,
+  };
+  const [regionInput, setRegionInput] = useState(initialRegion);
 
   return (
     <View
@@ -59,26 +55,23 @@ export const Search = ({route}) => {
           onNotFound={() => console.log('no results')}
           disableScroll={true}
           styles={{
-            textInput: {color: '#000'},
+            textInput: {color: 'black'},
             textInputContainer: {backgroundColor: '#f3f3f3'},
           }}
         />
       </View>
       <MapView
-        provider={PROVIDER_GOOGLE}
+        provider={
+          Platform.OS === 'android' ? PROVIDER_GOOGLE : PROVIDER_DEFAULT
+        }
         ref={mapRef}
         style={{...StyleSheet.absoluteFillObject, zIndex: 0}}
-        initialRegion={{
-          latitude: 28.4624,
-          longitude: -81.7932,
-          latitudeDelta: 0.08,
-          longitudeDelta: (0.08 * screenWidth) / screenHeight,
-        }}
+        initialRegion={initialRegion}
         region={regionInput}>
         <Marker
           coordinate={{
-            latitude: 28.4624,
-            longitude: -81.7932,
+            latitude: regionInput?.latitude,
+            longitude: regionInput?.longitude,
           }}
         />
       </MapView>

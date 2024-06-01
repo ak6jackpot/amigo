@@ -16,6 +16,8 @@ import {Disc} from '../components/Disc';
 import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
 import {useNavigation} from '@react-navigation/native';
+import GetLocation from 'react-native-get-location';
+import { userDataStore } from '../storeDefinitions';
 
 export const Splash = () => {
   const navigation = useNavigation();
@@ -112,6 +114,18 @@ export const Splash = () => {
         shape="pill"
         styles={{marginTop: 20}}
         onPress={() => {
+          GetLocation.getCurrentPosition({
+            enableHighAccuracy: true,
+            timeout: 60000,
+          })
+            .then(location => {
+              console.log(location, 'location');
+              userDataStore?.setUserData({currentLocation: location})
+            })
+            .catch(error => {
+              const {code, message} = error;
+              console.warn(code, message);
+            });
           navigation.navigate('Home');
         }}
       />
