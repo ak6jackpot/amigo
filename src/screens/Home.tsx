@@ -4,14 +4,16 @@ import {useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import React from 'react';
 import {Pressable, SafeAreaView, ScrollView, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import Video from 'react-native-video';
+import {nearbyLocationSearchTA} from '../APIs';
 import {RightArrow} from '../assets/images/RightArrow';
 import {ActivityCard} from '../components/ActivityCard';
 import ButtonComp from '../components/ButtonComp';
 import {Header} from '../components/Header';
 import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
-import {tripsDataStore} from '../storeDefinitions';
+import {tripsDataStore, userDataStore} from '../storeDefinitions';
 
 export const Home = () => {
   const navigation = useNavigation();
@@ -28,6 +30,21 @@ export const Home = () => {
     '🇦🇪  Dubai',
     '🇸🇬  Singapore',
   ];
+
+  const fetchNearby = () => {
+    console.log(userDataStore?.userData?.currentLocation, '------');
+    nearbyLocationSearchTA(
+      userDataStore?.userData?.currentLocation?.latitude,
+      userDataStore?.userData?.currentLocation?.longitude,
+    )
+      ?.then(res => {
+        console.log(res[0]);
+        // locationDetailsTA(res[0]?.location_id)?.then(detailsResponse => {
+        //   console.log(detailsResponse, '---details---');
+        // });
+      })
+      .catch(err => console.log(err));
+  };
 
   return (
     <SafeAreaView>
@@ -176,6 +193,43 @@ export const Home = () => {
               <RightArrow />
             </View>
           </Pressable>
+          <View style={{flexDirection: 'column'}}>
+            <Typography text={'Local Highlights'} variant="heading" />
+            <Pressable
+              style={{
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+                backgroundColor: '#f7c6ef',
+                borderRadius: 25,
+                overflow: 'hidden',
+                marginVertical: 16,
+              }}
+              onPress={fetchNearby}>
+              <FastImage
+                style={{flex: 1, height: '100%'}}
+                resizeMode={FastImage.resizeMode.contain}
+                source={require('../assets/images/local.jpg')}
+              />
+              <View
+                style={{
+                  flex: 2,
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginVertical: 16,
+                  marginHorizontal: 12,
+                }}>
+                <Typography
+                  text={'Explore Nearby Attractions'}
+                  variant="heading"
+                  textAlign="center"
+                />
+                <RightArrow color="black" size="40px" />
+              </View>
+            </Pressable>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
