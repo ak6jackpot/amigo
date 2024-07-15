@@ -47,18 +47,21 @@ export const Disc = ({
 
   return (
     <Animated.View
-      style={[{
-        width: size == 'small' ? 80 : size == 'medium' ? 120 : 160,
-        aspectRatio: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 1000,
-        backgroundColor: color,
-        position: 'absolute',
-        marginLeft: ml,
-        marginTop: mt,
-        zIndex: 2,
-      }, { transform: [{ rotate: rotateAnimation }] }]}>
+      style={[
+        {
+          width: size == 'small' ? 80 : size == 'medium' ? 120 : 160,
+          aspectRatio: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: 1000,
+          backgroundColor: color,
+          position: 'absolute',
+          marginLeft: ml,
+          marginTop: mt,
+          zIndex: 2,
+        },
+        {transform: [{rotate: rotateAnimation}]},
+      ]}>
       <View
         style={{
           position: 'absolute',
@@ -91,7 +94,7 @@ export const Disc = ({
         }}>
         <FontAwesomeIcon
           icon={icon}
-          size={size == 'small' ? 20 : size == 'medium' ? 30 : 40}
+          size={size === 'small' ? 20 : size === 'medium' ? 30 : 40}
         />
       </View>
     </Animated.View>

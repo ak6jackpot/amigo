@@ -17,7 +17,7 @@ import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
 import {useNavigation} from '@react-navigation/native';
 import GetLocation from 'react-native-get-location';
-import { userDataStore } from '../storeDefinitions';
+import {userDataStore} from '../storeDefinitions';
 
 export const Splash = () => {
   const navigation = useNavigation();
@@ -120,7 +120,7 @@ export const Splash = () => {
           })
             .then(location => {
               console.log(location, 'location');
-              userDataStore?.setUserData({currentLocation: location})
+              userDataStore?.setUserData({currentLocation: location});
             })
             .catch(error => {
               const {code, message} = error;

@@ -44,7 +44,8 @@ export const Header = ({variant = 'home'}: HeaderProps) => {
                 aspectRatio: 1,
                 backgroundColor: 'gray',
                 borderRadius: 100,
-              }}></View>
+              }}
+            />
           </View>
         </View>
       );
@@ -81,7 +82,8 @@ export const Header = ({variant = 'home'}: HeaderProps) => {
                 aspectRatio: 1,
                 backgroundColor: 'gray',
                 borderRadius: 100,
-              }}></View>
+              }}
+            />
           </View>
         </View>
       );
