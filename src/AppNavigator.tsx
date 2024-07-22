@@ -9,6 +9,7 @@ import {Splash} from './screens/Splash';
 import {LocationDetails} from './screens/LocationDetails';
 import {Featured} from './screens/Featured';
 import {Search} from './screens/Search';
+import {Itineraries} from './screens/Itineraries';
 
 export const AppNavigator = () => {
   const navigationRef = useNavigationContainerRef();
@@ -45,6 +46,11 @@ export const AppNavigator = () => {
         <Stack.Screen
           name={'Search'}
           component={Search}
+          options={{headerShown: false, presentation: 'modal'}}
+        />
+        <Stack.Screen
+          name={'Itineraries'}
+          component={Itineraries}
           options={{headerShown: false, presentation: 'modal'}}
         />
       </Stack.Navigator>

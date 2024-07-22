@@ -137,7 +137,7 @@ export const Home = () => {
                     textAlign: 'center',
                   }}
                   onPress={() => {
-                    navigation?.navigate('Search');
+                    navigation?.navigate('Itineraries');
                   }}
                 />
               </View>
