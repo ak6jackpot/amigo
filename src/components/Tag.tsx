@@ -1,10 +1,10 @@
 import {faCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Pressable, View} from 'react-native';
 import Typography from './Typography';
-import {locationDetailsTA, locationPhotosTA, locationSearchTA} from '../APIs';
-import {useNavigation} from '@react-navigation/native';
+import {loadLocationDetails} from '../Utils';
 
 type TagProps = {
   text?: string;
@@ -13,6 +13,7 @@ type TagProps = {
   ml?: string;
   rotation?: string;
   variant?: 'fill' | 'outline';
+  data?: Object;
 };
 
 export const Tag = ({
@@ -22,29 +23,19 @@ export const Tag = ({
   ml = '50%',
   rotation = '0deg',
   variant = 'fill',
+  data = {},
 }: TagProps) => {
   const navigation = useNavigation();
 
-  const handlePress = (input: any) => {
-    locationSearchTA(input)?.then(res => {
-      locationDetailsTA(res[0]?.location_id)?.then(detailsResponse => {
-        console.log(detailsResponse, '---details---');
-        locationPhotosTA(res[0]?.location_id)?.then(photosResponse => {
-          console.log(photosResponse, '---photos---');
-          navigation?.navigate('LocationDetails', {
-            photos: photosResponse,
-            details: detailsResponse,
-          });
-        });
-      });
-    });
+  const handlePress = (mapsId: string, tripAdvId: string) => {
+    loadLocationDetails(mapsId, tripAdvId, navigation);
   };
 
   switch (variant) {
     case 'fill':
       return (
         <Pressable
-          onPress={() => handlePress(text)}
+          onPress={() => handlePress(data?.mapsId, data?.tripAdvId)}
           style={{
             alignItems: 'center',
             justifyContent: 'center',
@@ -54,7 +45,7 @@ export const Tag = ({
             padding: 8,
             backgroundColor: '#EBEBEB',
           }}>
-          <Typography text={text} />
+          <Typography text={data?.label} />
         </Pressable>
       );
     case 'outline':

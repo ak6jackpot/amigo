@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import {faHeart, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {useNavigation} from '@react-navigation/native';
@@ -7,7 +6,7 @@ import React from 'react';
 import {Pressable, SafeAreaView, ScrollView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Video from 'react-native-video';
-import {nearbyLocationSearchTA} from '../APIs';
+import {nearbyLocationSearchMaps} from '../APIs';
 import {RightArrow} from '../assets/images/RightArrow';
 import {ActivityCard} from '../components/ActivityCard';
 import ButtonComp from '../components/ButtonComp';
@@ -20,29 +19,65 @@ export const Home = () => {
   const navigation = useNavigation();
 
   const cities = [
-    '🇺🇸  New York',
-    '🇿🇦 Cape Town',
-    '🇩🇪  Berlin',
-    '🇬🇧  London',
-    '🇪🇸  Madrid',
-    '🇯🇵  Tokyo',
-    '🇫🇷  Paris',
-    '🇦🇺  Sydney',
-    '🇦🇪  Dubai',
-    '🇸🇬  Singapore',
+    {
+      label: '🇺🇸  New York',
+      mapsId: 'ChIJOwg_06VPwokRYv534QaPC8g',
+      tripAdvId: '60763',
+    },
+    {
+      label: '🇿🇦 Cape Town',
+      mapsId: 'ChIJ1-4miA9QzB0Rh6ooKPzhf2g',
+      tripAdvId: '1722390',
+    },
+    {
+      label: '🇩🇪  Berlin',
+      mapsId: 'ChIJAVkDPzdOqEcRcDteW0YgIQQ',
+      tripAdvId: '187323',
+    },
+    {
+      label: '🇬🇧  London',
+      mapsId: 'ChIJdd4hrwug2EcRmSrV3Vo6llI',
+      tripAdvId: '186338',
+    },
+    {
+      label: '🇪🇸  Madrid',
+      mapsId: 'ChIJgTwKgJcpQg0RaSKMYcHeNsQ',
+      tripAdvId: '187514',
+    },
+    {
+      label: '🇯🇵  Tokyo',
+      mapsId: 'ChIJXSModoWLGGARILWiCfeu2M0',
+      tripAdvId: '298184',
+    },
+    {
+      label: '🇫🇷  Paris',
+      mapsId: 'ChIJD7fiBh9u5kcRYJSMaMOCCwQ',
+      tripAdvId: '187147',
+    },
+    {
+      label: '🇦🇺  Sydney',
+      mapsId: 'ChIJP3Sa8ziYEmsRUKgyFmh9AQM',
+      tripAdvId: '255060',
+    },
+    {
+      label: '🇦🇪  Dubai',
+      mapsId: 'ChIJRcbZaklDXz4RYlEphFBu5r0',
+      tripAdvId: '295424',
+    },
+    {
+      label: '🇸🇬  Singapore',
+      mapsId: 'ChIJdZOLiiMR2jERxPWrUs9peIg',
+      tripAdvId: '294265',
+    },
   ];
 
   const fetchNearby = () => {
-    console.log(userDataStore?.userData?.currentLocation, '------');
-    nearbyLocationSearchTA(
+    nearbyLocationSearchMaps(
       userDataStore?.userData?.currentLocation?.latitude,
       userDataStore?.userData?.currentLocation?.longitude,
     )
       ?.then(res => {
-        console.log(res[0]);
-        // locationDetailsTA(res[0]?.location_id)?.then(detailsResponse => {
-        //   console.log(detailsResponse, '---details---');
-        // });
+        console.log(res[0], '--------------------');
       })
       .catch(err => console.log(err));
   };
@@ -153,7 +188,7 @@ export const Home = () => {
               contentContainerStyle={{paddingRight: 16}}
               data={cities}
               estimatedItemSize={322}
-              renderItem={({item}) => <Tag text={item} />}
+              renderItem={({item}) => <Tag data={item} />}
               horizontal
               showsHorizontalScrollIndicator={false}
               snapToAlignment="start"
@@ -194,6 +229,7 @@ export const Home = () => {
               <RightArrow />
             </View>
           </Pressable>
+          {/* <Translator place="Mexico" /> */}
           <View style={{flexDirection: 'column'}}>
             <Typography text={'Local Highlights'} variant="heading" />
             <Pressable

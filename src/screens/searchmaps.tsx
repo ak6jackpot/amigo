@@ -40,8 +40,6 @@ export const Search = ({route}) => {
           }}
           fetchDetails={true}
           onPress={(data, details = null) => {
-            console.log(data);
-            console.log(details?.geometry?.location);
             setRegionInput({
               latitude: details?.geometry?.location?.lat,
               longitude: details?.geometry?.location?.lng,

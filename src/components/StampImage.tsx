@@ -8,8 +8,8 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {locationDetailsTA, locationPhotosTA, locationSearchTA} from '../APIs';
 import Typography from './Typography';
+import {loadLocationDetails} from '../Utils';
 
 export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
   const [focused, setFocused] = useState(false);
@@ -17,18 +17,7 @@ export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
   const navigation = useNavigation();
 
   const loadDetails = (input: any) => {
-    locationSearchTA(input)?.then(res => {
-      locationDetailsTA(res[0]?.location_id)?.then(detailsResponse => {
-        console.log(detailsResponse, '---details---');
-        locationPhotosTA(res[0]?.location_id)?.then(photosResponse => {
-          console.log(photosResponse, '---photos---');
-          navigation?.navigate('LocationDetails', {
-            photos: photosResponse,
-            details: detailsResponse,
-          });
-        });
-      });
-    });
+    loadLocationDetails(input, navigation);
   };
 
   const handleLongPress = event => {
