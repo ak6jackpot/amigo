@@ -2,7 +2,14 @@
 import {faLanguage, faPaperPlane} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React, {useEffect, useRef, useState} from 'react';
-import {Animated, Pressable, TextInput, View, Easing} from 'react-native';
+import {
+  Animated,
+  Pressable,
+  TextInput,
+  View,
+  Easing,
+  Keyboard,
+} from 'react-native';
 import Typography from './Typography';
 import {FlashList} from '@shopify/flash-list';
 import {fetchTranslationOpenAI} from '../APIs';
@@ -17,6 +24,7 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   let messageId = useRef(0);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
 
   const Message = ({text, isIncoming}) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -97,6 +105,26 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
     setMessages(prevMessages => [...prevMessages, newMessage]);
   };
 
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      e => {
+        setKeyboardHeight(e.endCoordinates.height);
+      },
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardHeight(0);
+      },
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
+
   const toggleChatbot = () => {
     if (isChatbotVisible) {
       Animated.timing(chatbotHeight, {
@@ -122,7 +150,7 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
       style={{
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-end',
       }}>
       <Pressable
         onPress={toggleChatbot}
@@ -153,7 +181,7 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
               elevation: 5,
               overflow: 'hidden',
             },
-            {height: chatbotHeight},
+            {height: chatbotHeight, marginBottom: keyboardHeight},
           ]}>
           <View
             style={{
@@ -170,24 +198,28 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
             <Typography text={'Type something you want to translate...'} />
           </View>
 
-          <FlashList
-            data={messages}
-            renderItem={({item}) => (
-              <Message
-                key={item.id}
-                text={item.text}
-                isIncoming={item.isIncoming}
-              />
-            )}
-            keyExtractor={item => item?.id}
+          <View
             style={{
-              flexGrow: 1,
+              flex: 1,
               minHeight: 150,
               overflow: 'scroll',
               flexDirection: 'row',
-            }}
-            showsVerticalScrollIndicator
-          />
+            }}>
+            <FlashList
+              data={messages}
+              renderItem={({item}) => (
+                <Message
+                  key={item.id}
+                  text={item.text}
+                  isIncoming={item.isIncoming}
+                />
+              )}
+              keyExtractor={item => item?.id}
+              estimatedItemSize={103}
+              showsVerticalScrollIndicator
+              scrollEnabled
+            />
+          </View>
           <View
             style={{
               flexDirection: 'row',
@@ -201,8 +233,11 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
                 paddingLeft: 10,
                 fontFamily: 'Ubuntu-Regular',
                 flex: 4,
+                color: '#190b14',
               }}
+              autoFocus={true}
               placeholder="Type a phrase..."
+              placeholderTextColor={'#190b14'}
               value={inputText}
               onChangeText={setInputText}
             />

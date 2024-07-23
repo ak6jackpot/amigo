@@ -229,7 +229,6 @@ export const Home = () => {
               <RightArrow />
             </View>
           </Pressable>
-          {/* <Translator place="Mexico" /> */}
           <View style={{flexDirection: 'column'}}>
             <Typography text={'Local Highlights'} variant="heading" />
             <Pressable
