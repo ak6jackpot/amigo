@@ -14,26 +14,28 @@ export const loadLocationDetails = (
   tripAdvId: string,
   navigation?: any,
 ) => {
-  locationDetailsMaps(mapsId)?.then(searchResponse => {
-    console.log(searchResponse, '---maps----');
-    nearbyLocationSearchMaps(
-      searchResponse?.latitude,
-      searchResponse?.longitude,
-      'restaurant',
-      2,
-    ).then(nearbyResponse => {
-      console.log(nearbyResponse, 'nearbyResponse');
+  Promise.all([locationDetailsMaps(mapsId), locationDetailsTA(tripAdvId)])
+    .then(([searchResponse, detailsResponse]) => {
+      // console.log(searchResponse, '---maps----');
+      if (searchResponse) {
+        nearbyLocationSearchMaps(
+          searchResponse.latitude,
+          searchResponse.longitude,
+        ).then(nearbyResponse => {
+          // console.log(nearbyResponse, 'nearbyResponse');
+          navigation?.navigate('LocationDetails', {
+            details: {
+              ...searchResponse,
+              description: detailsResponse?.description,
+            },
+            nearbyLocationDetails: nearbyResponse,
+          });
+        });
+      }
+    })
+    .catch(error => {
+      console.error('An error occurred:', error);
     });
-  });
-
-  locationDetailsTA(tripAdvId)?.then(detailsResponse => {
-    console.log(detailsResponse, '---tripadvisor---');
-  });
-
-  navigation?.navigate('LocationDetails', {
-    photos: [],
-    details: {},
-  });
 };
 
 export const generatePhotoUrl = (photoReference: any) => {
