@@ -4,11 +4,15 @@ import {API_key_Maps} from '../secrets.json';
 import {API_key_OpenAI} from '../secrets.json';
 import {generatePhotoUrl} from './Utils';
 
-export const locationSearchTA = async (searchQuery: string) => {
+export const locationSearchTA = async (
+  searchQuery: string,
+  latLong?: string,
+) => {
+  const baseUrl = `https://api.content.tripadvisor.com/api/v1/location/search?language=en&key=${API_key_TA}&searchQuery=${searchQuery}`;
+  const url = latLong ? `${baseUrl}&latLong=${latLong}` : baseUrl;
+
   return await axios
-    .get(
-      `https://api.content.tripadvisor.com/api/v1/location/search?language=en&key=${API_key_TA}&searchQuery=${searchQuery}`,
-    )
+    .get(url)
     .then(response => {
       // console.log(response?.data?.data, '// location search API');
       return response?.data?.data;
@@ -138,7 +142,7 @@ export const locationDetailsMaps = async (locationId: string) => {
       };
     })
     .catch(error => {
-      console.log(error?.response?.data?.error?.details[0]?.fieldViolations);
+      console.log(error?.response?.data);
     });
 };
 
@@ -148,20 +152,6 @@ export const nearbyLocationSearchMaps = async (
   includedType?: string,
   maxCount?: number,
 ) => {
-  console.log({
-    includedTypes: includedType ? [includedType] : [],
-    maxResultCount: maxCount ? maxCount : 3,
-    locationRestriction: {
-      circle: {
-        center: {
-          latitude: latitude,
-          longitude: longitude,
-        },
-        radius: 500.0,
-      },
-    },
-  });
-
   return await axios
     .post(
       'https://places.googleapis.com/v1/places:searchNearby',
@@ -188,7 +178,7 @@ export const nearbyLocationSearchMaps = async (
       },
     )
     .then(response => {
-      console.log(response?.data, '// nearby location search API');
+      // console.log(response?.data, '// nearby location search API');
 
       return response?.data?.places;
     })
@@ -239,7 +229,7 @@ export const fetchTranslationOpenAI = async (
       },
     )
     .then(response => {
-      console.log(response?.data?.choices[0]?.message, '// translation API');
+      // console.log(response?.data?.choices[0]?.message, '// translation API');
 
       return JSON?.parse(response?.data?.choices[0]?.message?.content);
     })

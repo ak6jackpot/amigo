@@ -11,13 +11,13 @@ import Animated, {
 import Typography from './Typography';
 import {loadLocationDetails} from '../Utils';
 
-export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
+export const StampImage = ({data = {}}) => {
   const [focused, setFocused] = useState(false);
   const scale = useSharedValue(1);
   const navigation = useNavigation();
 
-  const loadDetails = (input: any) => {
-    loadLocationDetails(input, navigation);
+  const loadDetails = (mapsId: string, tripAdvId: string) => {
+    loadLocationDetails(mapsId, tripAdvId, navigation);
   };
 
   const handleLongPress = event => {
@@ -27,7 +27,13 @@ export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
     }
   };
 
-  const handlePress = event => {
+  const handlePress = input => {
+    // locationSearchMaps(input)?.then(res =>
+    //   console.log(JSON?.stringify(res), 'maps search'),
+    // );
+    // locationSearchTA(input)?.then(res =>
+    //   console.log(JSON?.stringify(res), 'tripadvisor search'),
+    // );
     if (focused) {
       setFocused(false);
       scale.value = withTiming(1, {duration: 300});
@@ -75,7 +81,7 @@ export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
               opacity: focused ? 1 : 0.8,
             }}
             resizeMode={FastImage.resizeMode.contain}
-            source={image}
+            source={data?.image}
           />
         </Animated.View>
         {focused && (
@@ -88,7 +94,6 @@ export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
                 flex: 1,
                 height: 120,
                 aspectRatio: 1,
-                // backgroundColor: 'white',
                 flexDirection: 'row',
                 zIndex: 5,
               },
@@ -102,11 +107,10 @@ export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
                 backgroundColor: 'white',
                 padding: 6,
               }}
-              onPress={() => loadDetails(text1)}>
+              onPress={() => loadDetails(data?.mapsId, data?.tripAdvId)}>
               <Typography
-                text={text1 + ', ' + text2}
+                text={data?.text1 + ', ' + data?.text2}
                 textStyles={{
-                  // padding: 4,
                   borderTopLeftRadius: 10,
                   borderBottomLeftRadius: 10,
                 }}
@@ -116,7 +120,6 @@ export const StampImage = ({image = '', text1 = '', text2 = ''}) => {
                 size="x-small"
                 color="#6e6e6e"
                 textStyles={{
-                  // paddingHorizontal: 4,
                   borderTopLeftRadius: 10,
                   borderBottomLeftRadius: 10,
                 }}

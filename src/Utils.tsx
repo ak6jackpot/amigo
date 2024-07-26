@@ -10,11 +10,14 @@ export const screenHeight = Dimensions.get('window').height;
 export const screenWidth = Dimensions.get('window').width;
 
 export const loadLocationDetails = (
-  mapsId: string,
-  tripAdvId: string,
+  mapsId?: string,
+  tripAdvId?: string,
   navigation?: any,
 ) => {
-  Promise.all([locationDetailsMaps(mapsId), locationDetailsTA(tripAdvId)])
+  Promise.all([
+    mapsId && locationDetailsMaps(mapsId),
+    tripAdvId && locationDetailsTA(tripAdvId),
+  ])
     .then(([searchResponse, detailsResponse]) => {
       // console.log(searchResponse, '---maps----');
       if (searchResponse) {

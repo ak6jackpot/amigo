@@ -37,16 +37,8 @@ export const ListItem = ({
             borderBottomWidth: 1,
             backgroundColor: '#fff',
           })}>
-          <View
-            style={{
-              aspectRatio: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            {icon && <FontAwesomeIcon icon={icon} size={16} color={'#000'} />}
-          </View>
           <View style={{justifyContent: 'center', marginLeft: 16}}>
-            <Typography variant="label" size="large" text={text} />
+            <Typography text={data?.displayName?.text} />
           </View>
         </Pressable>
       );

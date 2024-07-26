@@ -165,7 +165,7 @@ export const Home = () => {
                   color="pink"
                   textColor="black"
                   size="x-small"
-                  text="You don't have any trip coming up. Plan one now! →"
+                  text="You don't have any trip coming up. Plan one now! ➡"
                   styles={{
                     width: '75%',
                     marginVertical: 8,
@@ -215,6 +215,7 @@ export const Home = () => {
               }}
               repeat
               muted
+              resizeMode="cover"
             />
             <View style={{flex: 2, alignItems: 'flex-end'}}>
               <Typography

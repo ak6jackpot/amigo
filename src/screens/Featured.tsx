@@ -29,6 +29,72 @@ export const Featured = () => {
     extrapolate: 'clamp',
   });
 
+  const featuredData = [
+    {
+      image: dubai,
+      text1: 'The Palms Jumerah',
+      text2: 'Dubai',
+      mapsId: 'ChIJFTtlwikVXz4RFj5Kdq68yj0',
+      tripAdvId: '15016790',
+    },
+    {
+      image: agra,
+      text1: 'Taj Mahal',
+      text2: 'Agra',
+      mapsId: 'ChIJbf8C1yFxdDkR3n12P4DkKt0',
+      tripAdvId: '317329',
+    },
+    {
+      image: barcelona,
+      text1: 'Basilica de la Sagrada Familia',
+      text2: 'Barcelona',
+      mapsId: 'ChIJk_s92NyipBIRUMnDG8Kq2Js',
+      tripAdvId: '190166',
+    },
+    {
+      image: colosseum,
+      text1: 'The Colosseum',
+      text2: 'Rome',
+      mapsId: 'ChIJrRMgU7ZhLxMRxAOFkC7I8Sg',
+      tripAdvId: '292124',
+    },
+    {
+      image: peru,
+      text1: 'Machu Picchu',
+      text2: 'Peru',
+      mapsId: 'ChIJVVVViV-abZERJxqgpA43EDo',
+      tripAdvId: '294318',
+    },
+    {
+      image: rio,
+      text1: 'Christ the Redeemer',
+      text2: 'Rio de Janeiro',
+      mapsId: 'ChIJP6FKmNV_mQAR3gKVAdeEyZ0',
+      tripAdvId: '554128',
+    },
+    {
+      image: newyork,
+      text1: 'Empire State Building',
+      text2: 'New York',
+      mapsId: 'ChIJaXQRs6lZwokRY6EFpJnhNNE',
+      tripAdvId: '104365',
+    },
+    {
+      image: france,
+      text1: 'Louvre',
+      text2: 'Paris',
+      mapsId: 'ChIJD3uTd9hx5kcR1IQvGfr8dbk',
+      tripAdvId: '188757',
+    },
+    {
+      image: paris,
+      text1: 'Eiffel Tower',
+      text2: 'Paris',
+      mapsId: 'ChIJLU7jZClu5kcR4PcOOO6p3I0',
+      tripAdvId: '188151',
+    },
+  ];
+
   return (
     <View style={{flex: 1}}>
       <Animated.ScrollView
@@ -55,104 +121,21 @@ export const Featured = () => {
               zIndex: 0,
             }}
             repeat
+            resizeMode="cover"
           />
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: 1400,
-              right: 200,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage image={dubai} text1={'The Palms'} text2="Dubai" />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: 1150,
-              right: 150,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage image={agra} text1={'Taj Mahal'} text2="Agra" />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: 900,
-              right: 100,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage
-              image={barcelona}
-              text1="Basilica de la Sagrada Familia"
-              text2="Barcelona"
-            />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: 650,
-              right: 50,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage
-              image={colosseum}
-              text1={'The Colosseum'}
-              text2="Rome"
-            />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: 400,
-              right: 0,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage image={peru} text1={'Machhu Pichhu'} text2="Peru" />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: 150,
-              right: -50,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage
-              image={rio}
-              text1={'Christ the Redeemer'}
-              text2={'Rio de Janeiro'}
-            />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: -100,
-              right: -100,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage
-              image={newyork}
-              text1={'Empire State Building'}
-              text2={'New York'}
-            />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: -350,
-              right: -150,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage image={france} text1="Louvre" text2="Paris" />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              bottom: -600,
-              right: -200,
-              transform: [{translateX}, {translateY}],
-            }}>
-            <StampImage image={paris} text1={'Eiffel Tower'} text2="Paris" />
-          </Animated.View>
+          {featuredData?.map((item, index) => {
+            return (
+              <Animated.View
+                style={{
+                  position: 'absolute',
+                  bottom: 1400 - index * 250,
+                  right: 200 - index * 50,
+                  transform: [{translateX}, {translateY}],
+                }}>
+                <StampImage data={item} />
+              </Animated.View>
+            );
+          })}
         </View>
       </Animated.ScrollView>
       <View

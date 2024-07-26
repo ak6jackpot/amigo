@@ -1,16 +1,39 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Typography from '../components/Typography';
 import {FlashList} from '@shopify/flash-list';
 import {screenWidth} from '../Utils';
 import {Translator} from '../components/Translator';
+import {locationDetailsTA, locationSearchTA} from '../APIs';
 
 export const LocationDetails = ({route}) => {
   const {details, nearbyLocationDetails} = route?.params;
 
+  const [photos, setPhotos] = useState(details?.photos);
+  const [formattedAddress, setFormattedAddress] = useState(
+    details?.formattedAddress,
+  );
+  const [latitude, setLatitude] = useState(details?.latitude);
+  const [longitude, setLongitude] = useState(details?.longitude);
+  const [description, setDescription] = useState(details?.description);
   // console.log(details, 'details in locationdetails');
   // console.log(nearbyLocationDetails, 'nearby in locationdetails');
+
+  useEffect(() => {
+    if (!details?.description) {
+      locationSearchTA(
+        details?.formattedAddress,
+        `${details?.latitude}%2C${details?.longitude}`,
+      )?.then(res => {
+        // console.log(res, 'fetching loc');
+        locationDetailsTA(res[0]?.location_id)?.then(response => {
+          // console.log(response, 'fetching desc');
+          setDescription(response?.description);
+        });
+      });
+    }
+  }, []);
 
   return (
     <SafeAreaView>
@@ -21,7 +44,7 @@ export const LocationDetails = ({route}) => {
           }}>
           <FlashList
             contentContainerStyle={{padding: 8}}
-            data={details?.photos}
+            data={photos}
             estimatedItemSize={322}
             renderItem={({item}) => (
               <View
@@ -60,17 +83,14 @@ export const LocationDetails = ({route}) => {
             padding: 16,
           }}>
           <Typography
-            text={details?.formattedAddress}
+            text={formattedAddress}
             variant="heading"
             textStyles={{marginVertical: 8}}
           />
-          <Typography
-            text={details?.latitude + ',' + details?.longitude}
-            color="#888"
-          />
+          <Typography text={latitude + ',' + longitude} color="#888" />
           <Typography
             size="medium"
-            text={details?.description}
+            text={description}
             textStyles={{marginVertical: 8}}
           />
           <View
@@ -82,7 +102,7 @@ export const LocationDetails = ({route}) => {
               width: '100%',
               alignItems: 'flex-end',
             }}>
-            <Translator place={details?.formattedAddress} />
+            <Translator place={formattedAddress} />
           </View>
         </View>
       </ScrollView>

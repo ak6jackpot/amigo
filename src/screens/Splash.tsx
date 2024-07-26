@@ -108,7 +108,7 @@ export const Splash = () => {
       <Typography text={'without any hassle'} variant="label" size="small" />
 
       <ButtonComp
-        text="Try now!"
+        text="Let's Get started!"
         color="#EEA0FF"
         textColor="#190b14"
         shape="pill"
@@ -119,12 +119,12 @@ export const Splash = () => {
             timeout: 60000,
           })
             .then(location => {
-              console.log(location, 'location');
+              // console.log(location, 'location');
               userDataStore?.setUserData({currentLocation: location});
             })
             .catch(error => {
               const {code, message} = error;
-              console.warn(code, message);
+              console.log(code, message);
             });
           navigation.navigate('Home');
         }}

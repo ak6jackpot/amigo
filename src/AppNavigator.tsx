@@ -51,7 +51,7 @@ export const AppNavigator = () => {
         <Stack.Screen
           name={'Itineraries'}
           component={Itineraries}
-          options={{headerShown: false, presentation: 'modal'}}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -26,6 +26,8 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
   let messageId = useRef(0);
   const [keyboardHeight, setKeyboardHeight] = useState(0);
 
+  const displayCity =
+    place?.length > 22 ? place?.substring(0, 21) + '...' : place;
   const Message = ({text, isIncoming}) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
     const translateYAnim = useRef(new Animated.Value(20)).current;
@@ -194,8 +196,8 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
               borderTopEndRadius: 10,
               borderTopStartRadius: 10,
             }}>
-            <Typography text={'You are in ' + place} size="medium" />
-            <Typography text={'Type something you want to translate...'} />
+            <Typography text={'You are in ' + displayCity} size="medium" />
+            <Typography text={'Type something you want to translate'} />
           </View>
 
           <View
