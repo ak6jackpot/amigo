@@ -6,6 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {View} from 'react-native';
 import Typography from './Typography';
+import {Color} from '../Utils';
 
 type ActivityCardProps = {
   titleText?: string;
@@ -18,7 +19,7 @@ export const ActivityCard = ({
   titleText = '',
   subText = '',
   icon = faCircle,
-  color = '#fff',
+  color = Color?.whiteBg,
 }: ActivityCardProps) => {
   return (
     <View

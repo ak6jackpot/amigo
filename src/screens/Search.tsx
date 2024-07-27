@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {FlashList} from '@shopify/flash-list';
 import {locationSearchMaps} from '../APIs';
 import {faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
-import {loadLocationDetails} from '../Utils';
+import {Color, loadLocationDetails} from '../Utils';
 import {useNavigation} from '@react-navigation/native';
 
 export const Search = ({route}) => {
@@ -23,7 +23,7 @@ export const Search = ({route}) => {
   return (
     <View
       style={{
-        backgroundColor: '#FEF9F5',
+        backgroundColor: Color.beigeBg,
         padding: 16,
         flex: 1,
       }}>
@@ -31,7 +31,7 @@ export const Search = ({route}) => {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          backgroundColor: '#fff',
+          backgroundColor: Color?.whiteBg,
           borderRadius: 8,
           padding: 8,
           elevation: 2,

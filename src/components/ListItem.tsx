@@ -2,6 +2,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {Pressable, View} from 'react-native';
 import Typography from './Typography';
+import {Color} from '../Utils';
 
 type ListItemProps = {
   variant?: 'search' | 'trip';
@@ -15,12 +16,10 @@ type ListItemProps = {
 
 export const ListItem = ({
   icon,
-  text = '',
   variant = 'search',
   onPress,
-  title = '',
   data = {},
-  textColor = '#000',
+  textColor = Color?.black,
 }: ListItemProps) => {
   switch (variant) {
     case 'search':
@@ -33,9 +32,9 @@ export const ListItem = ({
             flexDirection: 'row',
             paddingHorizontal: 16,
             paddingVertical: 24,
-            borderBottomColor: '#fff',
+            borderBottomColor: Color?.whiteBg,
             borderBottomWidth: 1,
-            backgroundColor: '#fff',
+            backgroundColor: Color?.whiteBg,
           })}>
           <View style={{justifyContent: 'center', marginLeft: 16}}>
             <Typography text={data?.displayName?.text} />
@@ -52,9 +51,9 @@ export const ListItem = ({
             flexDirection: 'row',
             paddingHorizontal: 16,
             paddingVertical: 24,
-            borderBottomColor: '#fff',
+            borderBottomColor: Color?.whiteBg,
             borderBottomWidth: 1,
-            backgroundColor: '#fff',
+            backgroundColor: Color?.whiteBg,
           })}>
           <View
             style={{
@@ -62,10 +61,12 @@ export const ListItem = ({
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            {icon && <FontAwesomeIcon icon={icon} size={16} color={'#000'} />}
+            {icon && (
+              <FontAwesomeIcon icon={icon} size={16} color={Color?.black} />
+            )}
           </View>
           <View style={{justifyContent: 'center', marginLeft: 16}}>
-            <Typography variant="label" size="large" text={text} />
+            <Typography variant="label" size="large" text={data?.text} />
           </View>
         </Pressable>
       );

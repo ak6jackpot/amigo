@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {Animated, View} from 'react-native';
 import Video from 'react-native-video';
-import {screenHeight, screenWidth} from '../Utils';
+import {Color, screenHeight, screenWidth} from '../Utils';
 import agra from '../assets/images/Agra.jpg';
 import barcelona from '../assets/images/Barcelona.jpg';
 import colosseum from '../assets/images/Colosseum.jpg';
@@ -106,7 +106,7 @@ export const Featured = () => {
         scrollEventThrottle={16}>
         <View
           style={{
-            backgroundColor: '#FEF9F5',
+            backgroundColor: Color.beigeBg,
             justifyContent: 'center',
             height: screenHeight * 2,
             width: '100%',

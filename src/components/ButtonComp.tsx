@@ -1,8 +1,9 @@
 import React, {ReactNode} from 'react';
 import {Pressable, Text, TextStyle, View, ViewStyle} from 'react-native';
+import {Color} from '../Utils';
 
 type ButtonCompProps = {
-  size?: 'x-small' | 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
   shape?: 'pill' | 'rect' | 'square' | 'circle';
   onPress?: () => void;
   text?: string;
@@ -22,9 +23,9 @@ const ButtonComp = ({
   text = '',
   left,
   right,
-  color = '#fff',
+  color = Color?.whiteBg,
   disabled = false,
-  textColor = '#000',
+  textColor = Color?.black,
   onPressIn,
   styles = {},
 }: ButtonCompProps) => {
@@ -37,7 +38,7 @@ const ButtonComp = ({
         : shape === 'circle'
         ? 20
         : 12,
-    padding: 16,
+    padding: size === 'small' ? 4 : size === 'large' ? 16 : 8,
     alignItems: 'center',
     justifyContent: 'space-evenly',
     width: '100%',

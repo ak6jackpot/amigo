@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import {Text, View} from 'react-native';
-import {screenHeight, screenWidth} from '../Utils';
+import {Color, screenHeight, screenWidth} from '../Utils';
 import ButtonComp from '../components/ButtonComp';
 import {Disc} from '../components/Disc';
 import {Tag} from '../components/Tag';
@@ -25,7 +25,7 @@ export const Splash = () => {
     <View
       style={{
         padding: 8,
-        backgroundColor: '#FEF9F5',
+        backgroundColor: Color.beigeBg,
         alignItems: 'center',
         justifyContent: 'center',
         width: screenWidth,

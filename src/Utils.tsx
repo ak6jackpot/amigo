@@ -46,3 +46,17 @@ export const generatePhotoUrl = (photoReference: any) => {
   const maxwidth = 400; // You can adjust the max width or height as needed
   return `${baseUrl}?maxwidth=${maxwidth}&photoreference=${photoReference}&key=${API_key_Maps}`;
 };
+
+export const Color = {
+  whiteBg: '#fff',
+  grayTag: '#EBEBEB',
+  gray900: '#999',
+  graySend: '#ddd',
+  greenSearch: '#E2F4A6',
+  pinkPrimary: '#f7c6ef',
+  pinkSecodary: 'pink',
+  black: '#000',
+  incomingMessage: '#e6e6e6',
+  outgoingMessage: '#dcf8c6',
+  beigeBg: '#FEF9F5',
+};

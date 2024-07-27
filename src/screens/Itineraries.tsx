@@ -5,12 +5,13 @@ import {ListItem} from '../components/ListItem';
 import {faHourglass} from '@fortawesome/free-solid-svg-icons';
 import ButtonComp from '../components/ButtonComp';
 import {tripsDataStore} from '../storeDefinitions';
+import {Color} from '../Utils';
 
 export const Itineraries = ({route}) => {
   return (
     <View
       style={{
-        backgroundColor: '#FEF9F5',
+        backgroundColor: Color.beigeBg,
         padding: 16,
         flex: 1,
       }}>

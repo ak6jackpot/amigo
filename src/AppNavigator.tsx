@@ -10,6 +10,7 @@ import {LocationDetails} from './screens/LocationDetails';
 import {Featured} from './screens/Featured';
 import {Search} from './screens/Search';
 import {Itineraries} from './screens/Itineraries';
+import {NearbyLocations} from './screens/NearbyLocations';
 
 export const AppNavigator = () => {
   const navigationRef = useNavigationContainerRef();
@@ -51,6 +52,11 @@ export const AppNavigator = () => {
         <Stack.Screen
           name={'Itineraries'}
           component={Itineraries}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={'NearbyLocations'}
+          component={NearbyLocations}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

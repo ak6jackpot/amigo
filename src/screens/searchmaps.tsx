@@ -7,7 +7,7 @@ import MapView, {
   PROVIDER_GOOGLE,
 } from 'react-native-maps';
 import {API_key_Maps} from '../../secrets.json';
-import {screenHeight, screenWidth} from '../Utils';
+import {Color, screenHeight, screenWidth} from '../Utils';
 import {userDataStore} from '../storeDefinitions';
 
 export const Search = ({route}) => {
@@ -27,7 +27,7 @@ export const Search = ({route}) => {
   return (
     <View
       style={{
-        backgroundColor: '#FEF9F5',
+        backgroundColor: Color.beigeBg,
         padding: 16,
         flex: 1,
       }}>
@@ -54,7 +54,7 @@ export const Search = ({route}) => {
           disableScroll={true}
           styles={{
             textInput: {color: 'black'},
-            textInputContainer: {backgroundColor: '#f3f3f3'},
+            textInputContainer: {backgroundColor: Color?.gray900},
           }}
         />
       </View>

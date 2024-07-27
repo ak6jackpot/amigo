@@ -13,6 +13,7 @@ import {
 import Typography from './Typography';
 import {FlashList} from '@shopify/flash-list';
 import {fetchTranslationOpenAI} from '../APIs';
+import {Color} from '../Utils';
 
 type TranslatorProps = {
   place: string;
@@ -61,12 +62,12 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
           isIncoming
             ? {
                 alignSelf: 'flex-start',
-                backgroundColor: '#e6e6e6',
+                backgroundColor: Color?.incomingMessage,
                 marginLeft: 10,
               }
             : {
                 alignSelf: 'flex-end',
-                backgroundColor: '#dcf8c6',
+                backgroundColor: Color?.outgoingMessage,
                 marginRight: 10,
               },
           {
@@ -159,7 +160,7 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
         style={{
           height: 60,
           aspectRatio: 1,
-          backgroundColor: '#f7c6ef',
+          backgroundColor: Color?.pinkPrimary,
           borderRadius: 100,
           alignItems: 'center',
           justifyContent: 'center',
@@ -176,7 +177,7 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
               bottom: 100,
               backgroundColor: 'white',
               borderRadius: 10,
-              shadowColor: '#000',
+              shadowColor: Color?.black,
               shadowOffset: {width: 0, height: 2},
               shadowOpacity: 0.8,
               shadowRadius: 2,
@@ -188,10 +189,10 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
           <View
             style={{
               borderBottomWidth: 1,
-              borderBottomColor: '#ddd',
+              borderBottomColor: Color?.graySend,
               justifyContent: 'center',
               alignItems: 'flex-start',
-              backgroundColor: '#f7c6ef',
+              backgroundColor: Color?.pinkPrimary,
               padding: 16,
               borderTopEndRadius: 10,
               borderTopStartRadius: 10,
@@ -226,7 +227,7 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
             style={{
               flexDirection: 'row',
               borderTopWidth: 1,
-              borderTopColor: '#ddd',
+              borderTopColor: Color?.graySend,
               alignItems: 'center',
             }}>
             <TextInput
@@ -235,11 +236,11 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
                 paddingLeft: 10,
                 fontFamily: 'Ubuntu-Regular',
                 flex: 4,
-                color: '#190b14',
+                color: Color?.black,
               }}
               autoFocus={true}
               placeholder="Type a phrase..."
-              placeholderTextColor={'#190b14'}
+              placeholderTextColor={Color?.black}
               value={inputText}
               onChangeText={setInputText}
             />
@@ -253,8 +254,8 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderLeftWidth: 3,
-                borderColor: '#ddd',
-                backgroundColor: '#ddd',
+                borderColor: Color?.graySend,
+                backgroundColor: Color?.graySend,
               }}>
               <FontAwesomeIcon icon={faPaperPlane} size={24} />
             </Pressable>

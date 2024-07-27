@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Pressable, View} from 'react-native';
 import Typography from './Typography';
-import {loadLocationDetails} from '../Utils';
+import {Color, loadLocationDetails} from '../Utils';
 
 type TagProps = {
   text?: string;
@@ -43,7 +43,7 @@ export const Tag = ({
             marginRight: 8,
             flexDirection: 'row',
             padding: 8,
-            backgroundColor: '#EBEBEB',
+            backgroundColor: Color?.grayTag,
           }}>
           <Typography text={data?.label} />
         </Pressable>

@@ -14,6 +14,7 @@ import {Header} from '../components/Header';
 import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
 import {tripsDataStore, userDataStore} from '../storeDefinitions';
+import {Color} from '../Utils';
 
 export const Home = () => {
   const navigation = useNavigation();
@@ -77,7 +78,10 @@ export const Home = () => {
       userDataStore?.userData?.currentLocation?.longitude,
     )
       ?.then(res => {
-        console.log(res[0], '--------------------');
+        // console.log(res, '--------------------');
+        navigation?.navigate('NearbyLocations', {
+          nearbyList: res,
+        });
       })
       .catch(err => console.log(err));
   };
@@ -87,7 +91,7 @@ export const Home = () => {
       <ScrollView>
         <View
           style={{
-            backgroundColor: '#FEF9F5',
+            backgroundColor: Color.beigeBg,
             justifyContent: 'center',
             padding: 16,
           }}>
@@ -98,7 +102,7 @@ export const Home = () => {
             }}
             style={{
               width: '100%',
-              backgroundColor: '#E2F4A6',
+              backgroundColor: Color?.greenSearch,
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               borderBottomLeftRadius: 40,
@@ -115,7 +119,7 @@ export const Home = () => {
             />
             <View
               style={{
-                backgroundColor: '#FEF9F5',
+                backgroundColor: Color.beigeBg,
                 width: '90%',
                 marginTop: 8,
                 marginHorizontal: 8,
@@ -162,7 +166,7 @@ export const Home = () => {
                 }}>
                 <ButtonComp
                   shape="pill"
-                  color="pink"
+                  color={Color?.pinkPrimary}
                   textColor="black"
                   size="x-small"
                   text="You don't have any trip coming up. Plan one now! ➡"
@@ -238,7 +242,7 @@ export const Home = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexDirection: 'row',
-                backgroundColor: '#f7c6ef',
+                backgroundColor: Color?.pinkPrimary,
                 borderRadius: 25,
                 overflow: 'hidden',
                 marginVertical: 16,

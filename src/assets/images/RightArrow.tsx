@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Svg, {G, Path} from 'react-native-svg';
+import {Color} from '../../Utils';
 
 type RightArrowProps = {
   size?: string;
@@ -8,7 +9,7 @@ type RightArrowProps = {
 
 export const RightArrow = ({
   size = '64px',
-  color = '#fff',
+  color = Color?.whiteBg,
 }: RightArrowProps) => (
   <Svg
     enableBackground="new 0 0 32 32"

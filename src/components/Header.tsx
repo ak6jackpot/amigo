@@ -3,6 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {View} from 'react-native';
 import FastImage from 'react-native-fast-image';
+import {Color} from '../Utils';
 
 type HeaderProps = {
   variant?: string;
@@ -29,23 +30,15 @@ export const Header = ({variant = 'home'}: HeaderProps) => {
               style={{
                 height: 60,
                 aspectRatio: 1,
-                backgroundColor: 'gray',
+                backgroundColor: Color?.gray900,
                 borderRadius: 100,
                 alignItems: 'center',
                 justifyContent: 'center',
                 padding: 16,
                 marginRight: 4,
               }}>
-              <FontAwesomeIcon icon={faBell} size={'100%'} />
+              <FontAwesomeIcon icon={faBell} size={'100%'} color="#fff" />
             </View>
-            <View
-              style={{
-                height: 60,
-                aspectRatio: 1,
-                backgroundColor: 'gray',
-                borderRadius: 100,
-              }}
-            />
           </View>
         </View>
       );

@@ -3,7 +3,7 @@ import {SafeAreaView, ScrollView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Typography from '../components/Typography';
 import {FlashList} from '@shopify/flash-list';
-import {screenWidth} from '../Utils';
+import {Color, screenWidth} from '../Utils';
 import {Translator} from '../components/Translator';
 import {locationDetailsTA, locationSearchTA} from '../APIs';
 
@@ -26,9 +26,9 @@ export const LocationDetails = ({route}) => {
         details?.formattedAddress,
         `${details?.latitude}%2C${details?.longitude}`,
       )?.then(res => {
-        // console.log(res, 'fetching loc');
+        console.log(res, 'fetching loc');
         locationDetailsTA(res[0]?.location_id)?.then(response => {
-          // console.log(response, 'fetching desc');
+          console.log(response, 'fetching desc');
           setDescription(response?.description);
         });
       });
@@ -40,7 +40,7 @@ export const LocationDetails = ({route}) => {
       <ScrollView>
         <View
           style={{
-            backgroundColor: '#FEF9F5',
+            backgroundColor: Color.beigeBg,
           }}>
           <FlashList
             contentContainerStyle={{padding: 8}}
@@ -53,8 +53,8 @@ export const LocationDetails = ({route}) => {
                   padding: 4,
                   borderRadius: 14,
                   overflow: 'hidden',
-                  backgroundColor: '#fff',
-                  shadowColor: '#000',
+                  backgroundColor: Color?.whiteBg,
+                  shadowColor: Color?.black,
                   shadowOffset: {width: 0, height: 2},
                   shadowOpacity: 0.4,
                   shadowRadius: 10,
@@ -79,7 +79,7 @@ export const LocationDetails = ({route}) => {
         </View>
         <View
           style={{
-            backgroundColor: '#FEF9F5',
+            backgroundColor: Color.beigeBg,
             padding: 16,
           }}>
           <Typography
