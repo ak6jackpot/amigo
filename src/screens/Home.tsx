@@ -78,7 +78,12 @@ export const Home = () => {
       userDataStore?.userData?.currentLocation?.longitude,
     )
       ?.then(res => {
-        // console.log(res, '--------------------');
+        // console.log(
+        //   res,
+        //   userDataStore?.userData?.currentLocation,
+        //   res?.length,
+        //   '--------------------',
+        // );
         navigation?.navigate('NearbyLocations', {
           nearbyList: res,
         });

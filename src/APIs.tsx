@@ -157,14 +157,14 @@ export const nearbyLocationSearchMaps = async (
       'https://places.googleapis.com/v1/places:searchNearby',
       {
         includedTypes: includedType ? [includedType] : [],
-        maxResultCount: maxCount ? maxCount : 3,
+        maxResultCount: maxCount ? maxCount : 4,
         locationRestriction: {
           circle: {
             center: {
               latitude: latitude,
               longitude: longitude,
             },
-            radius: 500.0,
+            radius: 50000.0,
           },
         },
       },
