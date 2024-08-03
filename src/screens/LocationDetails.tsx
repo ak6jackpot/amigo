@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, ScrollView, View} from 'react-native';
+import {Pressable, SafeAreaView, ScrollView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Typography from '../components/Typography';
 import {FlashList} from '@shopify/flash-list';
-import {Color, screenWidth} from '../Utils';
+import {Color, screenHeight, screenWidth} from '../Utils';
 import {Translator} from '../components/Translator';
 import {locationDetailsTA, locationSearchTA} from '../APIs';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faDiamondTurnRight} from '@fortawesome/free-solid-svg-icons';
+import {useNavigation} from '@react-navigation/native';
 
 export const LocationDetails = ({route}) => {
   const {details, nearbyLocationDetails} = route?.params;
@@ -17,6 +20,7 @@ export const LocationDetails = ({route}) => {
   const [latitude, setLatitude] = useState(details?.latitude);
   const [longitude, setLongitude] = useState(details?.longitude);
   const [description, setDescription] = useState(details?.description);
+  const navigation = useNavigation();
   // console.log(details, 'details in locationdetails');
   // console.log(nearbyLocationDetails, 'nearby in locationdetails');
 
@@ -96,12 +100,36 @@ export const LocationDetails = ({route}) => {
           <View
             style={{
               position: 'absolute',
-              padding: 32,
+              padding: 16,
               bottom: 1,
               right: 1,
-              width: '100%',
+              width: '50%',
               alignItems: 'flex-end',
+              flexDirection: 'row',
             }}>
+            <Pressable
+              onPress={() => {
+                // console.log(item?.location);
+                navigation?.navigate('DirectionsMap', {
+                  destination: {
+                    latitude: latitude,
+                    longitude: longitude,
+                    latitudeDelta: 0.04,
+                    longitudeDelta: (0.04 * screenWidth) / screenHeight,
+                  },
+                });
+              }}
+              style={{
+                height: 60,
+                aspectRatio: 1,
+                backgroundColor: Color?.pinkPrimary,
+                borderRadius: 100,
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 16,
+              }}>
+              <FontAwesomeIcon icon={faDiamondTurnRight} size={'100%'} />
+            </Pressable>
             <Translator place={formattedAddress} />
           </View>
         </View>

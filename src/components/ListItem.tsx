@@ -1,5 +1,4 @@
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {Pressable, View} from 'react-native';
 import Typography from './Typography';
 import {Color} from '../Utils';
@@ -12,6 +11,8 @@ type ListItemProps = {
   textColor?: string;
   onPress?: () => void;
   data?: object;
+  rightElement?: ReactNode;
+  onPressRight?: () => void;
 };
 
 export const ListItem = ({
@@ -20,6 +21,8 @@ export const ListItem = ({
   onPress,
   data = {},
   textColor = Color?.black,
+  rightElement = null,
+  onPressRight,
 }: ListItemProps) => {
   switch (variant) {
     case 'search':
@@ -49,25 +52,48 @@ export const ListItem = ({
             opacity: pressed ? 0.7 : 1,
             width: '100%',
             flexDirection: 'row',
-            paddingHorizontal: 16,
-            paddingVertical: 24,
-            borderBottomColor: Color?.whiteBg,
-            borderBottomWidth: 1,
-            backgroundColor: Color?.whiteBg,
+            paddingHorizontal: 2,
+            paddingVertical: 2,
+            borderColor: Color?.pinkSecodary,
+            borderWidth: 3,
+            borderRadius: 12,
           })}>
           <View
             style={{
-              aspectRatio: 1,
-              alignItems: 'center',
               justifyContent: 'center',
+              backgroundColor: Color?.pinkPrimary,
+              width: '100%',
+              borderRadius: 9,
+              padding: 8,
             }}>
-            {icon && (
-              <FontAwesomeIcon icon={icon} size={16} color={Color?.black} />
-            )}
+            <Typography
+              variant="label"
+              size="large"
+              text={data?.name}
+              color={textColor}
+            />
+            <Typography
+              variant="label"
+              size="small"
+              text={data?.description}
+              color={textColor}
+            />
           </View>
-          <View style={{justifyContent: 'center', marginLeft: 16}}>
-            <Typography variant="label" size="large" text={data?.text} />
-          </View>
+          {rightElement && (
+            <Pressable
+              style={{
+                position: 'absolute',
+                right: 10,
+                height: '100%',
+                aspectRatio: 0.5,
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                backgroundColor: 'yellow',
+              }}
+              onPress={onPressRight}>
+              {rightElement}
+            </Pressable>
+          )}
         </Pressable>
       );
   }

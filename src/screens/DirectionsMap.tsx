@@ -74,6 +74,9 @@ export const DirectionsMap = ({route}) => {
             apikey={API_key_Maps}
             strokeColor="blue"
             strokeWidth={5}
+            onError={error => {
+              //@task -- show error in toast or snackbar that its too far
+            }}
           />
         ) : null}
       </MapView>
