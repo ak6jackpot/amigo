@@ -1,4 +1,4 @@
-import {faHeart, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faHeart, faPlus, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
@@ -13,7 +13,7 @@ import ButtonComp from '../components/ButtonComp';
 import {Header} from '../components/Header';
 import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
-import {tripsDataStore, userDataStore} from '../storeDefinitions';
+import itineraryStore, {userDataStore} from '../storeDefinitions';
 import {Color} from '../Utils';
 
 export const Home = () => {
@@ -143,24 +143,70 @@ export const Home = () => {
             </View>
           </Pressable>
           <View style={{flexDirection: 'column'}}>
-            <Typography text={'Upcoming Trips'} variant="heading" />
-            {tripsDataStore?.tripsData?.upcoming?.length > 0 ? (
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <Typography text={'Upcoming Trips'} variant="heading" />
+              <Pressable
+                onPress={() => {
+                  navigation?.navigate('Itineraries');
+                }}>
+                <Typography text={'See all'} size="x-small" />
+              </Pressable>
+            </View>
+            {itineraryStore?.itineraries?.length > 0 ? (
               <FlashList
-                contentContainerStyle={{paddingRight: 16}}
-                data={tripsDataStore?.tripsData?.upcoming}
+                contentContainerStyle={{paddingRight: 16, paddingVertical: 8}}
+                data={itineraryStore?.itineraries}
                 estimatedItemSize={322}
                 renderItem={({item}) => (
                   <ActivityCard
-                    titleText="East Side Gallery"
-                    subText="Date"
+                    data={item}
                     icon={faHeart}
                     color="#ebebeb"
+                    onPress={() => {
+                      navigation?.navigate('ItineraryDetails', {
+                        itineraryId: item?.id,
+                      });
+                    }}
                   />
                 )}
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 snapToAlignment="start"
                 decelerationRate="fast"
+                ListFooterComponent={
+                  <Pressable
+                    style={{
+                      borderRadius: 20,
+                      marginRight: 8,
+                      padding: 12,
+                      width: 160,
+                      aspectRatio: 1,
+                      backgroundColor: '#ebebeb',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    onPress={() => {
+                      // @task -- new itinerary
+                    }}>
+                    <View
+                      style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderWidth: 2,
+                        borderStyle: 'dashed',
+                        borderColor: Color?.gray900,
+                        padding: 12,
+                        borderRadius: 1000,
+                      }}>
+                      <FontAwesomeIcon icon={faPlus} size={30} />
+                    </View>
+                  </Pressable>
+                }
               />
             ) : (
               <View

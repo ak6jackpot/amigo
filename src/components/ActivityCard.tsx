@@ -4,25 +4,29 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {View} from 'react-native';
+import {Pressable, View} from 'react-native';
 import Typography from './Typography';
 import {Color} from '../Utils';
 
 type ActivityCardProps = {
-  titleText?: string;
+  data: object;
   subText?: string;
   icon?: any;
   color?: string;
+  onPress?: () => void;
 };
 
 export const ActivityCard = ({
-  titleText = '',
+  data = {},
   subText = '',
   icon = faCircle,
   color = Color?.whiteBg,
+  onPress,
 }: ActivityCardProps) => {
+  console.log(data?.locations);
+
   return (
-    <View
+    <Pressable
       style={{
         borderRadius: 20,
         marginRight: 8,
@@ -32,8 +36,17 @@ export const ActivityCard = ({
         aspectRatio: 1,
         backgroundColor: color,
         justifyContent: 'space-between',
-      }}>
-      <Typography text={titleText} textStyles={{marginRight: 8}} size="large" />
+      }}
+      onPress={onPress}>
+      <Typography
+        text={data?.name}
+        textStyles={{marginRight: 8}}
+        size="x-small"
+        variant="heading"
+      />
+      <Typography text={'- ' + data?.locations[0]?.name} size="x-small" />
+      <Typography text={'- ' + data?.locations[1]?.name} size="x-small" />
+      <Typography text={''} />
       <View
         style={{
           flexDirection: 'row',
@@ -50,6 +63,6 @@ export const ActivityCard = ({
         </View>
         <FontAwesomeIcon icon={faArrowAltCircleRight} size={30} />
       </View>
-    </View>
+    </Pressable>
   );
 };

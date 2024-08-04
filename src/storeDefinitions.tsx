@@ -125,12 +125,16 @@ class ItineraryStore {
       itinerary.locations.splice(endIndex, 0, movedLocation);
     }
   }
-  markLocationAsVisited(itineraryId: string, locationId: string) {
+  toggleLocationVisited(itineraryId: string, locationId: string) {
     const itinerary = this.itineraries.find(item => item.id === itineraryId);
     if (itinerary) {
       const location = itinerary.locations.find(item => item.id === locationId);
       if (location) {
-        location.visited = true;
+        if (location.visited) {
+          location.visited = false;
+        } else {
+          location.visited = true;
+        }
       }
     }
   }

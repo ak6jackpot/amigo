@@ -7,7 +7,7 @@
                 <Typography text={location.description} />
                 <ButtonComp
                   onPress={() =>
-                    itineraryStore?.markLocationAsVisited(
+                    itineraryStore?.toggleLocationVisited(
                       itineraryStore?.itineraries[0].id,
                       location.id,
                     )
