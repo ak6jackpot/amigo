@@ -109,7 +109,7 @@ export const Splash = () => {
 
       <ButtonComp
         text="Let's Get started!"
-        color="#EEA0FF"
+        color={Color.buttonPink}
         textColor="#190b14"
         shape="pill"
         styles={{marginTop: 20}}

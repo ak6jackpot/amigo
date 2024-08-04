@@ -5,6 +5,7 @@ import {
   nearbyLocationSearchMaps,
 } from './APIs';
 import {API_key_Maps} from '../secrets.json';
+import {functionDataStore} from './storeDefinitions';
 
 export const screenHeight = Dimensions.get('window').height;
 export const screenWidth = Dimensions.get('window').width;
@@ -14,6 +15,7 @@ export const loadLocationDetails = (
   tripAdvId?: string,
   navigation?: any,
 ) => {
+  functionDataStore?.showLoader();
   Promise.all([
     mapsId && locationDetailsMaps(mapsId),
     tripAdvId && locationDetailsTA(tripAdvId),
@@ -35,9 +37,13 @@ export const loadLocationDetails = (
           });
         });
       }
+      functionDataStore?.hideLoader();
+      return true;
     })
     .catch(error => {
       console.error('An error occurred:', error);
+      functionDataStore?.hideLoader();
+      return false;
     });
 };
 
@@ -59,4 +65,5 @@ export const Color = {
   incomingMessage: '#e6e6e6',
   outgoingMessage: '#dcf8c6',
   beigeBg: '#FEF9F5',
+  buttonPink: '#EEA0FF',
 };

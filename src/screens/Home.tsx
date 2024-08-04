@@ -13,12 +13,16 @@ import ButtonComp from '../components/ButtonComp';
 import {Header} from '../components/Header';
 import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
-import itineraryStore, {userDataStore} from '../storeDefinitions';
+import itineraryStore, {
+  functionDataStore,
+  userDataStore,
+} from '../storeDefinitions';
 import {Color} from '../Utils';
+import LoaderKit from 'react-native-loader-kit';
+import {observer} from 'mobx-react-lite';
 
-export const Home = () => {
+export const Home = observer(() => {
   const navigation = useNavigation();
-
   const cities = [
     {
       label: '🇺🇸  New York',
@@ -73,6 +77,7 @@ export const Home = () => {
   ];
 
   const fetchNearby = () => {
+    functionDataStore?.showLoader();
     nearbyLocationSearchMaps(
       userDataStore?.userData?.currentLocation?.latitude,
       userDataStore?.userData?.currentLocation?.longitude,
@@ -84,15 +89,42 @@ export const Home = () => {
         //   res?.length,
         //   '--------------------',
         // );
+        functionDataStore?.hideLoader();
         navigation?.navigate('NearbyLocations', {
           nearbyList: res,
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        functionDataStore?.hideLoader();
+      });
   };
 
   return (
     <SafeAreaView>
+      {functionDataStore?.functionData?.loaderVisible && (
+        <View
+          style={{
+            position: 'absolute',
+            height: '100%',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 10,
+          }}>
+          <View
+            style={{
+              padding: 16,
+              borderRadius: 24,
+            }}>
+            <LoaderKit
+              style={{width: 48, height: 48}}
+              name={'BallPulse'}
+              color={Color?.pinkPrimary}
+            />
+          </View>
+        </View>
+      )}
       <ScrollView>
         <View
           style={{
@@ -191,7 +223,7 @@ export const Home = () => {
                       alignItems: 'center',
                     }}
                     onPress={() => {
-                      // @task -- new itinerary
+                      navigation?.navigate('ItineraryTemplates');
                     }}>
                     <View
                       style={{
@@ -326,4 +358,4 @@ export const Home = () => {
       </ScrollView>
     </SafeAreaView>
   );
-};
+});

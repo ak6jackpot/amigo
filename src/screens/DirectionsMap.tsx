@@ -12,12 +12,16 @@ import {API_key_Maps} from '../../secrets.json';
 import {Color, screenHeight, screenWidth} from '../Utils';
 import {userDataStore} from '../storeDefinitions';
 import {useNavigation} from '@react-navigation/native';
+import Typography from '../components/Typography';
+import * as Animatable from 'react-native-animatable';
 
 export const DirectionsMap = ({route}) => {
   const {destination} = route?.params;
   const mapRef = useRef(null);
   const mapViewDirectionsRef = useRef(null);
   const [userDeltaInit, setUserDeltaInit] = useState(0.04);
+  const [visitedMessage, setVisitedMessage] = useState(false);
+
   const userLocation = {
     latitude: userDataStore?.userData?.currentLocation
       ? userDataStore?.userData?.currentLocation?.latitude
@@ -81,6 +85,33 @@ export const DirectionsMap = ({route}) => {
           <FontAwesomeIcon icon={faXmark} size={24} />
         </Pressable>
       </View>
+      {visitedMessage && (
+        <Animatable.Text
+          animation="fadeIn"
+          style={{
+            position: 'absolute',
+            width: '100%',
+            left: screenWidth / 5,
+            top: screenHeight / 12,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'yellow',
+          }}>
+          <View
+            style={{
+              padding: 16,
+              borderRadius: 500,
+              zIndex: 4,
+              backgroundColor: Color?.pinkSecodary,
+            }}>
+            <Typography
+              text={'Location is too far to navigate!'}
+              color="black"
+              size="large"
+            />
+          </View>
+        </Animatable.Text>
+      )}
       <MapView
         provider={
           Platform.OS === 'android' ? PROVIDER_GOOGLE : PROVIDER_DEFAULT
@@ -99,7 +130,14 @@ export const DirectionsMap = ({route}) => {
             strokeColor="blue"
             strokeWidth={5}
             onError={error => {
-              //@task -- show error in toast or snackbar that its too far
+              setVisitedMessage(true);
+
+              setTimeout(() => {
+                setVisitedMessage(false);
+              }, 2500);
+              setTimeout(() => {
+                navigation?.goBack();
+              }, 3000);
             }}
           />
         ) : null}

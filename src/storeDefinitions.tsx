@@ -170,3 +170,43 @@ class UserDataStore {
 }
 
 export const userDataStore = new UserDataStore();
+
+interface Function {
+  loaderVisible?: boolean;
+}
+
+class FunctionStore {
+  initialFunctionData: Function = {
+    loaderVisible: false,
+  };
+  functionData: Function = this?.initialFunctionData;
+
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  setFunctionData(value: object) {
+    this.functionData = {
+      ...this.functionData,
+      ...value,
+    };
+  }
+
+  setLoaderVisible(visible: boolean) {
+    this.setFunctionData({loaderVisible: visible});
+  }
+
+  showLoader() {
+    this.setLoaderVisible(true);
+  }
+
+  hideLoader() {
+    this.setLoaderVisible(false);
+  }
+
+  reset() {
+    this.functionData = {...this.initialFunctionData};
+  }
+}
+
+export const functionDataStore = new FunctionStore();

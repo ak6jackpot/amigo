@@ -23,36 +23,50 @@ export const Itineraries = ({route}) => {
         <Typography variant="heading" text={'Your Trips'} />
         <View style={{marginVertical: 8}}>
           {itineraryStore?.itineraries?.length > 0 ? (
-            <FlatList
-              data={itineraryStore?.itineraries}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({item}) => (
-                <ListItem
-                  variant="trip"
-                  data={item}
-                  onPress={() => {
-                    navigation?.navigate('ItineraryDetails', {
-                      itineraryId: item?.id,
-                    });
-                  }}
-                  rightElement={
-                    <FontAwesomeIcon icon={faTrash} color={'#e35f59'} />
-                  }
-                  onPressRight={() => {
-                    itineraryStore?.removeItinerary(item.id);
-                  }}
-                />
-              )}
-            />
+            <>
+              <FlatList
+                contentContainerStyle={{marginVertical: 16}}
+                data={itineraryStore?.itineraries}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({item}) => (
+                  <ListItem
+                    variant="trip"
+                    data={item}
+                    onPress={() => {
+                      navigation?.navigate('ItineraryDetails', {
+                        itineraryId: item?.id,
+                      });
+                    }}
+                    rightElement={
+                      <FontAwesomeIcon icon={faTrash} color={'#e35f59'} />
+                    }
+                    onPressRight={() => {
+                      itineraryStore?.removeItinerary(item.id);
+                    }}
+                  />
+                )}
+              />
+              <ButtonComp
+                text="Create another trip"
+                color={Color.buttonPink}
+                textColor="#190b14"
+                shape="pill"
+                onPress={() => {
+                  navigation?.navigate('ItineraryTemplates');
+                }}
+              />
+            </>
           ) : (
             <>
               <Typography text={'No trips created yet!'} />
               <ButtonComp
                 text="Create Now"
-                color="#EEA0FF"
+                color={Color.buttonPink}
                 textColor="#190b14"
                 shape="pill"
-                onPress={() => {}}
+                onPress={() => {
+                  navigation?.navigate('ItineraryTemplates');
+                }}
               />
             </>
           )}

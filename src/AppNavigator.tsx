@@ -13,6 +13,8 @@ import {Itineraries} from './screens/Itineraries';
 import {NearbyLocations} from './screens/NearbyLocations';
 import {DirectionsMap} from './screens/DirectionsMap';
 import {ItineraryDetails} from './screens/ItineraryDetails';
+import {CreateItinerary} from './screens/CreateItinerary';
+import {ItineraryTemplates} from './screens/ItineraryTemplates';
 
 export const AppNavigator = () => {
   const navigationRef = useNavigationContainerRef();
@@ -69,6 +71,16 @@ export const AppNavigator = () => {
         <Stack.Screen
           name={'ItineraryDetails'}
           component={ItineraryDetails}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={'CreateItinerary'}
+          component={CreateItinerary}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={'ItineraryTemplates'}
+          component={ItineraryTemplates}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
