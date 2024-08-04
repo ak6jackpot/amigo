@@ -88,7 +88,6 @@ export const ListItem = ({
                 aspectRatio: 0.5,
                 alignItems: 'flex-end',
                 justifyContent: 'center',
-                backgroundColor: 'yellow',
               }}
               onPress={onPressRight}>
               {rightElement}

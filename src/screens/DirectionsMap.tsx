@@ -1,4 +1,4 @@
-import {faMinus, faPlus} from '@fortawesome/free-solid-svg-icons';
+import {faMinus, faPlus, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React, {useRef, useState} from 'react';
 import {Platform, Pressable, StyleSheet, View} from 'react-native';
@@ -11,6 +11,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import {API_key_Maps} from '../../secrets.json';
 import {Color, screenHeight, screenWidth} from '../Utils';
 import {userDataStore} from '../storeDefinitions';
+import {useNavigation} from '@react-navigation/native';
 
 export const DirectionsMap = ({route}) => {
   const {destination} = route?.params;
@@ -28,6 +29,7 @@ export const DirectionsMap = ({route}) => {
     longitudeDelta: (userDeltaInit * screenWidth) / screenHeight,
   };
 
+  const navigation = useNavigation();
   console.log(destination, userLocation, 'in directions');
 
   const zoomIn = () => {
@@ -57,6 +59,28 @@ export const DirectionsMap = ({route}) => {
         padding: 16,
         flex: 1,
       }}>
+      <View
+        style={{
+          position: 'absolute',
+          left: 32,
+          top: 64,
+          backgroundColor: Color?.whiteBg,
+          borderRadius: 1000,
+          borderWidth: 1,
+          borderColor: Color?.gray900,
+          zIndex: 2,
+        }}>
+        <Pressable
+          onPress={() => {
+            navigation?.goBack();
+          }}
+          style={{
+            padding: 8,
+            borderColor: Color?.gray900,
+          }}>
+          <FontAwesomeIcon icon={faXmark} size={24} />
+        </Pressable>
+      </View>
       <MapView
         provider={
           Platform.OS === 'android' ? PROVIDER_GOOGLE : PROVIDER_DEFAULT

@@ -1,12 +1,24 @@
 import {useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {Pressable, SafeAreaView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Color, screenWidth} from '../Utils';
+import {Color, generatePhotoUrl} from '../Utils';
 import itineraryStore from '../storeDefinitions';
+import Typography from '../components/Typography';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {
+  faCircleCheck as checkRegular,
+  faTrashCan,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faCircleCheck as checkSolid,
+  faCircleDown,
+  faCircleUp,
+} from '@fortawesome/free-solid-svg-icons';
+import {observer} from 'mobx-react-lite';
 
-export const ItineraryDetails = ({route}) => {
+export const ItineraryDetails = observer(({route}) => {
   const {itineraryId} = route?.params;
 
   const [itinerary, setItinerary] = useState({});
@@ -18,52 +30,149 @@ export const ItineraryDetails = ({route}) => {
     const temp = itineraryStore?.itineraries?.find(
       item => item?.id === itineraryId,
     );
-    console.log(temp, 'in itinerary details');
 
     setItinerary(temp);
-  }, []);
+  }, [itineraryId, itineraryStore.itineraries]);
 
   return (
     <SafeAreaView>
       <View
         style={{
           backgroundColor: Color.beigeBg,
+          padding: 16,
+          height: '100%',
+          width: '100%',
         }}>
+        <Typography text={itinerary?.name} />
+        <Typography text={itinerary?.description} />
+
         <FlashList
           contentContainerStyle={{padding: 8}}
           data={itinerary?.locations}
           estimatedItemSize={322}
-          renderItem={({item}) => (
+          renderItem={({item, index}) => (
             <View
               style={{
-                marginRight: 8,
-                padding: 4,
-                borderRadius: 14,
-                overflow: 'hidden',
-                backgroundColor: Color?.whiteBg,
+                flexDirection: 'row',
+                justifyContent: 'space-evenly',
+                marginVertical: 8,
+                borderWidth: 2,
+                borderColor: Color?.graySend,
+                borderRadius: 18,
+                padding: 8,
+                backgroundColor: Color?.grayTag,
                 shadowColor: Color?.black,
-                shadowOffset: {width: 0, height: 2},
+                shadowOffset: {width: 0, height: 1},
                 shadowOpacity: 0.4,
-                shadowRadius: 10,
-                elevation: 10,
+                shadowRadius: 5,
+                elevation: 5,
               }}>
-              <FastImage
+              <View style={{flex: 1}}>
+                <FastImage
+                  style={{
+                    width: '100%',
+                    aspectRatio: 1,
+                    borderRadius: 12,
+                  }}
+                  resizeMode={FastImage.resizeMode.cover}
+                  source={{
+                    uri: generatePhotoUrl(
+                      item?.images[0]?.name?.split('/')?.slice(-1),
+                    ),
+                  }}
+                />
+              </View>
+              <View
                 style={{
-                  width: screenWidth * 0.8,
-                  aspectRatio: 1.5,
-                  borderRadius: 10,
-                }}
-                resizeMode={FastImage.resizeMode.cover}
-                source={{uri: item}}
-              />
+                  flex: 1,
+                  padding: 8,
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}>
+                <View>
+                  <Typography
+                    text={item?.name}
+                    variant="heading"
+                    size="small"
+                  />
+                  <Typography
+                    text={item?.description}
+                    variant="label"
+                    size="small"
+                  />
+                </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-evenly',
+                  }}>
+                  <Pressable
+                    style={{
+                      borderWidth: 1,
+                      borderRadius: 1000,
+                      borderColor: Color?.graySend,
+                    }}
+                    onPress={() => {
+                      itineraryStore?.markLocationAsVisited(
+                        itinerary?.id,
+                        item?.id,
+                      );
+                    }}>
+                    {item?.visited ? (
+                      <FontAwesomeIcon icon={checkSolid} size={20} />
+                    ) : (
+                      <FontAwesomeIcon icon={checkRegular} size={20} />
+                    )}
+                  </Pressable>
+                  <Pressable
+                    style={{
+                      borderWidth: 1,
+                      borderRadius: 1000,
+                      borderColor: Color?.graySend,
+                    }}
+                    onPress={() => {
+                      itineraryStore?.reorderLocations(
+                        itinerary?.id,
+                        index,
+                        index - 1,
+                      );
+                    }}>
+                    <FontAwesomeIcon icon={faCircleUp} size={20} />
+                  </Pressable>
+                  <Pressable
+                    style={{
+                      borderWidth: 1,
+                      borderRadius: 1000,
+                      borderColor: Color?.graySend,
+                    }}
+                    onPress={() => {
+                      itineraryStore?.reorderLocations(
+                        itinerary?.id,
+                        index,
+                        index + 1,
+                      );
+                    }}>
+                    <FontAwesomeIcon icon={faCircleDown} size={20} />
+                  </Pressable>
+                  <Pressable
+                    style={{
+                      borderWidth: 1,
+                      borderRadius: 1000,
+                      borderColor: Color?.graySend,
+                    }}
+                    onPress={() =>
+                      itineraryStore?.removeLocation(itinerary.id, item?.id)
+                    }>
+                    <FontAwesomeIcon icon={faTrashCan} size={20} />
+                  </Pressable>
+                </View>
+              </View>
             </View>
           )}
-          horizontal
-          showsHorizontalScrollIndicator={false}
           snapToAlignment="start"
           decelerationRate="fast"
         />
       </View>
     </SafeAreaView>
   );
-};
+});

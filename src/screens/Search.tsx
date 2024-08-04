@@ -61,6 +61,7 @@ export const Search = ({route}) => {
           <ListItem
             data={item}
             onPress={() => {
+              navigation?.goBack();
               loadLocationDetails(item?.id, undefined, navigation);
             }}
           />
