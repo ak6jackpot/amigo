@@ -117,7 +117,6 @@ export const StampImage = ({data = {}}) => {
               />
               <Typography
                 text={'Click to View'}
-                size="x-small"
                 color="#6e6e6e"
                 textStyles={{
                   borderTopLeftRadius: 10,

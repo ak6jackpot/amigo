@@ -87,27 +87,30 @@ export const ItineraryDetails = observer(({route}) => {
                   }}
                   resizeMode={FastImage.resizeMode.cover}
                   source={{
-                    uri: generatePhotoUrl(
-                      item?.images[0]?.name?.split('/')?.slice(-1),
-                    ),
+                    uri: item?.details?.photos[0],
                   }}
                 />
               </View>
               <View
                 style={{
                   flex: 1,
-                  padding: 8,
+                  paddingHorizontal: 8,
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                 }}>
                 <View>
                   <Typography
-                    text={item?.name}
+                    text={item?.details?.formattedAddress}
                     variant="heading"
                     size="small"
+                    textStyles={{fontSize: 10}}
                   />
                   <Typography
-                    text={item?.description}
+                    text={
+                      item?.details?.description?.length > 100
+                        ? item?.details?.description?.slice(0, 99) + '...'
+                        : item?.details?.description
+                    }
                     variant="label"
                     size="small"
                   />
@@ -133,7 +136,7 @@ export const ItineraryDetails = observer(({route}) => {
                         !item?.visited && setVisitedMessage(true);
                         itineraryStore?.toggleLocationVisited(
                           itinerary?.id,
-                          item?.id,
+                          item?.details?.id,
                         );
 
                         setTimeout(() => {
@@ -191,7 +194,10 @@ export const ItineraryDetails = observer(({route}) => {
                       borderColor: Color?.graySend,
                     }}
                     onPress={() =>
-                      itineraryStore?.removeLocation(itinerary.id, item?.id)
+                      itineraryStore?.removeLocation(
+                        itinerary.id,
+                        item?.details?.id,
+                      )
                     }>
                     <FontAwesomeIcon icon={faTrashCan} size={20} />
                   </Pressable>

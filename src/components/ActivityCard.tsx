@@ -39,11 +39,10 @@ export const ActivityCard = ({
       <Typography
         text={data?.name}
         textStyles={{marginRight: 8}}
-        size="x-small"
         variant="heading"
       />
-      <Typography text={'- ' + data?.locations[0]?.name} size="x-small" />
-      <Typography text={'- ' + data?.locations[1]?.name} size="x-small" />
+      <Typography text={'- ' + data?.locations[0]?.details?.formattedAddress} />
+      <Typography text={'- ' + data?.locations[1]?.details?.formattedAddress} />
       <Typography text={''} />
       <View
         style={{

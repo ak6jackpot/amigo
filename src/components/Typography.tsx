@@ -3,7 +3,7 @@ import {Text, TextStyle} from 'react-native';
 
 type TypographyProps = {
   variant?: 'label' | 'heading' | 'display' | 'featured';
-  size?: 'xx-large' | 'x-large' | 'large' | 'medium' | 'small' | 'x-small';
+  size?: 'x-large' | 'large' | 'medium' | 'small';
   color?: string;
   text?: string | number;
   textAlign?: 'center' | 'left' | 'right';
@@ -78,33 +78,42 @@ const Typography = ({
         fontFamily: 'Ubuntu-Medium',
         textAlign: 'left',
       };
+      console.log(size, text);
       switch (size) {
         case 'x-large':
-          styles = {
-            ...styles,
-            fontSize: 36,
-            lineHeight: 44,
-          };
-          break;
-        case 'large':
+          console.log('x-large', text);
+
           styles = {
             ...styles,
             fontSize: 32,
             lineHeight: 40,
           };
           break;
-        case 'medium':
+        case 'large':
+          console.log('large', text);
+
           styles = {
             ...styles,
             fontSize: 28,
             lineHeight: 36,
           };
           break;
-        case 'small':
+        case 'medium':
+          console.log('med', text);
+
           styles = {
             ...styles,
             fontSize: 24,
             lineHeight: 32,
+          };
+          break;
+        case 'small':
+          console.log('smal', text);
+
+          styles = {
+            ...styles,
+            fontSize: 20,
+            lineHeight: 28,
           };
           break;
       }
@@ -175,6 +184,8 @@ const Typography = ({
           };
           break;
         case 'small':
+          console.log('yaha ayega', text);
+
           styles = {
             ...styles,
             fontSize: 20,

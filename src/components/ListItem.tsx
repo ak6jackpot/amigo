@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
 import {Pressable, View} from 'react-native';
 import Typography from './Typography';
-import {Color} from '../Utils';
+import {Color, randomColorGenerator} from '../Utils';
 
 type ListItemProps = {
   variant?: 'search' | 'trip' | 'city';
@@ -110,28 +110,19 @@ export const ListItem = ({
             flexDirection: 'row',
             paddingHorizontal: 2,
             paddingVertical: 2,
-            borderColor: Color?.pinkSecodary,
-            borderWidth: 3,
             borderRadius: 12,
           })}>
           <View
             style={{
               justifyContent: 'center',
-              backgroundColor: Color?.pinkPrimary,
+              backgroundColor: randomColorGenerator(),
               width: '100%',
               borderRadius: 9,
-              padding: 8,
+              padding: 24,
             }}>
             <Typography
               variant="label"
-              size="large"
-              text={data?.name}
-              color={textColor}
-            />
-            <Typography
-              variant="label"
-              size="small"
-              text={data?.description}
+              text={data?.details?.formattedAddress}
               color={textColor}
             />
           </View>
@@ -139,7 +130,7 @@ export const ListItem = ({
             <Pressable
               style={{
                 position: 'absolute',
-                right: 10,
+                right: 18,
                 height: '100%',
                 aspectRatio: 0.5,
                 alignItems: 'flex-end',

@@ -135,7 +135,7 @@ export const Home = observer(() => {
                 onPress={() => {
                   navigation?.navigate('Itineraries');
                 }}>
-                <Typography text={'See all'} size="x-small" />
+                <Typography text={'See all'} />
               </Pressable>
             </View>
             {itineraryStore?.itineraries?.length > 0 ? (
@@ -200,7 +200,7 @@ export const Home = observer(() => {
                   shape="pill"
                   color={Color?.pinkPrimary}
                   textColor="black"
-                  size="x-small"
+                  size="medium"
                   text="You don't have any trip coming up. Plan one now! ➡"
                   styles={{
                     width: '75%',

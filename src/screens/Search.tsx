@@ -32,8 +32,8 @@ export const Search = ({route}) => {
           flexDirection: 'row',
           alignItems: 'center',
           backgroundColor: Color?.whiteBg,
-          borderRadius: 8,
-          padding: 8,
+          borderRadius: 50,
+          paddingHorizontal: 12,
           elevation: 2,
           marginBottom: 16,
         }}>

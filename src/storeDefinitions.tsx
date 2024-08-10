@@ -13,51 +13,7 @@ interface Itinerary {
 }
 
 class ItineraryStore {
-  itineraries: Itinerary[] = [
-    {
-      id: 'itinerary1',
-      name: 'Trip to Europe',
-      description: 'A fun trip to Europe covering major cities.',
-      startDate: new Date('2024-08-01'),
-      endDate: new Date('2024-08-15'),
-      locations: [
-        {
-          id: 'location1',
-          name: 'Eiffel Tower',
-          city: 'Paris',
-          coordinates: {lat: 48.8584, lng: 2.2945},
-          visited: false,
-          description: 'Iconic symbol of Paris.',
-          images: ['eiffel1.jpg', 'eiffel2.jpg'],
-          notes: 'Best time to visit is early morning or late evening.',
-          address:
-            'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France',
-          contactInfo: {
-            phone: '+33 892 70 12 39',
-            website: 'https://www.toureiffel.paris/en',
-          },
-        },
-        {
-          id: 'location2',
-          name: 'Louvre Museum',
-          city: 'Paris',
-          coordinates: {lat: 48.8606, lng: 2.3376},
-          visited: false,
-          description: "World's largest art museum.",
-          images: ['louvre1.jpg', 'louvre2.jpg'],
-          notes: 'Closed on Tuesdays.',
-          address: 'Rue de Rivoli, 75001 Paris, France',
-          contactInfo: {
-            phone: '+33 1 40 20 50 50',
-            website: 'https://www.louvre.fr/en',
-          },
-        },
-      ],
-      createdBy: 'user1',
-      collaborators: ['user2', 'user3'],
-      isPublic: true,
-    },
-  ];
+  itineraries: Itinerary[] = [];
 
   constructor() {
     makeAutoObservable(this);

@@ -67,6 +67,7 @@ export const Itineraries = ({route}) => {
                 onPress={() => {
                   navigation?.navigate('ItineraryTemplates');
                 }}
+                styles={{marginVertical: 16}}
               />
             </>
           )}

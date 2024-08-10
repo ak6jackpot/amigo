@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, Pressable, SafeAreaView, TextInput, View} from 'react-native';
 import {Color, loadLocationDetails} from '../Utils';
 import Typography from '../components/Typography';
@@ -9,9 +9,10 @@ import {FlashList} from '@shopify/flash-list';
 import {cities} from '../data';
 import {Tag} from '../components/Tag';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {faSearch, faTrash, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {locationSearchMaps} from '../APIs';
 import {ListItem} from '../components/ListItem';
+import itineraryStore from '../storeDefinitions';
 
 export const CreateItinerary = observer(({route}) => {
   const navigation = useNavigation();
@@ -27,7 +28,9 @@ export const CreateItinerary = observer(({route}) => {
     });
   };
 
-  console.log(locations, '-----');
+  useEffect(() => {
+    console.log(locations, '-----');
+  }, [locations]);
 
   return (
     <SafeAreaView>
@@ -79,6 +82,7 @@ export const CreateItinerary = observer(({route}) => {
                   onPress={() => {
                     loadLocationDetails(item?.mapsId, item?.tripAdvId).then(
                       dets => {
+                        dets['visited'] = false;
                         const temp = locations;
                         temp?.push(dets);
                         setLocations(temp);
@@ -98,8 +102,8 @@ export const CreateItinerary = observer(({route}) => {
                   flexDirection: 'row',
                   alignItems: 'center',
                   backgroundColor: Color?.whiteBg,
-                  borderRadius: 8,
-                  padding: 8,
+                  borderRadius: 50,
+                  paddingHorizontal: 12,
                   elevation: 2,
                   marginBottom: 16,
                 }}>
@@ -133,6 +137,7 @@ export const CreateItinerary = observer(({route}) => {
                     data={item}
                     onPress={() => {
                       loadLocationDetails(item?.id, undefined).then(dets => {
+                        dets['visited'] = false;
                         const temp = locations;
                         temp?.push(dets);
                         setLocations(temp);
@@ -151,17 +156,45 @@ export const CreateItinerary = observer(({route}) => {
                 renderItem={({item}) => (
                   <ListItem
                     data={item}
-                    variant="trip"
+                    variant="city"
                     onPress={() => {
-                      console.log(item);
-
                       // navigation?.goBack();
                       // loadLocationDetails(item?.id, undefined, navigation);
+                    }}
+                    rightElement={<FontAwesomeIcon icon={faTrash} />}
+                    onPressRight={() => {
+                      const temp = locations?.filter(locationitem => {
+                        locationitem?.details?.id !== item?.details?.id;
+                      });
+                      console.log(temp, 'onpress');
+                      setLocations(temp);
                     }}
                   />
                 )}
               />
             </View>
+            {locations?.length > 1 && (
+              <ButtonComp
+                text="Create one from Scratch"
+                color={Color.buttonPink}
+                textColor="#190b14"
+                shape="pill"
+                onPress={() => {
+                  // navigation?.navigate('CreateItinerary');
+                  itineraryStore?.addItinerary({
+                    id: name?.slice(0, 4) + description?.slice(0, 9),
+                    name: name,
+                    description: description,
+                    startDate: new Date('2024-08-01'),
+                    endDate: new Date('2024-08-15'),
+                    locations: locations,
+                    createdBy: 'akshat',
+                    collaborators: ['akshat'],
+                    isPublic: true,
+                  });
+                }}
+              />
+            )}
           </View>
         )}
       </View>
