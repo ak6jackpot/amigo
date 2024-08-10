@@ -49,7 +49,11 @@ export const Search = ({route}) => {
           value={searchText}
           onChangeText={handleSearch}
         />
-        <Pressable onPress={() => setSearchText('')}>
+        <Pressable
+          onPress={() => {
+            setSearchText('');
+            setSearchResults([]);
+          }}>
           <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
         </Pressable>
       </View>

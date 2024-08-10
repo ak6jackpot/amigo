@@ -8,7 +8,7 @@ import {
   faRoute,
   faUmbrellaBeach,
 } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Text, View} from 'react-native';
 import {Color, screenHeight, screenWidth} from '../Utils';
 import ButtonComp from '../components/ButtonComp';
@@ -17,10 +17,23 @@ import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
 import {useNavigation} from '@react-navigation/native';
 import GetLocation from 'react-native-get-location';
-import {userDataStore} from '../storeDefinitions';
+import itineraryStore, {userDataStore} from '../storeDefinitions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const Splash = () => {
   const navigation = useNavigation();
+
+  const AsyncGet = async () => {
+    AsyncStorage?.getItem('itineraries').then(res => {
+      console.log(res, JSON?.parse(res));
+      JSON?.parse(res)?.map(item => {
+        itineraryStore?.addItinerary(item);
+      });
+    });
+  };
+  useEffect(() => {
+    AsyncGet();
+  }, []);
   return (
     <View
       style={{
@@ -111,7 +124,6 @@ export const Splash = () => {
         text="Let's Get started!"
         color={Color.buttonPink}
         textColor="#190b14"
-        shape="pill"
         styles={{marginTop: 20}}
         onPress={() => {
           GetLocation.getCurrentPosition({

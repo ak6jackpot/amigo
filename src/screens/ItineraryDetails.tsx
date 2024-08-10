@@ -209,16 +209,19 @@ export const ItineraryDetails = observer(({route}) => {
           decelerationRate="fast"
           ListFooterComponent={
             <Pressable
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                marginVertical: 8,
-                borderWidth: 2,
-                borderColor: Color?.graySend,
-                borderRadius: 18,
-                padding: 8,
-                backgroundColor: Color?.grayTag,
-              }}
+              style={({pressed}) => [
+                {
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  marginVertical: 8,
+                  borderColor: Color?.graySend,
+                  borderRadius: 18,
+                  padding: 8,
+                  backgroundColor: Color?.grayTag,
+                  opacity: pressed ? 0.7 : 1,
+                  borderBottomWidth: pressed ? 2 : 4,
+                },
+              ]}
               onPress={() => {
                 // navigation?.navigate('Itineraries');
               }}>

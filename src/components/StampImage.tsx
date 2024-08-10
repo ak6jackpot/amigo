@@ -9,7 +9,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Typography from './Typography';
-import {loadLocationDetails} from '../Utils';
+import {Color, loadLocationDetails} from '../Utils';
 
 export const StampImage = ({data = {}}) => {
   const [focused, setFocused] = useState(false);
@@ -100,13 +100,17 @@ export const StampImage = ({data = {}}) => {
               animatedStyle,
             ]}>
             <Pressable
-              style={{
-                flexDirection: 'column',
-                borderTopLeftRadius: 10,
-                borderBottomLeftRadius: 10,
-                backgroundColor: 'white',
-                padding: 6,
-              }}
+              style={({pressed}) => [
+                {
+                  flexDirection: 'column',
+                  borderTopLeftRadius: 10,
+                  borderBottomLeftRadius: 10,
+                  backgroundColor: 'white',
+                  padding: 6,
+                  borderBottomWidth: pressed ? 1 : 3,
+                  borderBottomColor: Color?.graySend,
+                },
+              ]}
               onPress={() => loadDetails(data?.mapsId, data?.tripAdvId)}>
               <Typography
                 text={data?.text1 + ', ' + data?.text2}

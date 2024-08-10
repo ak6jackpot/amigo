@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, TextStyle} from 'react-native';
 
 type TypographyProps = {
-  variant?: 'label' | 'heading' | 'display' | 'featured';
+  variant?: 'paragraph' | 'label' | 'heading' | 'featured';
   size?: 'x-large' | 'large' | 'medium' | 'small';
   color?: string;
   text?: string | number;
@@ -32,6 +32,45 @@ const Typography = ({
   }
 
   switch (variant) {
+    case 'paragraph':
+      styles = {
+        ...styles,
+        ...{
+          fontFamily: 'Ubuntu-Regular',
+          textAlign: 'left',
+        },
+      };
+      switch (size) {
+        case 'x-large':
+          styles = {
+            ...styles,
+            fontSize: 16,
+            lineHeight: 20,
+          };
+          break;
+        case 'large':
+          styles = {
+            ...styles,
+            fontSize: 14,
+            lineHeight: 18,
+          };
+          break;
+        case 'medium':
+          styles = {
+            ...styles,
+            fontSize: 12,
+            lineHeight: 16,
+          };
+          break;
+        case 'small':
+          styles = {
+            ...styles,
+            fontSize: 8,
+            lineHeight: 12,
+          };
+          break;
+      }
+      break;
     case 'label':
       styles = {
         ...styles,
@@ -39,7 +78,6 @@ const Typography = ({
           fontFamily: 'Ubuntu-Regular',
           textAlign: 'left',
         },
-        ...(capitalize !== false ? {textTransform: 'capitalize'} : {}),
       };
       switch (size) {
         case 'x-large':
@@ -78,20 +116,15 @@ const Typography = ({
         fontFamily: 'Ubuntu-Medium',
         textAlign: 'left',
       };
-      console.log(size, text);
       switch (size) {
         case 'x-large':
-          console.log('x-large', text);
-
           styles = {
             ...styles,
-            fontSize: 32,
-            lineHeight: 40,
+            fontSize: 36,
+            lineHeight: 44,
           };
           break;
         case 'large':
-          console.log('large', text);
-
           styles = {
             ...styles,
             fontSize: 28,
@@ -99,8 +132,6 @@ const Typography = ({
           };
           break;
         case 'medium':
-          console.log('med', text);
-
           styles = {
             ...styles,
             fontSize: 24,
@@ -108,49 +139,10 @@ const Typography = ({
           };
           break;
         case 'small':
-          console.log('smal', text);
-
           styles = {
             ...styles,
             fontSize: 20,
             lineHeight: 28,
-          };
-          break;
-      }
-      break;
-    case 'display':
-      styles = {
-        ...styles,
-        fontFamily: 'Ubuntu-Bold',
-        textAlign: 'left',
-      };
-      switch (size) {
-        case 'x-large':
-          styles = {
-            ...styles,
-            fontSize: 68,
-            lineHeight: 76,
-          };
-          break;
-        case 'large':
-          styles = {
-            ...styles,
-            fontSize: 60,
-            lineHeight: 68,
-          };
-          break;
-        case 'medium':
-          styles = {
-            ...styles,
-            fontSize: 52,
-            lineHeight: 60,
-          };
-          break;
-        case 'small':
-          styles = {
-            ...styles,
-            fontSize: 44,
-            lineHeight: 52,
           };
           break;
       }
@@ -184,8 +176,6 @@ const Typography = ({
           };
           break;
         case 'small':
-          console.log('yaha ayega', text);
-
           styles = {
             ...styles,
             fontSize: 20,

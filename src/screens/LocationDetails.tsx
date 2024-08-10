@@ -119,15 +119,18 @@ export const LocationDetails = ({route}) => {
                   },
                 });
               }}
-              style={{
-                height: 60,
-                aspectRatio: 1,
-                backgroundColor: Color?.pinkPrimary,
-                borderRadius: 100,
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: 16,
-              }}>
+              style={({pressed}) => [
+                {
+                  height: 60,
+                  aspectRatio: 1,
+                  backgroundColor: Color?.pinkPrimary,
+                  borderRadius: 100,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: 16,
+                  opacity: pressed ? 0.7 : 1,
+                },
+              ]}>
               <FontAwesomeIcon icon={faDiamondTurnRight} size={'100%'} />
             </Pressable>
             <Translator place={formattedAddress} />

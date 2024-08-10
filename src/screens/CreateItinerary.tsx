@@ -13,6 +13,7 @@ import {faSearch, faTrash, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {locationSearchMaps} from '../APIs';
 import {ListItem} from '../components/ListItem';
 import itineraryStore from '../storeDefinitions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const CreateItinerary = observer(({route}) => {
   const navigation = useNavigation();
@@ -175,10 +176,9 @@ export const CreateItinerary = observer(({route}) => {
             </View>
             {locations?.length > 1 && (
               <ButtonComp
-                text="Create one from Scratch"
+                text="Finish"
                 color={Color.buttonPink}
                 textColor="#190b14"
-                shape="pill"
                 onPress={() => {
                   // navigation?.navigate('CreateItinerary');
                   itineraryStore?.addItinerary({
@@ -192,6 +192,10 @@ export const CreateItinerary = observer(({route}) => {
                     collaborators: ['akshat'],
                     isPublic: true,
                   });
+                  AsyncStorage?.setItem(
+                    'itineraries',
+                    JSON.stringify(itineraryStore?.itineraries),
+                  );
                 }}
               />
             )}

@@ -37,7 +37,7 @@ const ButtonComp = ({
         ? 0
         : shape === 'circle'
         ? 20
-        : 12,
+        : 18,
     padding: size === 'small' ? 4 : size === 'large' ? 16 : 8,
     alignItems: 'center',
     justifyContent: 'space-evenly',
@@ -56,13 +56,13 @@ const ButtonComp = ({
     case 'small':
       textStyles.fontSize = 10;
       textStyles.lineHeight = 14;
-      textStyles.fontFamily = 'Ubuntu-Bold';
+      textStyles.fontFamily = 'Ubuntu-Regular';
       buttonStyles = {...buttonStyles, minHeight: 30};
       break;
     case 'medium':
       textStyles.fontSize = 12;
       textStyles.lineHeight = 16;
-      textStyles.fontFamily = 'Ubuntu-Bold';
+      textStyles.fontFamily = 'Ubuntu-Regular';
       buttonStyles = {...buttonStyles, minHeight: 36};
       break;
     case 'large':

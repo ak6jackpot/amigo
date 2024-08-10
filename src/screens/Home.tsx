@@ -3,7 +3,13 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import React from 'react';
-import {Pressable, SafeAreaView, ScrollView, View} from 'react-native';
+import {
+  FlatList,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  View,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Video from 'react-native-video';
 import {nearbyLocationSearchMaps} from '../APIs';
@@ -86,18 +92,23 @@ export const Home = observer(() => {
             onPress={() => {
               navigation?.navigate('Search');
             }}
-            style={{
-              width: '100%',
-              backgroundColor: Color?.greenSearch,
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
-              borderBottomLeftRadius: 40,
-              borderBottomRightRadius: 40,
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingVertical: 8,
-              marginVertical: 8,
-            }}>
+            style={({pressed}) => [
+              {
+                width: '100%',
+                backgroundColor: Color?.greenSearch,
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
+                borderBottomLeftRadius: 40,
+                borderBottomRightRadius: 40,
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingVertical: 8,
+                marginVertical: 8,
+                opacity: pressed ? 0.7 : 1,
+                borderBottomWidth: pressed ? 2 : 4,
+                borderBottomColor: Color?.graySend,
+              },
+            ]}>
             <Typography
               text={'✨ Where are you travelling next?'}
               size="large"
@@ -112,8 +123,8 @@ export const Home = observer(() => {
                 padding: 16,
                 borderTopLeftRadius: 20,
                 borderTopRightRadius: 20,
-                borderBottomLeftRadius: 40,
-                borderBottomRightRadius: 40,
+                borderBottomLeftRadius: 30,
+                borderBottomRightRadius: 30,
                 flexDirection: 'row',
               }}>
               <FontAwesomeIcon icon={faSearch} />
@@ -139,10 +150,9 @@ export const Home = observer(() => {
               </Pressable>
             </View>
             {itineraryStore?.itineraries?.length > 0 ? (
-              <FlashList
+              <FlatList
                 contentContainerStyle={{paddingRight: 16, paddingVertical: 8}}
                 data={itineraryStore?.itineraries}
-                estimatedItemSize={322}
                 renderItem={({item}) => (
                   <ActivityCard
                     data={item}
@@ -161,16 +171,21 @@ export const Home = observer(() => {
                 decelerationRate="fast"
                 ListFooterComponent={
                   <Pressable
-                    style={{
-                      borderRadius: 20,
-                      marginRight: 8,
-                      padding: 12,
-                      width: 160,
-                      aspectRatio: 1,
-                      backgroundColor: '#ebebeb',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
+                    style={({pressed}) => [
+                      {
+                        borderRadius: 20,
+                        marginRight: 8,
+                        padding: 12,
+                        width: 160,
+                        aspectRatio: 1,
+                        backgroundColor: '#ebebeb',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        opacity: pressed ? 0.7 : 1,
+                        borderBottomWidth: pressed ? 2 : 4,
+                        borderBottomColor: Color?.graySend,
+                      },
+                    ]}
                     onPress={() => {
                       navigation?.navigate('ItineraryTemplates');
                     }}>
@@ -197,7 +212,6 @@ export const Home = observer(() => {
                   justifyContent: 'center',
                 }}>
                 <ButtonComp
-                  shape="pill"
                   color={Color?.pinkPrimary}
                   textColor="black"
                   size="medium"
@@ -280,16 +294,21 @@ export const Home = observer(() => {
           <View style={{flexDirection: 'column'}}>
             <Typography text={'Local Highlights'} variant="heading" />
             <Pressable
-              style={{
-                width: '100%',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'row',
-                backgroundColor: Color?.pinkPrimary,
-                borderRadius: 25,
-                overflow: 'hidden',
-                marginVertical: 16,
-              }}
+              style={({pressed}) => [
+                {
+                  width: '100%',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  backgroundColor: Color?.pinkPrimary,
+                  borderRadius: 18,
+                  overflow: 'hidden',
+                  marginVertical: 16,
+                  opacity: pressed ? 0.7 : 1,
+                  borderBottomWidth: pressed ? 2 : 4,
+                  borderBottomColor: Color?.graySend,
+                },
+              ]}
               onPress={fetchNearby}>
               <FastImage
                 style={{flex: 1, height: '100%'}}

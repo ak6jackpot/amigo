@@ -82,7 +82,6 @@ export const NearbyLocations = ({route}) => {
                       text="Directions"
                       color={Color?.pinkPrimary}
                       textColor="#190b14"
-                      shape="pill"
                       size="medium"
                       onPress={() => {
                         // console.log(item?.location);
@@ -101,7 +100,6 @@ export const NearbyLocations = ({route}) => {
                       text="View Details"
                       color={Color?.pinkPrimary}
                       textColor="#190b14"
-                      shape="pill"
                       size="medium"
                       onPress={() => {
                         loadLocationDetails(item?.id, undefined, navigation);

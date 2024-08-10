@@ -25,16 +25,21 @@ export const ActivityCard = ({
 }: ActivityCardProps) => {
   return (
     <Pressable
-      style={{
-        borderRadius: 20,
-        marginRight: 8,
-        flexDirection: 'column',
-        padding: 12,
-        width: 160,
-        aspectRatio: 1,
-        backgroundColor: color,
-        justifyContent: 'space-between',
-      }}
+      style={({pressed}) => [
+        {
+          borderRadius: 20,
+          marginRight: 8,
+          flexDirection: 'column',
+          padding: 12,
+          width: 160,
+          aspectRatio: 1,
+          backgroundColor: color,
+          justifyContent: 'space-between',
+          opacity: pressed ? 0.7 : 1,
+          borderBottomWidth: pressed ? 2 : 4,
+          borderColor: Color?.graySend,
+        },
+      ]}
       onPress={onPress}>
       <Typography
         text={data?.name}

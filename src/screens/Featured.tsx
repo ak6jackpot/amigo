@@ -97,7 +97,12 @@ export const Featured = () => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <Typography text={'Experience Life'} variant="display" color="#fff" />
+        <Typography
+          text={'Experience Life'}
+          variant="heading"
+          size="x-large"
+          color="#fff"
+        />
       </View>
     </View>
   );

@@ -50,7 +50,6 @@ export const Itineraries = ({route}) => {
                 text="Create another trip"
                 color={Color.buttonPink}
                 textColor="#190b14"
-                shape="pill"
                 onPress={() => {
                   navigation?.navigate('ItineraryTemplates');
                 }}
@@ -63,7 +62,6 @@ export const Itineraries = ({route}) => {
                 text="Create Now"
                 color={Color.buttonPink}
                 textColor="#190b14"
-                shape="pill"
                 onPress={() => {
                   navigation?.navigate('ItineraryTemplates');
                 }}

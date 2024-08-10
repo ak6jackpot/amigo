@@ -49,7 +49,7 @@ class ItineraryStore {
     const itinerary = this.itineraries.find(item => item.id === itineraryId);
     if (itinerary) {
       itinerary.locations = itinerary.locations.filter(
-        location => location.id !== locationId,
+        location => location.details.id !== locationId,
       );
     }
   }
@@ -64,7 +64,9 @@ class ItineraryStore {
   toggleLocationVisited(itineraryId: string, locationId: string) {
     const itinerary = this.itineraries.find(item => item.id === itineraryId);
     if (itinerary) {
-      const location = itinerary.locations.find(item => item.id === locationId);
+      const location = itinerary.locations.find(
+        item => item.details.id === locationId,
+      );
       if (location) {
         if (location.visited) {
           location.visited = false;

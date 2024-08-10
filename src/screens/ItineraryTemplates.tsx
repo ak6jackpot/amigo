@@ -27,17 +27,16 @@ export const ItineraryTemplates = observer(({route}) => {
           }
           size="large"
         />
-        <Typography text={'North america'} variant="heading" size="x-small" />
-        <Typography text={'europe'} variant="heading" size="x-small" />
-        <Typography text={'south east asia'} variant="heading" size="x-small" />
-        <Typography text={'australia & nz'} variant="heading" size="x-small" />
-        <Typography text={'arab'} variant="heading" size="x-small" />
+        <Typography text={'North america'} variant="paragraph" size="large" />
+        <Typography text={'europe'} variant="paragraph" size="large" />
+        <Typography text={'south east asia'} variant="paragraph" size="large" />
+        <Typography text={'australia & nz'} variant="paragraph" size="large" />
+        <Typography text={'arab'} variant="paragraph" size="large" />
 
         <ButtonComp
           text="Create one from Scratch"
           color={Color.buttonPink}
           textColor="#190b14"
-          shape="pill"
           onPress={() => {
             navigation?.navigate('CreateItinerary');
           }}
