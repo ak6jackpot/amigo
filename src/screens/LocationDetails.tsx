@@ -30,9 +30,9 @@ export const LocationDetails = ({route}) => {
         details?.formattedAddress,
         `${details?.latitude}%2C${details?.longitude}`,
       )?.then(res => {
-        console.log(res, 'fetching loc');
+        // console.log(res, 'fetching loc');
         locationDetailsTA(res[0]?.location_id)?.then(response => {
-          console.log(response, 'fetching desc');
+          // console.log(response, 'fetching desc');
           setDescription(response?.description);
         });
       });

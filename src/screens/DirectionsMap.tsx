@@ -20,7 +20,7 @@ export const DirectionsMap = ({route}) => {
   const mapRef = useRef(null);
   const mapViewDirectionsRef = useRef(null);
   const [userDeltaInit, setUserDeltaInit] = useState(0.04);
-  const [visitedMessage, setVisitedMessage] = useState(false);
+  const [error, setError] = useState(false);
 
   const userLocation = {
     latitude: userDataStore?.userData?.currentLocation
@@ -34,7 +34,7 @@ export const DirectionsMap = ({route}) => {
   };
 
   const navigation = useNavigation();
-  console.log(destination, userLocation, 'in directions');
+  // console.log(destination, userLocation, 'in directions');
 
   const zoomIn = () => {
     const newDelta = userDeltaInit / 2;
@@ -85,7 +85,7 @@ export const DirectionsMap = ({route}) => {
           <FontAwesomeIcon icon={faXmark} size={24} />
         </Pressable>
       </View>
-      {visitedMessage && (
+      {error && (
         <Animatable.Text
           animation="fadeIn"
           style={{
@@ -102,11 +102,11 @@ export const DirectionsMap = ({route}) => {
               padding: 16,
               borderRadius: 500,
               zIndex: 4,
-              backgroundColor: Color?.pinkSecodary,
+              backgroundColor: Color?.red,
             }}>
             <Typography
               text={'Location is too far to navigate!'}
-              color="black"
+              color={Color?.whiteBg}
               size="large"
             />
           </View>
@@ -130,10 +130,10 @@ export const DirectionsMap = ({route}) => {
             strokeColor="blue"
             strokeWidth={5}
             onError={error => {
-              setVisitedMessage(true);
+              setError(true);
 
               setTimeout(() => {
-                setVisitedMessage(false);
+                setError(false);
               }, 2500);
               setTimeout(() => {
                 navigation?.goBack();

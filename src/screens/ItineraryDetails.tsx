@@ -57,7 +57,7 @@ export const ItineraryDetails = observer(({route}) => {
                 zIndex: 2,
                 backgroundColor: 'green',
               }}>
-              <Typography text={'Marked As Visible'} color="white" />
+              <Typography text={'Marked As Visited'} color="white" />
             </View>
           </Animatable.Text>
           // @task -- dynamic text and color
@@ -130,7 +130,7 @@ export const ItineraryDetails = observer(({route}) => {
                       }}
                       onPress={() => {
                         setAnimationTrigger(index);
-                        setVisitedMessage(true);
+                        !item?.visited && setVisitedMessage(true);
                         itineraryStore?.toggleLocationVisited(
                           itinerary?.id,
                           item?.id,

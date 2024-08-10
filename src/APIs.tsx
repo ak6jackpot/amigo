@@ -135,6 +135,7 @@ export const locationDetailsMaps = async (locationId: string) => {
       });
       return {
         photos: temp,
+        id: response?.data?.id,
         latitude: response?.data?.location?.latitude,
         longitude: response?.data?.location?.longitude,
         webUrl: response?.data?.googleMapsUri,

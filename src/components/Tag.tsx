@@ -14,6 +14,7 @@ type TagProps = {
   rotation?: string;
   variant?: 'fill' | 'outline';
   data?: Object;
+  onPress?: () => void;
 };
 
 export const Tag = ({
@@ -24,18 +25,13 @@ export const Tag = ({
   rotation = '0deg',
   variant = 'fill',
   data = {},
+  onPress,
 }: TagProps) => {
-  const navigation = useNavigation();
-
-  const handlePress = (mapsId: string, tripAdvId: string) => {
-    loadLocationDetails(mapsId, tripAdvId, navigation);
-  };
-
   switch (variant) {
     case 'fill':
       return (
         <Pressable
-          onPress={() => handlePress(data?.mapsId, data?.tripAdvId)}
+          onPress={onPress}
           style={{
             alignItems: 'center',
             justifyContent: 'center',

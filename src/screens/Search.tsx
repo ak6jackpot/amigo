@@ -66,7 +66,9 @@ export const Search = ({route}) => {
             }}
           />
         )}
-        ListEmptyComponent={<Typography text={'No results found'} />}
+        ListEmptyComponent={
+          searchText !== '' && <Typography text={'No results found'} />
+        }
       />
     </View>
   );

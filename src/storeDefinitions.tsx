@@ -1,32 +1,12 @@
 import {makeAutoObservable} from 'mobx';
 
-interface Location {
-  id: string;
-  name: string;
-  city: string;
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-  visited: boolean;
-  description?: string;
-  images?: string[];
-  notes?: string;
-  address?: string;
-  contactInfo?: {
-    phone?: string;
-    email?: string;
-    website?: string;
-  };
-}
-
 interface Itinerary {
   id: string;
   name: string;
   description?: string;
   startDate: Date;
   endDate: Date;
-  locations: Location[];
+  locations: object[];
   createdBy: string;
   collaborators?: string[];
   isPublic?: boolean;
@@ -102,7 +82,7 @@ class ItineraryStore {
     }
   }
 
-  addLocation(itineraryId: string, location: Location) {
+  addLocation(itineraryId: string, location: object) {
     const itinerary = this.itineraries.find(item => item.id === itineraryId);
     if (itinerary) {
       itinerary.locations.push(location);

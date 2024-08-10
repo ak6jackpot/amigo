@@ -4,7 +4,7 @@ import Typography from './Typography';
 import {Color} from '../Utils';
 
 type ListItemProps = {
-  variant?: 'search' | 'trip';
+  variant?: 'search' | 'trip' | 'city';
   icon?: any;
   text?: string;
   title?: string;
@@ -35,9 +35,14 @@ export const ListItem = ({
             flexDirection: 'row',
             paddingHorizontal: 16,
             paddingVertical: 24,
-            borderBottomColor: Color?.whiteBg,
-            borderBottomWidth: 1,
+            borderBottomColor: Color?.graySend,
+            borderBottomWidth: pressed ? 1 : 3,
             backgroundColor: Color?.whiteBg,
+            borderBottomRightRadius: 12,
+            borderBottomLeftRadius: 12,
+            borderLeftColor: Color?.graySend,
+            borderRightColor: Color?.graySend,
+            marginVertical: 4,
           })}>
           <View style={{justifyContent: 'center', marginLeft: 16}}>
             <Typography text={data?.displayName?.text} />
@@ -45,6 +50,57 @@ export const ListItem = ({
         </Pressable>
       );
     case 'trip':
+      return (
+        <Pressable
+          onPress={onPress}
+          style={({pressed}) => ({
+            opacity: pressed ? 0.7 : 1,
+            width: '100%',
+            flexDirection: 'row',
+            paddingHorizontal: 2,
+            paddingVertical: 2,
+            borderColor: Color?.pinkSecodary,
+            borderWidth: 3,
+            borderRadius: 12,
+          })}>
+          <View
+            style={{
+              justifyContent: 'center',
+              backgroundColor: Color?.pinkPrimary,
+              width: '100%',
+              borderRadius: 9,
+              padding: 8,
+            }}>
+            <Typography
+              variant="label"
+              size="large"
+              text={data?.name}
+              color={textColor}
+            />
+            <Typography
+              variant="label"
+              size="small"
+              text={data?.description}
+              color={textColor}
+            />
+          </View>
+          {rightElement && (
+            <Pressable
+              style={{
+                position: 'absolute',
+                right: 10,
+                height: '100%',
+                aspectRatio: 0.5,
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+              }}
+              onPress={onPressRight}>
+              {rightElement}
+            </Pressable>
+          )}
+        </Pressable>
+      );
+    case 'city':
       return (
         <Pressable
           onPress={onPress}

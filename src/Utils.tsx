@@ -14,36 +14,48 @@ export const loadLocationDetails = (
   mapsId?: string,
   tripAdvId?: string,
   navigation?: any,
-) => {
+): Promise<any> => {
   functionDataStore?.showLoader();
-  Promise.all([
+  return Promise.all([
     mapsId && locationDetailsMaps(mapsId),
     tripAdvId && locationDetailsTA(tripAdvId),
   ])
     .then(([searchResponse, detailsResponse]) => {
-      // console.log(searchResponse, '---maps----');
+      // console.log(searchResponse, '----1-----');
+
       if (searchResponse) {
-        nearbyLocationSearchMaps(
+        return nearbyLocationSearchMaps(
           searchResponse.latitude,
           searchResponse.longitude,
         ).then(nearbyResponse => {
-          // console.log(nearbyResponse, 'nearbyResponse');
-          navigation?.navigate('LocationDetails', {
+          const result = {
             details: {
               ...searchResponse,
               description: detailsResponse?.description,
             },
             nearbyLocationDetails: nearbyResponse,
-          });
+          };
+
+          navigation &&
+            navigation?.navigate('LocationDetails', {
+              details: result.details,
+              nearbyLocationDetails: result.nearbyLocationDetails,
+            });
+
+          // console.log(result, '-----2-----');
+
+          functionDataStore?.hideLoader();
+          return result;
         });
+      } else {
+        functionDataStore?.hideLoader();
+        return null;
       }
-      functionDataStore?.hideLoader();
-      return true;
     })
     .catch(error => {
       console.error('An error occurred:', error);
       functionDataStore?.hideLoader();
-      return false;
+      throw error;
     });
 };
 
@@ -66,4 +78,5 @@ export const Color = {
   outgoingMessage: '#dcf8c6',
   beigeBg: '#FEF9F5',
   buttonPink: '#EEA0FF',
+  red: '#e85046',
 };

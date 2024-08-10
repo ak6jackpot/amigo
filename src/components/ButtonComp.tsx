@@ -43,6 +43,8 @@ const ButtonComp = ({
     justifyContent: 'space-evenly',
     width: '100%',
     flexDirection: 'row',
+    borderBottomWidth: 4,
+    borderBottomColor: Color.graySend,
     ...styles,
   };
 
@@ -77,6 +79,7 @@ const ButtonComp = ({
         buttonStyles,
         {opacity: pressed ? 0.7 : 1},
         {backgroundColor: color},
+        {borderBottomWidth: pressed ? 2 : 4},
       ]}
       onPressIn={onPressIn}
       onPress={onPress}

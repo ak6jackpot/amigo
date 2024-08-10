@@ -42,15 +42,11 @@ export const NearbyLocations = ({route}) => {
                   justifyContent: 'space-evenly',
                   marginVertical: 8,
                   borderWidth: 2,
+                  borderBottomWidth: 5,
                   borderColor: Color?.graySend,
                   borderRadius: 18,
                   padding: 8,
                   backgroundColor: Color?.grayTag,
-                  shadowColor: Color?.black,
-                  shadowOffset: {width: 0, height: 1},
-                  shadowOpacity: 0.4,
-                  shadowRadius: 5,
-                  elevation: 5,
                 }}>
                 <View style={{flex: 1}}>
                   <FastImage

@@ -17,64 +17,13 @@ import itineraryStore, {
   functionDataStore,
   userDataStore,
 } from '../storeDefinitions';
-import {Color} from '../Utils';
+import {Color, loadLocationDetails} from '../Utils';
 import LoaderKit from 'react-native-loader-kit';
 import {observer} from 'mobx-react-lite';
+import {cities} from '../data';
 
 export const Home = observer(() => {
   const navigation = useNavigation();
-  const cities = [
-    {
-      label: '🇺🇸  New York',
-      mapsId: 'ChIJOwg_06VPwokRYv534QaPC8g',
-      tripAdvId: '60763',
-    },
-    {
-      label: '🇿🇦 Cape Town',
-      mapsId: 'ChIJ1-4miA9QzB0Rh6ooKPzhf2g',
-      tripAdvId: '1722390',
-    },
-    {
-      label: '🇩🇪  Berlin',
-      mapsId: 'ChIJAVkDPzdOqEcRcDteW0YgIQQ',
-      tripAdvId: '187323',
-    },
-    {
-      label: '🇬🇧  London',
-      mapsId: 'ChIJdd4hrwug2EcRmSrV3Vo6llI',
-      tripAdvId: '186338',
-    },
-    {
-      label: '🇪🇸  Madrid',
-      mapsId: 'ChIJgTwKgJcpQg0RaSKMYcHeNsQ',
-      tripAdvId: '187514',
-    },
-    {
-      label: '🇯🇵  Tokyo',
-      mapsId: 'ChIJXSModoWLGGARILWiCfeu2M0',
-      tripAdvId: '298184',
-    },
-    {
-      label: '🇫🇷  Paris',
-      mapsId: 'ChIJD7fiBh9u5kcRYJSMaMOCCwQ',
-      tripAdvId: '187147',
-    },
-    {
-      label: '🇦🇺  Sydney',
-      mapsId: 'ChIJP3Sa8ziYEmsRUKgyFmh9AQM',
-      tripAdvId: '255060',
-    },
-    {
-      label: '🇦🇪  Dubai',
-      mapsId: 'ChIJRcbZaklDXz4RYlEphFBu5r0',
-      tripAdvId: '295424',
-    },
-    {
-      label: '🇸🇬  Singapore',
-      mapsId: 'ChIJdZOLiiMR2jERxPWrUs9peIg',
-      tripAdvId: '294265',
-    },
-  ];
 
   const fetchNearby = () => {
     functionDataStore?.showLoader();
@@ -275,7 +224,18 @@ export const Home = observer(() => {
               contentContainerStyle={{paddingRight: 16}}
               data={cities}
               estimatedItemSize={322}
-              renderItem={({item}) => <Tag data={item} />}
+              renderItem={({item}) => (
+                <Tag
+                  data={item}
+                  onPress={() => {
+                    loadLocationDetails(
+                      item?.mapsId,
+                      item?.tripAdvId,
+                      navigation,
+                    );
+                  }}
+                />
+              )}
               horizontal
               showsHorizontalScrollIndicator={false}
               snapToAlignment="start"

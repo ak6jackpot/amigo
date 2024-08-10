@@ -23,8 +23,6 @@ export const ActivityCard = ({
   color = Color?.whiteBg,
   onPress,
 }: ActivityCardProps) => {
-  console.log(data?.locations);
-
   return (
     <Pressable
       style={{
