@@ -3,7 +3,6 @@ import {observer} from 'mobx-react-lite';
 import React, {useEffect, useState} from 'react';
 import {FlatList, Pressable, SafeAreaView, TextInput, View} from 'react-native';
 import {Color, loadLocationDetails} from '../Utils';
-import Typography from '../components/Typography';
 import ButtonComp from '../components/ButtonComp';
 import {FlashList} from '@shopify/flash-list';
 import {cities} from '../data';
@@ -12,8 +11,9 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSearch, faTrash, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {locationSearchMaps} from '../APIs';
 import {ListItem} from '../components/ListItem';
-import itineraryStore from '../storeDefinitions';
+import itineraryStore, {functionDataStore} from '../storeDefinitions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoaderKit from 'react-native-loader-kit';
 
 export const CreateItinerary = observer(({route}) => {
   const navigation = useNavigation();
@@ -29,12 +29,31 @@ export const CreateItinerary = observer(({route}) => {
     });
   };
 
-  useEffect(() => {
-    console.log(locations, '-----');
-  }, [locations]);
-
   return (
     <SafeAreaView>
+      {functionDataStore?.functionData?.loaderVisible && (
+        <View
+          style={{
+            position: 'absolute',
+            height: '100%',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 10,
+          }}>
+          <View
+            style={{
+              padding: 16,
+              borderRadius: 24,
+            }}>
+            <LoaderKit
+              style={{width: 48, height: 48}}
+              name={'BallPulse'}
+              color={Color?.pinkPrimary}
+            />
+          </View>
+        </View>
+      )}
       <View
         style={{
           backgroundColor: Color.beigeBg,
@@ -84,9 +103,7 @@ export const CreateItinerary = observer(({route}) => {
                     loadLocationDetails(item?.mapsId, item?.tripAdvId).then(
                       dets => {
                         dets['visited'] = false;
-                        const temp = locations;
-                        temp?.push(dets);
-                        setLocations(temp);
+                        setLocations(prevLocations => [...prevLocations, dets]);
                       },
                     );
                   }}
@@ -139,9 +156,7 @@ export const CreateItinerary = observer(({route}) => {
                     onPress={() => {
                       loadLocationDetails(item?.id, undefined).then(dets => {
                         dets['visited'] = false;
-                        const temp = locations;
-                        temp?.push(dets);
-                        setLocations(temp);
+                        setLocations(prevLocations => [...prevLocations, dets]);
                       });
                     }}
                   />
@@ -164,11 +179,11 @@ export const CreateItinerary = observer(({route}) => {
                     }}
                     rightElement={<FontAwesomeIcon icon={faTrash} />}
                     onPressRight={() => {
-                      const temp = locations?.filter(locationitem => {
-                        locationitem?.details?.id !== item?.details?.id;
-                      });
-                      console.log(temp, 'onpress');
-                      setLocations(temp);
+                      const temp = locations?.filter(
+                        locationitem =>
+                          locationitem?.details?.id !== item?.details?.id,
+                      );
+                      setLocations([...temp]);
                     }}
                   />
                 )}
@@ -192,10 +207,14 @@ export const CreateItinerary = observer(({route}) => {
                     collaborators: ['akshat'],
                     isPublic: true,
                   });
-                  AsyncStorage?.setItem(
-                    'itineraries',
-                    JSON.stringify(itineraryStore?.itineraries),
-                  );
+                  setTimeout(() => {
+                    AsyncStorage?.setItem(
+                      'itineraries',
+                      JSON.stringify(itineraryStore?.itineraries),
+                    );
+                  }, 500);
+                  navigation?.goBack();
+                  navigation?.goBack();
                 }}
               />
             )}

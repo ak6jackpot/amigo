@@ -47,6 +47,7 @@ export const Search = ({route}) => {
           }}
           placeholder="Search a city, location, or description"
           value={searchText}
+          autoFocus={true}
           onChangeText={handleSearch}
         />
         <Pressable

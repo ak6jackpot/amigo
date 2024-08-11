@@ -238,3 +238,33 @@ export const fetchTranslationOpenAI = async (
       console.log(error?.response?.data);
     });
 };
+
+export const fetchDescriptionOpenAI = async (location: string) => {
+  return await axios
+    .post(
+      'https://api.openai.com/v1/chat/completions',
+      {
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'user',
+            content: `Write a 50-60 words description for the location - ${location}. Provide only the description text directly, no other text along with it.`,
+          },
+        ],
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${API_key_OpenAI}`,
+        },
+      },
+    )
+    .then(response => {
+      // console.log(response?.data?.choices[0]?.message, '// description API');
+
+      return response?.data?.choices[0]?.message?.content;
+    })
+    .catch(error => {
+      console.log(error?.response?.data);
+    });
+};

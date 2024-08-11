@@ -5,7 +5,7 @@ import Typography from '../components/Typography';
 import {FlashList} from '@shopify/flash-list';
 import {Color, screenHeight, screenWidth} from '../Utils';
 import {Translator} from '../components/Translator';
-import {locationDetailsTA, locationSearchTA} from '../APIs';
+import {fetchDescriptionOpenAI} from '../APIs';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faDiamondTurnRight} from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
@@ -21,20 +21,20 @@ export const LocationDetails = ({route}) => {
   const [longitude, setLongitude] = useState(details?.longitude);
   const [description, setDescription] = useState(details?.description);
   const navigation = useNavigation();
-  // console.log(details, 'details in locationdetails');
+  // console.log(
+  //   JSON.stringify({
+  //     details: {...details, description: description},
+  //     visited: false,
+  //   }),
+  //   'details in locationdetails',
+  // );
   // console.log(nearbyLocationDetails, 'nearby in locationdetails');
 
   useEffect(() => {
     if (!details?.description) {
-      locationSearchTA(
-        details?.formattedAddress,
-        `${details?.latitude}%2C${details?.longitude}`,
-      )?.then(res => {
-        // console.log(res, 'fetching loc');
-        locationDetailsTA(res[0]?.location_id)?.then(response => {
-          // console.log(response, 'fetching desc');
-          setDescription(response?.description);
-        });
+      fetchDescriptionOpenAI(details?.formattedAddress)?.then(response => {
+        // console.log(response);
+        setDescription(response);
       });
     }
   }, []);

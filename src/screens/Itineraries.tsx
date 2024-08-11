@@ -9,6 +9,7 @@ import {ListItem} from '../components/ListItem';
 import {useNavigation} from '@react-navigation/native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faTrash} from '@fortawesome/free-solid-svg-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const Itineraries = ({route}) => {
   const navigation = useNavigation();
@@ -42,6 +43,12 @@ export const Itineraries = ({route}) => {
                     }
                     onPressRight={() => {
                       itineraryStore?.removeItinerary(item.id);
+                      setTimeout(() => {
+                        AsyncStorage?.setItem(
+                          'itineraries',
+                          JSON.stringify(itineraryStore?.itineraries),
+                        );
+                      }, 500);
                     }}
                   />
                 )}

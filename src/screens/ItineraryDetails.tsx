@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {FlatList, Pressable, SafeAreaView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Color, generatePhotoUrl, screenHeight, screenWidth} from '../Utils';
+import {Color, screenHeight, screenWidth} from '../Utils';
 import itineraryStore from '../storeDefinitions';
 import Typography from '../components/Typography';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -18,6 +18,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {observer} from 'mobx-react-lite';
 import * as Animatable from 'react-native-animatable';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const ItineraryDetails = observer(({route}) => {
   const {itineraryId} = route?.params;
@@ -28,8 +29,6 @@ export const ItineraryDetails = observer(({route}) => {
   const itinerary = itineraryStore.itineraries.find(
     item => item.id === itineraryId,
   );
-
-  console.log(itinerary?.locations, 'changing');
 
   return (
     <SafeAreaView>
@@ -100,7 +99,11 @@ export const ItineraryDetails = observer(({route}) => {
                 }}>
                 <View>
                   <Typography
-                    text={item?.details?.formattedAddress}
+                    text={
+                      item?.details?.formattedAddress?.length > 30
+                        ? item?.details?.formattedAddress?.slice(0, 29) + '...'
+                        : item?.details?.formattedAddress
+                    }
                     variant="heading"
                     size="small"
                     textStyles={{fontSize: 10}}
@@ -141,6 +144,10 @@ export const ItineraryDetails = observer(({route}) => {
 
                         setTimeout(() => {
                           setAnimationTrigger(null);
+                          AsyncStorage?.setItem(
+                            'itineraries',
+                            JSON.stringify(itineraryStore?.itineraries),
+                          );
                         }, 500);
                         setTimeout(() => {
                           setVisitedMessage(false);
@@ -169,6 +176,12 @@ export const ItineraryDetails = observer(({route}) => {
                         index,
                         index - 1,
                       );
+                      setTimeout(() => {
+                        AsyncStorage?.setItem(
+                          'itineraries',
+                          JSON.stringify(itineraryStore?.itineraries),
+                        );
+                      }, 500);
                     }}>
                     <FontAwesomeIcon icon={faCircleUp} size={20} />
                   </Pressable>
@@ -184,6 +197,13 @@ export const ItineraryDetails = observer(({route}) => {
                         index,
                         index + 1,
                       );
+
+                      setTimeout(() => {
+                        AsyncStorage?.setItem(
+                          'itineraries',
+                          JSON.stringify(itineraryStore?.itineraries),
+                        );
+                      }, 500);
                     }}>
                     <FontAwesomeIcon icon={faCircleDown} size={20} />
                   </Pressable>
@@ -193,12 +213,18 @@ export const ItineraryDetails = observer(({route}) => {
                       borderRadius: 1000,
                       borderColor: Color?.graySend,
                     }}
-                    onPress={() =>
+                    onPress={() => {
                       itineraryStore?.removeLocation(
                         itinerary.id,
                         item?.details?.id,
-                      )
-                    }>
+                      );
+                      setTimeout(() => {
+                        AsyncStorage?.setItem(
+                          'itineraries',
+                          JSON.stringify(itineraryStore?.itineraries),
+                        );
+                      }, 500);
+                    }}>
                     <FontAwesomeIcon icon={faTrashCan} size={20} />
                   </Pressable>
                 </View>
@@ -224,6 +250,7 @@ export const ItineraryDetails = observer(({route}) => {
               ]}
               onPress={() => {
                 // navigation?.navigate('Itineraries');
+                // navigate to create but with only adding option
               }}>
               <View
                 style={{

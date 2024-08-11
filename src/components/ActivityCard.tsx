@@ -46,8 +46,22 @@ export const ActivityCard = ({
         textStyles={{marginRight: 8}}
         variant="heading"
       />
-      <Typography text={'- ' + data?.locations[0]?.details?.formattedAddress} />
-      <Typography text={'- ' + data?.locations[1]?.details?.formattedAddress} />
+      <Typography
+        text={`- ${
+          data?.locations[0]?.details?.formattedAddress?.length > 20
+            ? data?.locations[0]?.details?.formattedAddress?.slice(0, 19) +
+              '...'
+            : data?.locations[0]?.details?.formattedAddress
+        }`}
+      />
+      <Typography
+        text={`- ${
+          data?.locations[1]?.details?.formattedAddress?.length > 15
+            ? data?.locations[1]?.details?.formattedAddress?.slice(0, 14) +
+              '...'
+            : data?.locations[1]?.details?.formattedAddress
+        }`}
+      />
       <Typography text={''} />
       <View
         style={{

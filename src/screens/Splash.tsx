@@ -25,7 +25,6 @@ export const Splash = () => {
 
   const AsyncGet = async () => {
     AsyncStorage?.getItem('itineraries').then(res => {
-      console.log(res, JSON?.parse(res));
       JSON?.parse(res)?.map(item => {
         itineraryStore?.addItinerary(item);
       });

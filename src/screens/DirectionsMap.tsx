@@ -68,11 +68,10 @@ export const DirectionsMap = ({route}) => {
           position: 'absolute',
           left: 32,
           top: 64,
-          backgroundColor: Color?.whiteBg,
-          borderRadius: 1000,
-          borderWidth: 1,
-          borderColor: Color?.gray900,
           zIndex: 2,
+          flexDirection: 'row',
+          maxHeight: 30,
+          alignItems: 'center',
         }}>
         <Pressable
           onPress={() => {
@@ -81,37 +80,39 @@ export const DirectionsMap = ({route}) => {
           style={{
             padding: 8,
             borderColor: Color?.gray900,
+            backgroundColor: Color?.whiteBg,
+            borderRadius: 1000,
+            borderWidth: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            aspectRatio: 1,
           }}>
           <FontAwesomeIcon icon={faXmark} size={24} />
         </Pressable>
-      </View>
-      {error && (
-        <Animatable.Text
-          animation="fadeIn"
-          style={{
-            position: 'absolute',
-            width: '100%',
-            left: screenWidth / 5,
-            top: screenHeight / 12,
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'yellow',
-          }}>
-          <View
+        {error && (
+          <Animatable.Text
+            animation="fadeIn"
             style={{
-              padding: 16,
-              borderRadius: 500,
-              zIndex: 4,
-              backgroundColor: Color?.red,
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginHorizontal: 32,
             }}>
-            <Typography
-              text={'Location is too far to navigate!'}
-              color={Color?.whiteBg}
-              size="large"
-            />
-          </View>
-        </Animatable.Text>
-      )}
+            <View
+              style={{
+                padding: 8,
+                borderRadius: 500,
+                zIndex: 4,
+                backgroundColor: Color?.red,
+              }}>
+              <Typography
+                text={'Location is too far to navigate!'}
+                color={Color?.whiteBg}
+              />
+            </View>
+          </Animatable.Text>
+        )}
+      </View>
+
       <MapView
         provider={
           Platform.OS === 'android' ? PROVIDER_GOOGLE : PROVIDER_DEFAULT
