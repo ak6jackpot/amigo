@@ -9,8 +9,9 @@ import {fetchDescriptionOpenAI} from '../APIs';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faDiamondTurnRight} from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
+import {observer} from 'mobx-react-lite';
 
-export const LocationDetails = ({route}) => {
+export const LocationDetails = observer(({route}) => {
   const {details, nearbyLocationDetails} = route?.params;
 
   const [photos, setPhotos] = useState(details?.photos);
@@ -139,4 +140,4 @@ export const LocationDetails = ({route}) => {
       </ScrollView>
     </SafeAreaView>
   );
-};
+});

@@ -12,8 +12,9 @@ import {
 import FastImage from 'react-native-fast-image';
 import ButtonComp from '../components/ButtonComp';
 import {useNavigation} from '@react-navigation/native';
+import {observer} from 'mobx-react-lite';
 
-export const NearbyLocations = ({route}) => {
+export const NearbyLocations = observer(({route}) => {
   const {nearbyList} = route?.params;
 
   const navigation = useNavigation();
@@ -82,7 +83,7 @@ export const NearbyLocations = ({route}) => {
                       text="Directions"
                       color={Color?.pinkPrimary}
                       textColor="#190b14"
-                      size="medium"
+                      size="small"
                       onPress={() => {
                         // console.log(item?.location);
                         navigation?.navigate('DirectionsMap', {
@@ -100,7 +101,7 @@ export const NearbyLocations = ({route}) => {
                       text="View Details"
                       color={Color?.pinkPrimary}
                       textColor="#190b14"
-                      size="medium"
+                      size="small"
                       onPress={() => {
                         loadLocationDetails(item?.id, undefined, navigation);
                       }}
@@ -116,4 +117,4 @@ export const NearbyLocations = ({route}) => {
       </View>
     </SafeAreaView>
   );
-};
+});

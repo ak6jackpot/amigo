@@ -14,8 +14,9 @@ import {userDataStore} from '../storeDefinitions';
 import {useNavigation} from '@react-navigation/native';
 import Typography from '../components/Typography';
 import * as Animatable from 'react-native-animatable';
+import {observer} from 'mobx-react-lite';
 
-export const DirectionsMap = ({route}) => {
+export const DirectionsMap = observer(({route}) => {
   const {destination} = route?.params;
   const mapRef = useRef(null);
   const mapViewDirectionsRef = useRef(null);
@@ -175,4 +176,4 @@ export const DirectionsMap = ({route}) => {
       </View>
     </View>
   );
-};
+});

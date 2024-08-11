@@ -19,8 +19,9 @@ import {useNavigation} from '@react-navigation/native';
 import GetLocation from 'react-native-get-location';
 import itineraryStore, {userDataStore} from '../storeDefinitions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {observer} from 'mobx-react-lite';
 
-export const Splash = () => {
+export const Splash = observer(() => {
   const navigation = useNavigation();
 
   const AsyncGet = async () => {
@@ -123,7 +124,6 @@ export const Splash = () => {
         text="Let's Get started!"
         color={Color.buttonPink}
         textColor="#190b14"
-        styles={{marginTop: 20}}
         onPress={() => {
           GetLocation.getCurrentPosition({
             enableHighAccuracy: true,
@@ -142,4 +142,4 @@ export const Splash = () => {
       />
     </View>
   );
-};
+});

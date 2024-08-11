@@ -16,8 +16,8 @@ export const StampImage = ({data = {}}) => {
   const scale = useSharedValue(1);
   const navigation = useNavigation();
 
-  const loadDetails = (mapsId: string, tripAdvId: string) => {
-    loadLocationDetails(mapsId, tripAdvId, navigation);
+  const loadDetails = (mapsId: string) => {
+    loadLocationDetails(mapsId, navigation);
   };
 
   const handleLongPress = event => {
@@ -111,7 +111,7 @@ export const StampImage = ({data = {}}) => {
                   borderBottomColor: Color?.graySend,
                 },
               ]}
-              onPress={() => loadDetails(data?.mapsId, data?.tripAdvId)}>
+              onPress={() => loadDetails(data?.mapsId)}>
               <Typography
                 text={data?.text1 + ', ' + data?.text2}
                 textStyles={{

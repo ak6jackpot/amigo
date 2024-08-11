@@ -8,8 +8,9 @@ import {locationSearchMaps} from '../APIs';
 import {faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {Color, loadLocationDetails} from '../Utils';
 import {useNavigation} from '@react-navigation/native';
+import {observer} from 'mobx-react-lite';
 
-export const Search = ({route}) => {
+export const Search = observer(({route}) => {
   const [searchText, setSearchText] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const navigation = useNavigation();
@@ -44,8 +45,10 @@ export const Search = ({route}) => {
             marginLeft: 8,
             fontSize: 16,
             fontFamily: 'Ubuntu-Regular',
+            padding: 8,
           }}
           placeholder="Search a city, location, or description"
+          placeholderTextColor={Color?.gray900}
           value={searchText}
           autoFocus={true}
           onChangeText={handleSearch}
@@ -63,13 +66,20 @@ export const Search = ({route}) => {
         keyExtractor={(item, index) => index.toString()}
         estimatedItemSize={100}
         renderItem={({item}) => (
-          <ListItem
-            data={item}
-            onPress={() => {
-              navigation?.goBack();
-              loadLocationDetails(item?.id, undefined, navigation);
-            }}
-          />
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: 78,
+            }}>
+            <ListItem
+              data={item}
+              onPress={() => {
+                navigation?.goBack();
+                loadLocationDetails(item?.id, undefined, navigation);
+              }}
+            />
+          </View>
         )}
         ListEmptyComponent={
           searchText !== '' && <Typography text={'No results found'} />
@@ -77,4 +87,4 @@ export const Search = ({route}) => {
       />
     </View>
   );
-};
+});

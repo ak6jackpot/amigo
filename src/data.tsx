@@ -115,7 +115,7 @@ export const featuredData = [
     image: france,
     text1: 'Louvre',
     text2: 'Paris',
-    mapsId: 'ChIJD3uTd9hx5kcR1IQvGfr8dbk',
+    mapsId: 'ChIJQdQyeiZu5kcRUfQHfB-OCLA',
     tripAdvId: '188757',
   },
   {

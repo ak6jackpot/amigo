@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import Typography from '../components/Typography';
 import ButtonComp from '../components/ButtonComp';
@@ -10,9 +10,14 @@ import {useNavigation} from '@react-navigation/native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faTrash} from '@fortawesome/free-solid-svg-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {observer} from 'mobx-react-lite';
 
-export const Itineraries = ({route}) => {
+export const Itineraries = observer(({route}) => {
   const navigation = useNavigation();
+
+  useEffect(() => {
+    console.log(itineraryStore?.itineraries, '-----------');
+  }, [itineraryStore?.itineraries]);
 
   return (
     <SafeAreaView>
@@ -26,37 +31,43 @@ export const Itineraries = ({route}) => {
           {itineraryStore?.itineraries?.length > 0 ? (
             <>
               <FlatList
-                contentContainerStyle={{marginVertical: 16}}
+                contentContainerStyle={{
+                  marginVertical: 16,
+                  width: '100%',
+                }}
                 data={itineraryStore?.itineraries}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item}) => (
-                  <ListItem
-                    variant="trip"
-                    data={item}
-                    onPress={() => {
-                      navigation?.navigate('ItineraryDetails', {
-                        itineraryId: item?.id,
-                      });
-                    }}
-                    rightElement={
-                      <FontAwesomeIcon icon={faTrash} color={'#e35f59'} />
-                    }
-                    onPressRight={() => {
-                      itineraryStore?.removeItinerary(item.id);
-                      setTimeout(() => {
-                        AsyncStorage?.setItem(
-                          'itineraries',
-                          JSON.stringify(itineraryStore?.itineraries),
-                        );
-                      }, 500);
-                    }}
-                  />
+                  <View style={{marginVertical: 8}}>
+                    <ListItem
+                      variant="trip"
+                      data={item}
+                      onPress={() => {
+                        navigation?.navigate('ItineraryDetails', {
+                          itineraryId: item?.id,
+                        });
+                      }}
+                      rightElement={
+                        <FontAwesomeIcon icon={faTrash} color={'#e35f59'} />
+                      }
+                      onPressRight={() => {
+                        itineraryStore?.removeItinerary(item.id);
+                        setTimeout(() => {
+                          AsyncStorage?.setItem(
+                            'itineraries',
+                            JSON.stringify(itineraryStore?.itineraries),
+                          );
+                        }, 500);
+                      }}
+                    />
+                  </View>
                 )}
               />
               <ButtonComp
                 text="Create another trip"
                 color={Color.buttonPink}
                 textColor="#190b14"
+                width100={true}
                 onPress={() => {
                   navigation?.navigate('ItineraryTemplates');
                 }}
@@ -72,7 +83,6 @@ export const Itineraries = ({route}) => {
                 onPress={() => {
                   navigation?.navigate('ItineraryTemplates');
                 }}
-                styles={{marginVertical: 16}}
               />
             </>
           )}
@@ -80,4 +90,4 @@ export const Itineraries = ({route}) => {
       </View>
     </SafeAreaView>
   );
-};
+});

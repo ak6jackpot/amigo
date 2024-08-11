@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import {
   faCircleCheck as checkSolid,
+  faPencil,
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import {observer} from 'mobx-react-lite';
@@ -234,46 +235,97 @@ export const ItineraryDetails = observer(({route}) => {
           snapToAlignment="start"
           decelerationRate="fast"
           ListFooterComponent={
-            <Pressable
-              style={({pressed}) => [
-                {
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  marginVertical: 8,
-                  borderColor: Color?.graySend,
-                  borderRadius: 18,
-                  padding: 8,
-                  backgroundColor: Color?.grayTag,
-                  opacity: pressed ? 0.7 : 1,
-                  borderBottomWidth: pressed ? 2 : 4,
-                },
-              ]}
-              onPress={() => {
-                // navigation?.navigate('Itineraries');
-                // navigate to create but with only adding option
-              }}>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  padding: 8,
-                  borderRadius: 1000,
+            <View style={{flexDirection: 'row'}}>
+              <Pressable
+                style={({pressed}) => [
+                  {
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    marginVertical: 8,
+                    borderColor: Color?.graySend,
+                    borderRadius: 18,
+                    padding: 8,
+                    backgroundColor: Color?.grayTag,
+                    opacity: pressed ? 0.7 : 1,
+                    borderBottomWidth: pressed ? 2 : 4,
+                    flex: 4,
+                  },
+                ]}
+                onPress={() => {
+                  navigation.navigate('CreateItinerary', {
+                    name: itinerary?.name,
+                    description: itinerary?.description,
+                    locations: itinerary?.locations,
+                  });
                 }}>
-                <Typography text={'Add more destinations'} />
-              </View>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderWidth: 2,
-                  borderStyle: 'dashed',
-                  borderColor: Color?.gray900,
-                  padding: 8,
-                  borderRadius: 1000,
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: 8,
+                    borderRadius: 1000,
+                  }}>
+                  <Typography text={'Add more destinations'} />
+                </View>
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderWidth: 2,
+                    borderStyle: 'dashed',
+                    borderColor: Color?.gray900,
+                    padding: 8,
+                    borderRadius: 1000,
+                  }}>
+                  <FontAwesomeIcon icon={faPlus} size={16} />
+                </View>
+              </Pressable>
+              <Pressable
+                style={({pressed}) => [
+                  {
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    marginVertical: 8,
+                    borderColor: Color?.graySend,
+                    borderRadius: 18,
+                    padding: 8,
+                    backgroundColor: Color?.grayTag,
+                    opacity: pressed ? 0.7 : 1,
+                    borderBottomWidth: pressed ? 2 : 4,
+                    flex: 1,
+                    marginLeft: 8,
+                  },
+                ]}
+                onPress={() => {
+                  navigation.navigate('CreateItinerary', {
+                    name: itinerary?.name,
+                    description: itinerary?.description,
+                    locations: itinerary?.locations,
+                  });
                 }}>
-                <FontAwesomeIcon icon={faPlus} size={16} />
-              </View>
-            </Pressable>
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: 8,
+                    borderRadius: 1000,
+                  }}>
+                  <Typography text={'Edit'} />
+                </View>
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderWidth: 2,
+                    borderStyle: 'dashed',
+                    borderColor: Color?.gray900,
+                    padding: 8,
+                    borderRadius: 1000,
+                  }}>
+                  <FontAwesomeIcon icon={faPencil} size={16} />
+                </View>
+              </Pressable>
+            </View>
           }
         />
       </View>

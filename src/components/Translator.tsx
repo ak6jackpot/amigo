@@ -186,8 +186,12 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
               shadowRadius: 2,
               elevation: 5,
               overflow: 'hidden',
+              width: 300,
             },
-            {height: chatbotHeight, marginBottom: keyboardHeight},
+            {
+              height: chatbotHeight,
+              // marginBottom: keyboardHeight,
+            },
           ]}>
           <View
             style={{

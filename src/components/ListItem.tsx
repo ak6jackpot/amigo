@@ -4,7 +4,7 @@ import Typography from './Typography';
 import {Color, randomColorGenerator} from '../Utils';
 
 type ListItemProps = {
-  variant?: 'search' | 'trip' | 'city';
+  variant?: 'search' | 'trip' | 'city' | 'template';
   icon?: any;
   text?: string;
   title?: string;
@@ -131,6 +131,57 @@ export const ListItem = ({
               style={{
                 position: 'absolute',
                 right: 18,
+                height: '100%',
+                aspectRatio: 0.5,
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+              }}
+              onPress={onPressRight}>
+              {rightElement}
+            </Pressable>
+          )}
+        </Pressable>
+      );
+    case 'template':
+      return (
+        <Pressable
+          onPress={onPress}
+          style={({pressed}) => ({
+            opacity: pressed ? 0.7 : 1,
+            width: '100%',
+            flexDirection: 'row',
+            paddingHorizontal: 2,
+            paddingVertical: 2,
+            borderColor: Color?.grayTag,
+            borderWidth: 3,
+            borderRadius: 12,
+          })}>
+          <View
+            style={{
+              justifyContent: 'center',
+              backgroundColor: '#f0f7fc',
+              width: '100%',
+              borderRadius: 9,
+              padding: 8,
+            }}>
+            <Typography
+              variant="label"
+              size="large"
+              text={data?.name}
+              color={textColor}
+            />
+            <Typography
+              variant="label"
+              size="small"
+              text={data?.description}
+              color={textColor}
+            />
+          </View>
+          {rightElement && (
+            <Pressable
+              style={{
+                position: 'absolute',
+                right: 10,
                 height: '100%',
                 aspectRatio: 0.5,
                 alignItems: 'flex-end',

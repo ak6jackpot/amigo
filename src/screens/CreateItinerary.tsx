@@ -17,9 +17,15 @@ import LoaderKit from 'react-native-loader-kit';
 
 export const CreateItinerary = observer(({route}) => {
   const navigation = useNavigation();
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [locations, setLocations] = useState([]);
+  const [name, setName] = useState(
+    route?.params?.name ? route?.params?.name : '',
+  );
+  const [description, setDescription] = useState(
+    route?.params?.description ? route?.params?.description : '',
+  );
+  const [locations, setLocations] = useState(
+    route?.params?.locations ? route?.params?.locations : [],
+  );
   const [searchText, setSearchText] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const handleSearch = text => {
@@ -67,10 +73,10 @@ export const CreateItinerary = observer(({route}) => {
             color: Color?.black,
             borderRadius: 12,
             borderWidth: 1,
-            paddingHorizontal: 16,
             borderColor: Color?.gray900,
+            padding: 16,
           }}
-          autoFocus={true}
+          autoFocus={route?.params?.name ? false : true}
           placeholder="Enter a Name for your trip"
           placeholderTextColor={Color?.gray900}
           value={name}
@@ -82,7 +88,7 @@ export const CreateItinerary = observer(({route}) => {
             color: Color?.black,
             borderRadius: 12,
             borderWidth: 1,
-            paddingHorizontal: 16,
+            padding: 16,
             borderColor: Color?.gray900,
           }}
           placeholder="Enter a Description for your trip"
@@ -100,12 +106,10 @@ export const CreateItinerary = observer(({route}) => {
                 <Tag
                   data={item}
                   onPress={() => {
-                    loadLocationDetails(item?.mapsId, item?.tripAdvId).then(
-                      dets => {
-                        dets['visited'] = false;
-                        setLocations(prevLocations => [...prevLocations, dets]);
-                      },
-                    );
+                    loadLocationDetails(item?.mapsId).then(dets => {
+                      dets['visited'] = false;
+                      setLocations(prevLocations => [...prevLocations, dets]);
+                    });
                   }}
                 />
               )}
@@ -132,8 +136,10 @@ export const CreateItinerary = observer(({route}) => {
                     marginLeft: 8,
                     fontSize: 16,
                     fontFamily: 'Ubuntu-Regular',
+                    padding: 16,
                   }}
                   placeholder="Search a city, location, or description"
+                  placeholderTextColor={Color?.gray900}
                   value={searchText}
                   onChangeText={handleSearch}
                 />
@@ -164,7 +170,7 @@ export const CreateItinerary = observer(({route}) => {
               />
             </View>
 
-            <View style={{width: '100%', aspectRatio: 1.69}}>
+            <View style={{width: '100%', aspectRatio: 0.8}}>
               <FlatList
                 contentContainerStyle={{}}
                 data={locations}
@@ -177,7 +183,7 @@ export const CreateItinerary = observer(({route}) => {
                       // navigation?.goBack();
                       // loadLocationDetails(item?.id, undefined, navigation);
                     }}
-                    rightElement={<FontAwesomeIcon icon={faTrash} />}
+                    rightElement={<FontAwesomeIcon icon={faXmark} />}
                     onPressRight={() => {
                       const temp = locations?.filter(
                         locationitem =>
@@ -194,6 +200,7 @@ export const CreateItinerary = observer(({route}) => {
                 text="Finish"
                 color={Color.buttonPink}
                 textColor="#190b14"
+                width100={true}
                 onPress={() => {
                   // navigation?.navigate('CreateItinerary');
                   itineraryStore?.addItinerary({

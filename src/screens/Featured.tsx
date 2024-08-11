@@ -7,8 +7,9 @@ import Typography from '../components/Typography';
 import {functionDataStore} from '../storeDefinitions';
 import LoaderKit from 'react-native-loader-kit';
 import {featuredData} from '../data';
+import {observer} from 'mobx-react-lite';
 
-export const Featured = () => {
+export const Featured = observer(() => {
   const scrollY = useRef(new Animated.Value(0)).current;
 
   const translateX = scrollY.interpolate({
@@ -106,4 +107,4 @@ export const Featured = () => {
       </View>
     </View>
   );
-};
+});

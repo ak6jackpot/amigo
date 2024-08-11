@@ -88,52 +88,59 @@ export const Home = observer(() => {
             padding: 16,
           }}>
           <Header />
-          <Pressable
-            onPress={() => {
-              navigation?.navigate('Search');
-            }}
-            style={({pressed}) => [
-              {
-                width: '100%',
-                backgroundColor: Color?.greenSearch,
-                borderTopLeftRadius: 20,
-                borderTopRightRadius: 20,
-                borderBottomLeftRadius: 40,
-                borderBottomRightRadius: 40,
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingVertical: 8,
-                marginVertical: 8,
-                opacity: pressed ? 0.7 : 1,
-                borderBottomWidth: pressed ? 2 : 4,
-                borderBottomColor: Color?.graySend,
-              },
-            ]}>
-            <Typography
-              text={'✨ Where are you travelling next?'}
-              size="large"
-              textStyles={{alignSelf: 'flex-start', marginHorizontal: 16}}
-            />
-            <View
-              style={{
-                backgroundColor: Color.beigeBg,
-                width: '90%',
-                marginTop: 8,
-                marginHorizontal: 8,
-                padding: 16,
-                borderTopLeftRadius: 20,
-                borderTopRightRadius: 20,
-                borderBottomLeftRadius: 30,
-                borderBottomRightRadius: 30,
-                flexDirection: 'row',
-              }}>
-              <FontAwesomeIcon icon={faSearch} />
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: 120,
+            }}>
+            <Pressable
+              onPress={() => {
+                navigation?.navigate('Search');
+              }}
+              style={({pressed}) => [
+                {
+                  width: '100%',
+                  backgroundColor: Color?.greenSearch,
+                  borderTopLeftRadius: 20,
+                  borderTopRightRadius: 20,
+                  borderBottomLeftRadius: 40,
+                  borderBottomRightRadius: 40,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  paddingVertical: 8,
+                  marginVertical: 8,
+                  opacity: pressed ? 0.7 : 1,
+                  borderBottomWidth: pressed ? 2 : 4,
+                  borderBottomColor: Color?.graySend,
+                },
+              ]}>
               <Typography
-                text={'Enter any place or city'}
-                textStyles={{marginHorizontal: 8, opacity: 0.6}}
+                text={'✨ Where are you travelling next?'}
+                size="large"
+                textStyles={{alignSelf: 'flex-start', marginHorizontal: 16}}
               />
-            </View>
-          </Pressable>
+              <View
+                style={{
+                  backgroundColor: Color.beigeBg,
+                  width: '90%',
+                  marginTop: 8,
+                  marginHorizontal: 8,
+                  padding: 16,
+                  borderTopLeftRadius: 20,
+                  borderTopRightRadius: 20,
+                  borderBottomLeftRadius: 30,
+                  borderBottomRightRadius: 30,
+                  flexDirection: 'row',
+                }}>
+                <FontAwesomeIcon icon={faSearch} />
+                <Typography
+                  text={'Enter any place or city'}
+                  textStyles={{marginHorizontal: 8, opacity: 0.6}}
+                />
+              </View>
+            </Pressable>
+          </View>
           <View style={{flexDirection: 'column'}}>
             <View
               style={{
@@ -210,6 +217,7 @@ export const Home = observer(() => {
                   width: '100%',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  height: 96,
                 }}>
                 <ButtonComp
                   color={Color?.pinkPrimary}
@@ -220,6 +228,7 @@ export const Home = observer(() => {
                     width: '75%',
                     marginVertical: 8,
                     textAlign: 'center',
+                    height: 72,
                   }}
                   onPress={() => {
                     navigation?.navigate('Itineraries');
@@ -242,11 +251,7 @@ export const Home = observer(() => {
                 <Tag
                   data={item}
                   onPress={() => {
-                    loadLocationDetails(
-                      item?.mapsId,
-                      item?.tripAdvId,
-                      navigation,
-                    );
+                    loadLocationDetails(item?.mapsId, navigation);
                   }}
                 />
               )}
@@ -293,45 +298,52 @@ export const Home = observer(() => {
           </Pressable>
           <View style={{flexDirection: 'column'}}>
             <Typography text={'Local Highlights'} variant="heading" />
-            <Pressable
-              style={({pressed}) => [
-                {
-                  width: '100%',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'row',
-                  backgroundColor: Color?.pinkPrimary,
-                  borderRadius: 18,
-                  overflow: 'hidden',
-                  marginVertical: 16,
-                  opacity: pressed ? 0.7 : 1,
-                  borderBottomWidth: pressed ? 2 : 4,
-                  borderBottomColor: Color?.graySend,
-                },
-              ]}
-              onPress={fetchNearby}>
-              <FastImage
-                style={{flex: 1, height: '100%'}}
-                resizeMode={FastImage.resizeMode.contain}
-                source={require('../assets/images/local.jpg')}
-              />
-              <View
-                style={{
-                  flex: 2,
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginVertical: 16,
-                  marginHorizontal: 12,
-                }}>
-                <Typography
-                  text={'Explore Nearby Attractions'}
-                  variant="heading"
-                  textAlign="center"
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: 160,
+              }}>
+              <Pressable
+                style={({pressed}) => [
+                  {
+                    width: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'row',
+                    backgroundColor: Color?.pinkPrimary,
+                    borderRadius: 18,
+                    overflow: 'hidden',
+                    marginVertical: 16,
+                    opacity: pressed ? 0.7 : 1,
+                    borderBottomWidth: pressed ? 2 : 4,
+                    borderBottomColor: Color?.graySend,
+                  },
+                ]}
+                onPress={fetchNearby}>
+                <FastImage
+                  style={{flex: 1, height: '100%'}}
+                  resizeMode={FastImage.resizeMode.contain}
+                  source={require('../assets/images/local.jpg')}
                 />
-                <RightArrow color="black" size="40px" />
-              </View>
-            </Pressable>
+                <View
+                  style={{
+                    flex: 2,
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginVertical: 16,
+                    marginHorizontal: 12,
+                  }}>
+                  <Typography
+                    text={'Explore Nearby Attractions'}
+                    variant="heading"
+                    textAlign="center"
+                  />
+                  <RightArrow color="black" size="40px" />
+                </View>
+              </Pressable>
+            </View>
           </View>
         </View>
       </ScrollView>

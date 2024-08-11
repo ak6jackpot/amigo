@@ -14,6 +14,7 @@ type ButtonCompProps = {
   disabled?: boolean;
   onPressIn?: () => void;
   styles?: Object;
+  width100?: boolean;
 };
 
 const ButtonComp = ({
@@ -28,6 +29,7 @@ const ButtonComp = ({
   textColor = Color?.black,
   onPressIn,
   styles = {},
+  width100 = false,
 }: ButtonCompProps) => {
   let buttonStyles: ViewStyle = {
     borderRadius:
@@ -41,7 +43,6 @@ const ButtonComp = ({
     padding: size === 'small' ? 4 : size === 'large' ? 16 : 8,
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    width: '100%',
     flexDirection: 'row',
     borderBottomWidth: 4,
     borderBottomColor: Color.graySend,
@@ -60,8 +61,8 @@ const ButtonComp = ({
       buttonStyles = {...buttonStyles, minHeight: 30};
       break;
     case 'medium':
-      textStyles.fontSize = 12;
-      textStyles.lineHeight = 16;
+      textStyles.fontSize = 16;
+      textStyles.lineHeight = 20;
       textStyles.fontFamily = 'Ubuntu-Regular';
       buttonStyles = {...buttonStyles, minHeight: 36};
       break;
@@ -74,33 +75,44 @@ const ButtonComp = ({
   }
 
   return (
-    <Pressable
-      style={({pressed}) => [
-        buttonStyles,
-        {opacity: pressed ? 0.7 : 1},
-        {backgroundColor: color},
-        {borderBottomWidth: pressed ? 2 : 4},
-      ]}
-      onPressIn={onPressIn}
-      onPress={onPress}
-      disabled={disabled}>
-      {left && <View style={{marginRight: 10}}>{left}</View>}
-      {text && (
-        <View>
-          <Text
-            style={{
-              color: textStyles?.color,
-              fontSize: textStyles?.fontSize,
-              lineHeight: textStyles?.lineHeight,
-              fontFamily: textStyles?.fontFamily,
-              textAlign: 'center',
-            }}>
-            {text}
-          </Text>
-        </View>
-      )}
-      {right && <View>{right}</View>}
-    </Pressable>
+    <View
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: size === 'small' ? 32 : size === 'medium' ? 48 : 72,
+        ...(width100 ? {width: '100%'} : {}),
+      }}>
+      <Pressable
+        style={({pressed}) => [
+          {
+            ...buttonStyles,
+            backgroundColor: color,
+            opacity: pressed ? 0.7 : 1,
+            borderBottomWidth: pressed ? 2 : 4,
+            ...(width100 ? {width: '100%'} : {}),
+          },
+        ]}
+        onPressIn={onPressIn}
+        onPress={onPress}
+        disabled={disabled}>
+        {left && <View style={{marginRight: 10}}>{left}</View>}
+        {text && (
+          <View>
+            <Text
+              style={{
+                color: textStyles?.color,
+                fontSize: textStyles?.fontSize,
+                lineHeight: textStyles?.lineHeight,
+                fontFamily: textStyles?.fontFamily,
+                textAlign: 'center',
+              }}>
+              {text}
+            </Text>
+          </View>
+        )}
+        {right && <View>{right}</View>}
+      </Pressable>
+    </View>
   );
 };
 

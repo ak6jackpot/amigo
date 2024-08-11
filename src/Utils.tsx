@@ -12,15 +12,11 @@ export const screenWidth = Dimensions.get('window').width;
 
 export const loadLocationDetails = (
   mapsId?: string,
-  tripAdvId?: string,
   navigation?: any,
 ): Promise<any> => {
   functionDataStore?.showLoader();
-  return Promise.all([
-    mapsId && locationDetailsMaps(mapsId),
-    tripAdvId && locationDetailsTA(tripAdvId),
-  ])
-    .then(([searchResponse, detailsResponse]) => {
+  return locationDetailsMaps(mapsId)
+    .then(searchResponse => {
       // console.log(searchResponse, '----1-----');
 
       if (searchResponse) {
@@ -31,7 +27,7 @@ export const loadLocationDetails = (
           const result = {
             details: {
               ...searchResponse,
-              description: detailsResponse?.description,
+              description: null,
             },
             nearbyLocationDetails: nearbyResponse,
           };
