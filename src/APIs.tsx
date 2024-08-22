@@ -140,6 +140,7 @@ export const locationDetailsMaps = async (locationId: string) => {
         longitude: response?.data?.location?.longitude,
         webUrl: response?.data?.googleMapsUri,
         formattedAddress: response?.data?.formattedAddress,
+        name: response?.data?.displayName?.text,
       };
     })
     .catch(error => {
@@ -249,6 +250,42 @@ export const fetchDescriptionOpenAI = async (location: string) => {
           {
             role: 'user',
             content: `Write a 50-60 words description for the location - ${location}. Provide only the description text directly, no other text along with it.`,
+          },
+        ],
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${API_key_OpenAI}`,
+        },
+      },
+    )
+    .then(response => {
+      // console.log(response?.data?.choices[0]?.message, '// description API');
+
+      return response?.data?.choices[0]?.message?.content;
+    })
+    .catch(error => {
+      console.log(error?.response?.data);
+    });
+};
+
+export const fetchNearbyOpenAI = async (
+  latitude: string,
+  longitude: string,
+  parameter?: string,
+) => {
+  return await axios
+    .post(
+      'https://api.openai.com/v1/chat/completions',
+      {
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'user',
+            content: parameter
+              ? `Give me a list of ${parameter} in and around the city with these coordinates - ${latitude},${longitude}. Provide only the array of names (detailed) like ["The Eiffel Tower - Paris", "Opera House - Sydney"], nothing else.`
+              : `Give me a list of tourist attractions in and around the city with these coordinates - ${latitude},${longitude}. Provide only the array of names (detailed) like ["The Eiffel Tower - Paris", "Opera House - Sydney"], nothing else.`,
           },
         ],
       },

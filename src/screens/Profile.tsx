@@ -11,7 +11,6 @@ export const Profile = observer(({route}) => {
       style={{
         backgroundColor: Color.beigeBg,
         padding: 16,
-        flex: 1,
       }}>
       <Header />
 

@@ -130,7 +130,7 @@ export const featuredData = [
 export const tripTemplates = [
   {
     id: 'WondExplore',
-    name: 'Wonders of North America & Canada',
+    name: 'Wonders of NA',
     description:
       'Explore the diverse landscapes and vibrant cities of North America and Canada, from the iconic landmarks to hidden natural gems',
     startDate: '2024-08-01T00:00:00.000Z',
@@ -138,9 +138,6 @@ export const tripTemplates = [
     locations: [
       {
         details: {
-          description:
-            'Conquering New York in one visit is impossible. Instead, hit the must-sees - the Empire State Building, the Statue of Liberty, Central Park, the Metropolitan Museum of Art – and then explore off the beaten path with visits to The Cloisters or one of the city’s libraries. Indulge in the bohemian shops of the West Village or the fine dining of the Upper West Side. The bustling marketplace inside of Grand Central Station gives you a literal taste of the best the city has to offer.',
-          formattedAddress: 'New York, NY, USA',
           id: 'ChIJOwg_06VPwokRYv534QaPC8g',
           latitude: 40.7127753,
           longitude: -74.0059728,
@@ -157,6 +154,10 @@ export const tripTemplates = [
             'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AelY_Csh9I0ESa3kUaLqtN1TAZTw56RY0_xP312WuGNLIwbiERObeIdwYGcNG3wUtBhSJHhse_h4gRpgsjfc1MiIPMVEczjcoXCb1Q63CUNjmXA-Rnj4WouCiOu_N2XfwQP6h5r3wwBW3f7K2RFoDoKFw0M3mNHYJ3KTkEzZ&key=AIzaSyDt4r_-QQN5dETsiqnU7_FqkuQqqcEBmlg',
           ],
           webUrl: 'https://maps.google.com/?cid=14414772292044717666',
+          name: 'New York, NY, USA',
+          formattedAddress: 'New York, NY, USA',
+          description:
+            'Conquering New York in one visit is impossible. Instead, hit the must-sees - the Empire State Building, the Statue of Liberty, Central Park, the Metropolitan Museum of Art – and then explore off the beaten path with visits to The Cloisters or one of the city’s libraries. Indulge in the bohemian shops of the West Village or the fine dining of the Upper West Side. The bustling marketplace inside of Grand Central Station gives you a literal taste of the best the city has to offer.',
         },
         visited: false,
       },
@@ -178,6 +179,7 @@ export const tripTemplates = [
           latitude: 43.0895577,
           longitude: -79.0849436,
           webUrl: 'https://maps.google.com/?cid=5103358349621961352',
+          name: 'Niagara Falls, ON, Canada',
           formattedAddress: 'Niagara Falls, ON, Canada',
           description:
             'The crashing waters of Niagara Falls—comprising two American falls and one Canadian—are truly a sight to behold. Get up close on a boat ride (be prepared to get soaked!), enjoy amazing aerial views from the Skylon Tower or on a helicopter tour, stroll along the White Water Walk, or hit the Journey Behind the Falls attraction that offers views of the falls from below and behind. Adventure seekers can also go zip-lining, jet-boating, hiking and cycling with the falls as the backdrop. For a truly magical experience, stay after dark when the falls are illuminated. For peak water flow, visit between June and August. – Tripadvisor',
@@ -202,6 +204,7 @@ export const tripTemplates = [
           latitude: 51.1779942,
           longitude: -115.5702529,
           webUrl: 'https://maps.google.com/?cid=12194908185659051254',
+          name: 'Banff National Park',
           formattedAddress:
             '43 Prestwick Place Southeast, Calgary, AB T1L, Canada',
           description:
@@ -227,6 +230,7 @@ export const tripTemplates = [
           latitude: 37.7749295,
           longitude: -122.41941550000001,
           webUrl: 'https://maps.google.com/?cid=5354801294080388607',
+          name: 'San Francisco, CA, USA',
           formattedAddress: 'San Francisco, CA, USA',
           description:
             'Every neighborhood in San Francisco has its own personality, from the hippie chic of the Upper Haight to the hipster grit of the Mission. The Marina district boasts trendy bistros and postcard-perfect views of the Golden Gate Bridge, while Noe Valley offers quaint and quiet boutiques. Wave hello to the sea lions at Pier 39, and sample local cheese and charcuterie at the Ferry Building. Sit in on a yoga session in Dolores Park or marvel at the Dutch Windmill across from Ocean Beach.',
@@ -251,6 +255,7 @@ export const tripTemplates = [
           latitude: 43.653226,
           longitude: -79.3831843,
           webUrl: 'https://maps.google.com/?cid=3617891678464296055',
+          name: 'Toronto, ON, Canada',
           formattedAddress: 'Toronto, ON, Canada',
           description:
             'We\'ve heard Toronto described as "New York City run by the Swiss," and it\'s true—you can find world-class theater, shopping and restaurants here, but the sidewalks are clean and the people are friendly. The best place to start is literally at the top—the CN Tower, the tallest freestanding structure in the Western Hemisphere.',
@@ -275,6 +280,7 @@ export const tripTemplates = [
           latitude: 34.0549076,
           longitude: -118.24264299999999,
           webUrl: 'https://maps.google.com/?cid=16298491244936825076',
+          name: 'Los Angeles, CA, USA',
           formattedAddress: 'Los Angeles, CA, USA',
           description:
             'Hollywood beckons to tourists who long for a brush with Tinseltown glamor. Tour movie studios, slip your hands into the famous prints at the TCL Chinese Theatre, or indulge in a celeb sighting at one of LA’s white-hot nightspots. Spot your favorite star while shopping at The Grove, or forget all about the famous eye candy as you take in the iconic artwork at The Getty Center. For a different type of star-gazing, peek through the telescopes at the Griffith Observatory.  ',
@@ -299,6 +305,7 @@ export const tripTemplates = [
           latitude: 46.8130816,
           longitude: -71.20745959999999,
           webUrl: 'https://maps.google.com/?cid=10359736425102457347',
+          name: 'Québec City, QC, Canada',
           formattedAddress: 'Québec City, QC, Canada',
           description:
             'Québec City, QC, Canada is a charming and picturesque destination rich in history and culture. With its stunning architecture, cobblestone streets, and European ambiance, visitors can explore landmarks such as the iconic Château Frontenac and experience the vibrant French-Canadian culture. Enjoy delicious cuisine, boutique shopping, and breathtaking views of the St. Lawrence River.',
@@ -323,6 +330,7 @@ export const tripTemplates = [
           latitude: 49.2827291,
           longitude: -123.1207375,
           webUrl: 'https://maps.google.com/?cid=13515749891091067787',
+          name: 'Vancouver, BC, Canada',
           formattedAddress: 'Vancouver, BC, Canada',
           description:
             'Vancouver was founded as “Gastown” by an Englishman with a penchant for beer and storytelling. Today Gastown is a historic section of the Canadian metropolis, and the lively pubs still reflect the area’s former status as a sort of community drinking center. The city’s forests, grand parks, and impressive suspension bridge beckon travelers to explore them, as do the city’s shops and museums. Relive the glory of the 2010 Winter Games with visits to Olympic venues and the marvelous Olympic Cauldron.',
@@ -347,6 +355,7 @@ export const tripTemplates = [
           latitude: 41.8781136,
           longitude: -87.6297982,
           webUrl: 'https://maps.google.com/?cid=12673312613543755776',
+          name: 'Chicago, IL, USA',
           formattedAddress: 'Chicago, IL, USA',
           description:
             'The windy city is a cornucopia of modern art, fine dining, cutting edge comedy, and die-hard sports fans. Snap a photo of your reflection in the silver Cloud Gate sculpture at Millennium Park before heading to Grant Park to get hit with the refreshing spray of Buckingham Fountain. There are dozens of museums and theater companies in Chicago, so a cultural experience is never hard to find. You’re sure to laugh your head off at the Second City Theater, the professional launch pad of many famous comedians.',
@@ -371,6 +380,7 @@ export const tripTemplates = [
           latitude: 45.501886899999995,
           longitude: -73.56739189999999,
           webUrl: 'https://maps.google.com/?cid=7299826163157823471',
+          name: 'Montreal, QC, Canada',
           formattedAddress: 'Montreal, QC, Canada',
           description:
             'Montreal, c’est si bon! This French-speaking city is considered the cultural capital of Canada, and is a cosmopolitan celebration of Québécois style.   A horse-drawn carriage ride around the cobblestone streets and grand buildings of Vieux-Montréal will give you a taste of European flavor. The Basilique Notre-Dame is a confection of stained glass, and the Plateau Mont-Royal district will delight you with its quaint boutiques and cafés. Dig in to a massive plate of poutine to fuel up for a tour of the epic Olympic Park.  ',
@@ -408,6 +418,7 @@ export const tripTemplates = [
           latitude: 48.857547499999995,
           longitude: 2.3513764999999998,
           webUrl: 'https://maps.google.com/?cid=291470376679806048',
+          name: 'Paris, France',
           formattedAddress: 'Paris, France',
           description:
             'Lingering over pain au chocolat in a sidewalk café, relaxing after a day of strolling along the Seine and marveling at icons like the Eiffel Tower and the Arc de Triomphe… the perfect Paris experience combines leisure and liveliness with enough time to savor both an exquisite meal and exhibits at the Louvre. Awaken your spirit at Notre Dame, bargain hunt at the Marché aux Puces de Montreuil or for goodies at the Marché Biologique Raspail, then cap it all off with a risqué show at the Moulin Rouge.',
@@ -432,6 +443,7 @@ export const tripTemplates = [
           latitude: 41.8967068,
           longitude: 12.4822025,
           webUrl: 'https://maps.google.com/?cid=13335007891793735224',
+          name: 'Rome, Italy',
           formattedAddress: 'Rome, Metropolitan City of Rome Capital, Italy',
           description:
             "Rome wasn't built in a day--and you'll need much more than a day to take in this timeless city. The city is a real-life collage of piazzas, open-air markets, and astonishing historic sites. Toss a coin into the Trevi Fountain, contemplate the Colosseum and the Pantheon, and sample a perfect espresso or gelato before spending an afternoon shopping at the Campo de’Fiori or Via Veneto. Enjoy some of the most memorable meals of your life here, too, from fresh pasta to succulent fried artichokes or a tender oxtail stew.\n",
@@ -456,6 +468,7 @@ export const tripTemplates = [
           latitude: 41.3873974,
           longitude: 2.168568,
           webUrl: 'https://maps.google.com/?cid=4949732231221831178',
+          name: 'Barcelona, Spain',
           formattedAddress: 'Barcelona, Spain',
           description:
             'Barcelona, Spain, is a vibrant and culturally rich city known for its stunning architecture, beautiful beaches, and delicious cuisine. From the iconic Sagrada Familia to the lively streets of La Rambla, Barcelona offers a mix of history, art, and modernity. Whether exploring the Gothic Quarter or soaking up the sun along the Mediterranean coast, visitors will find endless opportunities to experience the unique charm of this enchanting city.',
@@ -480,6 +493,7 @@ export const tripTemplates = [
           latitude: 52.3675734,
           longitude: 4.9041388999999995,
           webUrl: 'https://maps.google.com/?cid=7350153097810849677',
+          name: 'Amsterdam, Netherlands',
           formattedAddress: 'Amsterdam, Netherlands',
           description:
             "This city, full of colorful homes, canals and bridges, is one of Europe's most picturesque capitals. Must-sees on any visitor's itinerary include the Anne Frank House, the Van Gogh Museum and the world's only floating flower market. Rent a bike and join thousands of locals navigating Amsterdam's labyrinthine streets, or just take in the sights on foot. For an unusual and memorable alternative to hotels, consider staying in a houseboat. ",
@@ -504,6 +518,7 @@ export const tripTemplates = [
           latitude: 50.075538099999996,
           longitude: 14.437800500000002,
           webUrl: 'https://maps.google.com/?cid=288422856823816336',
+          name: 'Prague, Czechia',
           formattedAddress: 'Prague, Czechia',
           description:
             'The bohemian allure and fairytale features of Prague make it a perfect destination for beach-weary vacationers who want to immerse themselves in culture. You could devote an entire day to exploring Prazsky hrad (Prague Castle), then refueling over a hearty dinner at a classic Czech tavern. Spend some time wandering the Old Town Square before heading over to gape at The Old Town Hall and Astronomical Clock. Prague’s best bars are found in cellars, where historic pubs set the scene for a night of traditional tippling.',
@@ -528,6 +543,7 @@ export const tripTemplates = [
           latitude: 36.3931562,
           longitude: 25.4615092,
           webUrl: 'https://maps.google.com/?cid=12873365774434470652',
+          name: 'Santorini, Greece',
           formattedAddress: 'Santorini, Greece',
           description:
             'Even if you’ve never been to this Cyclades island in the Aegean Sea, you’d still recognize it immediately – candy-colored houses carved into cliffs, sapphire waters, gleaming white buildings topped with half-spheres the color of a stormy sky. Here you’ll find peace as you roam the black sand beaches or the streets of a provincial village like Imerovigli. Beautiful Oia is world famous for its sunsets, which seem tinted with every shade of an artist’s palette.  ',
@@ -552,6 +568,7 @@ export const tripTemplates = [
           latitude: 48.208069599999995,
           longitude: 16.3713095,
           webUrl: 'https://maps.google.com/?cid=18285429819315477318',
+          name: 'Vienna, Austria',
           formattedAddress: 'Vienna, Austria',
           description:
             'Vienna, Austria, is a city rich in history and culture. With stunning architecture, world-class museums, beautiful parks, and a vibrant music scene, Vienna offers a unique blend of old-world charm and modern sophistication. From the grandeur of Schönbrunn Palace to the lively atmosphere of the Naschmarkt, there is something for everyone to enjoy in this enchanting city.',
@@ -576,6 +593,7 @@ export const tripTemplates = [
           latitude: 55.953252,
           longitude: -3.1882669999999997,
           webUrl: 'https://maps.google.com/?cid=7273898868765824807',
+          name: 'Edinburgh, UK',
           formattedAddress: 'Edinburgh, UK',
           description:
             'Edinburgh is Scotland’s capital city, renowned for its heritage, culture and festivals.\nTake a long walk around the centre to explore the World Heritage Sites of the Old Town and New Town, as well as all the area’s museums and galleries. Then stop for a delicious meal made from fresh Scottish produce before heading out to take in one of Edinburgh’s many events — including the famous summer festivals of culture, or the Winter Festivals of music, light and ceilidhs.',
@@ -600,6 +618,7 @@ export const tripTemplates = [
           latitude: 42.650660599999995,
           longitude: 18.094423799999998,
           webUrl: 'https://maps.google.com/?cid=288420937511720192',
+          name: 'Dubrovnik, Croatia',
           formattedAddress: 'Dubrovnik, Croatia',
           description:
             "Dubrovnik, Croatia is a stunning coastal city known for its picturesque Old Town surrounded by massive stone walls. With its charming medieval architecture, red-roofed buildings, and crystal-clear Adriatic Sea, Dubrovnik offers visitors a perfect blend of history and natural beauty. Stroll through narrow alleyways, explore historic sites, or simply relax on one of the city's many beautiful beaches.",
@@ -624,6 +643,7 @@ export const tripTemplates = [
           latitude: 41.0082376,
           longitude: 28.9783589,
           webUrl: 'https://maps.google.com/?cid=16270659485725470928',
+          name: 'İstanbul, Türkiye',
           formattedAddress: 'İstanbul, Türkiye',
           description:
             'Istanbul, Türkiye is a vibrant city that boasts a rich history, stunning architecture, and a unique mix of cultures. From the iconic Hagia Sophia and Blue Mosque to the bustling Grand Bazaar and scenic Bosphorus Strait, this city offers a blend of old-world charm and modern delights. With delicious cuisine, lively markets, and welcoming locals, Istanbul is a must-visit destination for any traveler.',
@@ -661,6 +681,7 @@ export const tripTemplates = [
           latitude: 35.680399699999995,
           longitude: 139.7690174,
           webUrl: 'https://maps.google.com/?cid=14832797748786541856',
+          name: 'Tokyo, Japan',
           formattedAddress: 'Tokyo, Japan',
           description:
             'Tradition collides with pop culture in Tokyo, where you can reverently wander ancient temples before rocking out at a karaoke bar. Wake up before the sun to catch the lively fish auction at the Toyosu Market, then refresh with a walk beneath the cherry blossom trees that line the Sumida River. Spend some time in the beautiful East Gardens of the Imperial Palace, then brush up on your Japanese history at the Edo-Tokyo Museum. Don’t forget to eat as much sushi, udon noodles, and wagashi (Japanese sweets) as your belly can handle.',
@@ -685,6 +706,7 @@ export const tripTemplates = [
           latitude: 35.011564,
           longitude: 135.7681489,
           webUrl: 'https://maps.google.com/?cid=13877311421361626429',
+          name: 'Kyoto, Japan',
           formattedAddress: 'Kyoto, Japan',
           description:
             "Kyoto, Japan, is a city that seamlessly blends ancient traditions with modern culture. Home to stunning temples, beautiful gardens, and traditional tea houses, Kyoto offers visitors a glimpse into Japans rich history. The city's cherry blossom-lined streets and picturesque bamboo forests make it a must-visit destination for travelers looking to experience the beauty and serenity of traditional Japanese culture.",
@@ -709,6 +731,7 @@ export const tripTemplates = [
           latitude: 39.904211,
           longitude: 116.407395,
           webUrl: 'https://maps.google.com/?cid=13358334143110293898',
+          name: 'Beijing, China',
           formattedAddress: 'Beijing, China',
           description:
             "Beijing, China's sprawling capital, has history stretching back 3 millennia. Yet it's known as much for modern architecture as its ancient sites such as the grand Forbidden City complex, the imperial palace during the Ming and Qing dynasties.",
@@ -733,6 +756,7 @@ export const tripTemplates = [
           latitude: 13.7563309,
           longitude: 100.5017651,
           webUrl: 'https://maps.google.com/?cid=72339835093927968',
+          name: 'Bangkok, Thailand',
           formattedAddress: 'Bangkok, Thailand',
           description:
             "Bangkok, Thailand, is a bustling metropolis known for its vibrant street life, ornate temples, and bustling markets. The city is a blend of traditional culture and modern amenities, offering visitors a unique experience with its diverse array of attractions, from floating markets to opulent palaces. Bangkok's lively atmosphere and warm hospitality make it a must-visit destination for travelers.",
@@ -757,6 +781,7 @@ export const tripTemplates = [
           latitude: -8.4095178,
           longitude: 115.18891599999999,
           webUrl: 'https://maps.google.com/?cid=2634904511132788368',
+          name: 'Bali, Indonesia',
           formattedAddress: 'Bali, Indonesia',
           description:
             'Bali is a living postcard, an Indonesian paradise that feels like a fantasy. Soak up the sun on a stretch of fine white sand, or commune with the tropical creatures as you dive along coral ridges or the colorful wreck of a WWII war ship. On shore, the lush jungle shelters stone temples and mischievous monkeys.  The “artistic capital” of Ubud is the perfect place to see a cultural dance performance, take a batik or silver-smithing workshop, or invigorate your mind and body in a yoga class.\n',
@@ -781,6 +806,7 @@ export const tripTemplates = [
           latitude: 1.352083,
           longitude: 103.819836,
           webUrl: 'https://maps.google.com/?cid=9833726125529626052',
+          name: 'Singapore',
           formattedAddress: 'Singapore',
           description:
             'Singapore is a vibrant city-state in Southeast Asia known for its diverse culture, futuristic architecture, and delicious street food. With its bustling shopping districts, beautiful gardens, and efficient public transportation system, Singapore is a popular destination for tourists seeking a mix of modern luxury and rich history.',
@@ -805,6 +831,7 @@ export const tripTemplates = [
           latitude: 28.7040592,
           longitude: 77.10249019999999,
           webUrl: 'https://maps.google.com/?cid=248267213351982656',
+          name: 'Delhi, India',
           formattedAddress: 'Delhi, India',
           description:
             'Delhi, India, the bustling capital city, is a vibrant mix of ancient history and modernity. From majestic Mughal architecture like the Red Fort and Jama Masjid to bustling markets like Chandni Chowk, Delhi offers a captivating blend of sights, sounds, and flavors. With a rich cultural heritage, diverse cuisine, and vibrant street life, Delhi is a must-visit destination for travelers.',
@@ -829,6 +856,7 @@ export const tripTemplates = [
           latitude: 37.550263,
           longitude: 126.9970831,
           webUrl: 'https://maps.google.com/?cid=9084302100696658587',
+          name: 'Seoul, South Korea',
           formattedAddress: 'Seoul, South Korea',
           description:
             'Seoul, South Korea, is a vibrant and bustling city known for its modern skyscrapers, high-tech subways, and pop culture. From historic palaces to bustling markets and vibrant nightlife, Seoul offers a perfect blend of traditional and contemporary. The city is also renowned for its delicious cuisine, fashion-forward trends, and picturesque parks.',
@@ -853,6 +881,7 @@ export const tripTemplates = [
           latitude: 21.0277644,
           longitude: 105.8341598,
           webUrl: 'https://maps.google.com/?cid=16683724987777554345',
+          name: 'Hanoi, Vietnam',
           formattedAddress: 'Hanoi, Vietnam',
           description:
             'Hanoi, Vietnam is a bustling city that perfectly blends ancient culture with modern life. From the historic Old Quarter with its narrow streets and traditional architecture, to the stunning Hoan Kiem Lake and bustling markets, Hanoi offers a unique and vibrant experience for visitors. Explore delicious street food, historic landmarks, and immerse yourself in the rich history and culture of this dynamic city.',
@@ -877,6 +906,7 @@ export const tripTemplates = [
           latitude: 27.7172453,
           longitude: 85.3239605,
           webUrl: 'https://maps.google.com/?cid=13047909004881015274',
+          name: 'Kathmandu, Nepal',
           formattedAddress: 'Kathmandu 44600, Nepal',
           description:
             'Nepal’s capital is surrounded by a valley full of historic sites, ancient temples, shrines, and fascinating villages. Mingle with locals and animals amid Durbar Square’s monuments, or join mountain trekkers in the bustling Thamel District. Explore shops for exquisite work by local artisans—carpets and paper prints are specialties.',
@@ -890,7 +920,7 @@ export const tripTemplates = [
   },
   {
     id: 'DownExperi',
-    name: 'Down Under & Beyond',
+    name: 'World Down Under',
     description:
       'Experience the unique wildlife, stunning landscapes, and vibrant cities of Australia and New Zealand',
     startDate: '2024-08-01T00:00:00.000Z',
@@ -914,6 +944,7 @@ export const tripTemplates = [
           latitude: -33.868819699999996,
           longitude: 151.2092955,
           webUrl: 'https://maps.google.com/?cid=216592143092983888',
+          name: 'Sydney NSW, Australia',
           formattedAddress: 'Sydney NSW, Australia',
           description:
             'Sydney offers plenty of historical and contemporary Australian flavor. The marvelous Sydney Opera House looks like a great origami sailboat, floating peacefully in a harbor. Wander the narrow cobblestone streets of The Rocks and then take in a street performance on the Circular Quay before heading into the Museum of Contemporary Art. The views from the Sydney Tower Eye observatory are epic – use this chance to get to know the layout of the city from high above.',
@@ -938,6 +969,7 @@ export const tripTemplates = [
           latitude: -18.287066799999998,
           longitude: 147.6991918,
           webUrl: 'https://maps.google.com/?cid=1813357737569107162',
+          name: 'Great Barrier Reef, Australia',
           formattedAddress: 'Great Barrier Reef, Australia',
           description:
             'The Great Barrier Reef in Australia is the largest coral reef system in the world, stretching over 2,300 kilometers along the Queensland coast. It is home to an incredible diversity of marine life, including over 1,500 species of fish and 411 types of hard coral. Its crystal-clear waters and vibrant coral make it a paradise for snorkelers and divers.',
@@ -962,6 +994,7 @@ export const tripTemplates = [
           latitude: -37.8136276,
           longitude: 144.96305759999998,
           webUrl: 'https://maps.google.com/?cid=289451337132592528',
+          name: 'Melbourne VIC, Australia',
           formattedAddress: 'Melbourne VIC, Australia',
           description:
             'Lovely, laid-back Melbourne has something for everyone: family fare, local and international art, haute boutiques, multicultural dining, Australian and Aboriginal history, spectator sports, and pulsing, swanky nightlife. Cruise on the free City Circle Tram loop to check out unique attractions like the Royal Botanical Gardens and the Healesville Sanctuary, which buzzes with local animal species.',
@@ -986,6 +1019,7 @@ export const tripTemplates = [
           latitude: -36.85088270000001,
           longitude: 174.7644881,
           webUrl: 'https://maps.google.com/?cid=360551171215235351',
+          name: 'Auckland, New Zealand',
           formattedAddress: 'Auckland, New Zealand',
           description:
             "European, Polynesian, Asian and strong Maori heritages give the Auckland its distinctive culture. Discover the history of the world's largest Polynesian city through Maori treasures at Auckland Museum and experience the lives of 19th-century settlers at Howick Historical Village. Find Polynesian handicrafts at Otara Market or people-watch in bustling Ponsonby and Parnell. Adventure junkies can get their fix from kayaking, sailing and high-octane bungee jumping.",
@@ -1010,6 +1044,7 @@ export const tripTemplates = [
           latitude: -45.030151100000005,
           longitude: 168.6615141,
           webUrl: 'https://maps.google.com/?cid=360551331216860672',
+          name: 'Queenstown, New Zealand',
           formattedAddress: 'Queenstown, New Zealand',
           description:
             'Queenstown, New Zealand is a picturesque resort town nestled on the shores of Lake Wakatipu and surrounded by the stunning Southern Alps. Known as the adventure capital of the world, Queenstown offers adrenaline-pumping activities such as bungee jumping, skydiving, and white-water rafting. Visitors can also enjoy scenic boat cruises, wine tours, and hiking trails in this vibrant and dynamic destination.',
@@ -1034,6 +1069,7 @@ export const tripTemplates = [
           latitude: -25.344427699999997,
           longitude: 131.0368822,
           webUrl: 'https://maps.google.com/?cid=4875372329838141217',
+          name: 'Uluru, Australia',
           formattedAddress: 'Uluru, Petermann NT 0872, Australia',
           description:
             'Palya! Welcome to Anangu land. Uluru-Kata Tjuta National Park is Aboriginal land. It is jointly managed by its traditional owners Anangu and Parks Australia. The park is recognised by UNESCO as a World Heritage site for its natural and cultural values. The spectacular rock formations and surrounding sand plains provide rare habitats for an incredible variety of plants and animals. Anangu invite you to visit Uluru-Kata Tjuta National Park to learn more about their land, beliefs and culture.',
@@ -1058,6 +1094,7 @@ export const tripTemplates = [
           latitude: -41.2923814,
           longitude: 174.7787463,
           webUrl: 'https://maps.google.com/?cid=720839151579280496',
+          name: 'Wellington, New Zealand',
           formattedAddress: 'Wellington, New Zealand',
           description:
             'Wellington, the capital city of New Zealand, is known for its vibrant arts scene, stunning harbor views, and bustling coffee culture. Surrounded by picturesque hills and a rugged coastline, it offers a perfect blend of nature and urban life. Visitors can enjoy a variety of outdoor activities, explore museums, and indulge in delicious cuisine.',
@@ -1082,6 +1119,7 @@ export const tripTemplates = [
           latitude: -28.016666999999998,
           longitude: 153.4,
           webUrl: 'https://maps.google.com/?cid=216915343101046640',
+          name: 'Gold Coast QLD, Australia',
           formattedAddress: 'Gold Coast QLD, Australia',
           description:
             "Sun-drenched and built for fun, Australia's Gold Coast hugs Queensland's southeast coastline with beaches, shimmering high rises, and epic surf breaks. Though it's hedonistic at heart, there's also plenty of opportunities for adventure and family-friendly attractions beyond its well-known party scene.",
@@ -1106,6 +1144,7 @@ export const tripTemplates = [
           latitude: -38.144598699999996,
           longitude: 176.2377669,
           webUrl: 'https://maps.google.com/?cid=360551171215300913',
+          name: 'Rotorua, New Zealand',
           formattedAddress: 'Rotorua, New Zealand',
           description:
             'Bubbling mineral springs and pools promise maximum relaxation in Rotorua, on New Zealand\'s North Island. Therapeutic hot mud pools, dramatic geysers and a buried village are within easy reach of the city. What happens in the bubbling mud geysers of "Rotovegas"—the area at the top of Fenton Street—stays in Rotovegas. Once you\'ve made the most of the mud, soar nearly 2,000 feet on the Skyline Gondola for views of Lake Rotorua, then zip back down to explore the lake by paddle steamer, fishing charter or WWII amphibious vehicle.',
@@ -1130,6 +1169,7 @@ export const tripTemplates = [
           latitude: -42.0409059,
           longitude: 146.80873219999998,
           webUrl: 'https://maps.google.com/?cid=3066852240561029220',
+          name: 'Tasmania, Australia',
           formattedAddress: 'Tasmania, Australia',
           description:
             'Tasmania, Australia, is a pristine island state known for its breathtaking natural landscapes, including rugged mountains, ancient rainforests, and stunning beaches. It is home to unique wildlife such as the Tasmanian Devil and offers outdoor enthusiasts a wide range of activities, from hiking and fishing to kayaking and wildlife watching.',
@@ -1167,6 +1207,7 @@ export const tripTemplates = [
           latitude: 25.2048493,
           longitude: 55.2707828,
           webUrl: 'https://maps.google.com/?cid=13683745809905570146',
+          name: 'Dubai - United Arab Emirates',
           formattedAddress: 'Dubai - United Arab Emirates',
           description:
             'Dubai is a destination that mixes modern culture with history, adventure with world-class shopping and entertainment. Catch a show at the Dubai Opera, see downtown from atop the Burj Khalifa and spend an afternoon along Dubai Creek exploring the gold, textile and spice souks. If you’re looking for thrills, you can float above the desert dunes in a hot air balloon, climb aboard a high-speed ride at IMG Worlds of Adventure or skydive over the Palm Jumeirah.',
@@ -1191,6 +1232,7 @@ export const tripTemplates = [
           latitude: 31.6225224,
           longitude: -7.989825799999999,
           webUrl: 'https://maps.google.com/?cid=6435844336445271480',
+          name: 'Marrakesh, Morocco',
           formattedAddress: 'Marrakesh, Morocco',
           description:
             ' Marrakesh, Morocco, is a vibrant and bustling city known for its bustling souks, beautiful architecture, and lively atmosphere. Visitors can explore the historic medina, admire the ornate palaces and mosques, and indulge in the delicious local cuisine. With its colorful markets, stunning gardens, and rich culture, Marrakesh offers a truly unforgettable experience.',
@@ -1215,7 +1257,8 @@ export const tripTemplates = [
           latitude: 30.328454400000002,
           longitude: 35.4443622,
           webUrl: 'https://maps.google.com/?cid=1845342286831559313',
-          formattedAddress: 'Jordan',
+          name: 'Petra, Jordan',
+          formattedAddress: 'Petra, Jordan',
           description:
             "Jordan is a fascinating country in the Middle East known for its ancient ruins, desert landscapes, and vibrant culture. From the renowned archaeological site of Petra to the Dead Sea's buoyant waters, Jordan offers a unique blend of history and natural beauty. Visitors can explore bustling markets, relax in luxury resorts, or embark on outdoor adventures in the stunning Wadi Rum desert.",
         },
@@ -1239,6 +1282,7 @@ export const tripTemplates = [
           latitude: 30.0444196,
           longitude: 31.2357116,
           webUrl: 'https://maps.google.com/?cid=8781934159607249850',
+          name: 'Cairo, Egypt',
           formattedAddress: 'Cairo, Cairo Governorate, Egypt',
           description:
             "Cairo’s an ancient city that also happens to be a modern metropolis—it’s one of the biggest cities in the Middle East and has the traffic and noise issues to prove it. But as long as you’re not looking for solitude, Cairo—the City of the Thousand Minarets—is a splendid place to explore Egyptian history and culture. (Editor's note: Our list was compiled before political unrest prompted many countries to issue travel warnings for Egypt. If you're currently planning a trip to Egypt, please consider the risks and monitor your government's travel alerts.)",
@@ -1263,6 +1307,7 @@ export const tripTemplates = [
           latitude: 23.588030699999997,
           longitude: 58.382871699999995,
           webUrl: 'https://maps.google.com/?cid=15804124419820463916',
+          name: 'Muscat, Oman',
           formattedAddress: 'Muscat, Oman',
           description:
             'Muscat, the capital of Oman, is a vibrant city located on the Arabian Sea. Known for its stunning beaches, historic forts, and striking architecture, Muscat offers a unique blend of traditional and modern charm. Visitors can explore bustling souks, sample delicious Omani cuisine, and marvel at the grandeur of the Sultan Qaboos Grand Mosque.',
@@ -1287,6 +1332,7 @@ export const tripTemplates = [
           latitude: 24.7135517,
           longitude: 46.6752957,
           webUrl: 'https://maps.google.com/?cid=13445299997757644757',
+          name: 'Riyadh Saudi Arabia',
           formattedAddress: 'Riyadh Saudi Arabia',
           description:
             'Riyadh, the capital city of Saudi Arabia, is a bustling metropolis known for its modern architecture, vibrant culture, and rich history. The city is home to luxurious shopping malls, stunning skyscrapers, and traditional markets. Visitors can explore ancient sites such as Diriyah and Al-Masmak Fortress, or indulge in the local cuisine at numerous restaurants.',
@@ -1311,6 +1357,7 @@ export const tripTemplates = [
           latitude: 33.893791300000004,
           longitude: 35.5017767,
           webUrl: 'https://maps.google.com/?cid=8255523331241424564',
+          name: 'Beirut, Lebanon',
           formattedAddress: 'Beirut, Lebanon',
           description:
             'Beirut, Lebanon is a vibrant city that beautifully blends historical charm with modern sophistication. From the bustling streets of the downtown area to the serene beaches along the Mediterranean Sea, Beirut offers a unique mix of culture, cuisine, and stunning architecture. Explore ancient ruins, visit bustling markets, or simply enjoy the vibrant nightlife in this cosmopolitan city.',
@@ -1335,6 +1382,7 @@ export const tripTemplates = [
           latitude: 25.285447299999998,
           longitude: 51.531039799999995,
           webUrl: 'https://maps.google.com/?cid=4961051025521759409',
+          name: 'Doha, Qatar',
           formattedAddress: 'Doha, Qatar',
           description:
             'Doha, the capital of Qatar, is a modern city known for its futuristic skyline, luxury shopping, and world-class dining. This cosmopolitan city offers a blend of traditional Qatari culture and modern amenities, with attractions such as the Museum of Islamic Art, the Souq Waqif market, and the man-made island The Pearl-Qatar. It is a vibrant and bustling destination for both tourists and expats.',
@@ -1359,6 +1407,7 @@ export const tripTemplates = [
           latitude: 33.5731104,
           longitude: -7.589843399999999,
           webUrl: 'https://maps.google.com/?cid=794535519063183315',
+          name: 'Casablanca, Morocco',
           formattedAddress: 'Casablanca, Morocco',
           description:
             'Casablanca, Morocco is a vibrant coastal city known for its bustling markets, stunning architecture, and rich history. The Hassan II Mosque, one of the largest mosques in the world, is a must-visit landmark. Visitors can explore the vibrant medina, relax on the beautiful beaches, and indulge in delicious Moroccan cuisine.',
@@ -1383,6 +1432,7 @@ export const tripTemplates = [
           latitude: 31.9543786,
           longitude: 35.910577599999996,
           webUrl: 'https://maps.google.com/?cid=7141636714469811688',
+          name: 'Amman, Jordan',
           formattedAddress: 'Amman, Jordan',
           description:
             'Amman, the capital of Jordan, is a bustling city known for its ancient ruins, modern amenities, and stunning views of the surrounding desert landscape. The city boasts numerous historical sites, vibrant markets, and delicious cuisine, making it a must-visit destination for travelers seeking a unique cultural experience.',

@@ -123,7 +123,7 @@ export const ListItem = ({
             }}>
             <Typography
               variant="label"
-              text={data?.details?.formattedAddress}
+              text={data?.details?.name}
               color={textColor}
             />
           </View>

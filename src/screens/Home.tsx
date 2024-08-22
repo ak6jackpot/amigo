@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Video from 'react-native-video';
-import {nearbyLocationSearchMaps} from '../APIs';
+import {fetchNearbyOpenAI, locationSearchMaps} from '../APIs';
 import {RightArrow} from '../assets/images/RightArrow';
 import {ActivityCard} from '../components/ActivityCard';
 import ButtonComp from '../components/ButtonComp';
@@ -33,21 +33,31 @@ export const Home = observer(() => {
 
   const fetchNearby = () => {
     functionDataStore?.showLoader();
-    nearbyLocationSearchMaps(
+    fetchNearbyOpenAI(
       userDataStore?.userData?.currentLocation?.latitude,
       userDataStore?.userData?.currentLocation?.longitude,
     )
-      ?.then(res => {
-        // console.log(
-        //   res,
-        //   userDataStore?.userData?.currentLocation,
-        //   res?.length,
-        //   '--------------------',
-        // );
-        functionDataStore?.hideLoader();
-        navigation?.navigate('NearbyLocations', {
-          nearbyList: res,
+      ?.then(response => {
+        // console.log(JSON?.parse(response));
+        const final: any[] = [];
+        JSON?.parse(response)?.map(item => {
+          locationSearchMaps(item)?.then(searchresponse => {
+            // console.log(searchresponse?.places[0], 'searchresponse');
+
+            loadLocationDetails(searchresponse?.places[0]?.id)?.then(
+              loadresponse => {
+                final?.push(loadresponse);
+              },
+            );
+          });
         });
+
+        setTimeout(() => {
+          functionDataStore?.hideLoader();
+          navigation?.navigate('NearbyLocations', {
+            nearbyList: final,
+          });
+        }, 3000);
       })
       .catch(err => {
         console.log(err);

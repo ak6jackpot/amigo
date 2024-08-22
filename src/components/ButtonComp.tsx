@@ -58,7 +58,7 @@ const ButtonComp = ({
       textStyles.fontSize = 10;
       textStyles.lineHeight = 14;
       textStyles.fontFamily = 'Ubuntu-Regular';
-      buttonStyles = {...buttonStyles, minHeight: 30};
+      buttonStyles = {...buttonStyles, minHeight: 30, borderRadius: 8};
       break;
     case 'medium':
       textStyles.fontSize = 16;

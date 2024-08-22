@@ -92,10 +92,9 @@ const ItineraryItem = ({item, isExpanded, onPress, navigation}) => {
                       }}>
                       <Typography
                         text={
-                          item?.details?.formattedAddress?.length > 25
-                            ? item?.details?.formattedAddress?.slice(0, 24) +
-                              '...'
-                            : item?.details?.formattedAddress
+                          item?.details?.name?.length > 25
+                            ? item?.details?.name?.slice(0, 24) + '...'
+                            : item?.details?.name
                         }
                         color={Color?.whiteBg}
                       />

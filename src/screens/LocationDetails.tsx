@@ -16,9 +16,7 @@ export const LocationDetails = observer(({route}) => {
   const {details, nearbyLocationDetails} = route?.params;
 
   const [photos, setPhotos] = useState(details?.photos);
-  const [formattedAddress, setFormattedAddress] = useState(
-    details?.formattedAddress,
-  );
+  const [name, setName] = useState(details?.name);
   const [latitude, setLatitude] = useState(details?.latitude);
   const [longitude, setLongitude] = useState(details?.longitude);
   const [description, setDescription] = useState(details?.description);
@@ -34,7 +32,7 @@ export const LocationDetails = observer(({route}) => {
 
   useEffect(() => {
     if (!details?.description) {
-      fetchDescriptionOpenAI(details?.formattedAddress)?.then(response => {
+      fetchDescriptionOpenAI(details?.name)?.then(response => {
         // console.log(response);
         setDescription(response);
       });
@@ -98,7 +96,7 @@ export const LocationDetails = observer(({route}) => {
             padding: 16,
           }}>
           <Typography
-            text={formattedAddress}
+            text={name}
             variant="heading"
             textStyles={{marginVertical: 8}}
           />
@@ -144,7 +142,7 @@ export const LocationDetails = observer(({route}) => {
               ]}>
               <FontAwesomeIcon icon={faDiamondTurnRight} size={'100%'} />
             </Pressable>
-            <Translator place={formattedAddress} />
+            <Translator place={name} />
           </View>
         </View>
       </ScrollView>

@@ -79,6 +79,7 @@ export const CreateItinerary = observer(({route}) => {
           autoFocus={route?.params?.name ? false : true}
           placeholder="Enter a Name for your trip"
           placeholderTextColor={Color?.gray900}
+          maxLength={20}
           value={name}
           onChangeText={setName}
         />
@@ -94,6 +95,7 @@ export const CreateItinerary = observer(({route}) => {
           placeholder="Enter a Description for your trip"
           placeholderTextColor={Color?.gray900}
           value={description}
+          maxLength={60}
           onChangeText={setDescription}
         />
         {name?.length > 4 && description?.length > 9 && (

@@ -131,9 +131,9 @@ export const ItineraryDetails = observer(({route}) => {
                 <View>
                   <Typography
                     text={
-                      item?.details?.formattedAddress?.length > 30
-                        ? item?.details?.formattedAddress?.slice(0, 29) + '...'
-                        : item?.details?.formattedAddress
+                      item?.details?.name?.length > 30
+                        ? item?.details?.name?.slice(0, 29) + '...'
+                        : item?.details?.name
                     }
                     variant="heading"
                     size="small"

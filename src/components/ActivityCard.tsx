@@ -31,38 +31,51 @@ export const ActivityCard = ({
           marginRight: 8,
           flexDirection: 'column',
           padding: 12,
-          width: 160,
-          aspectRatio: 1,
+          height: 160,
+          aspectRatio: 1.69,
           backgroundColor: color,
           justifyContent: 'space-between',
           opacity: pressed ? 0.7 : 1,
           borderBottomWidth: pressed ? 2 : 4,
           borderColor: Color?.graySend,
+          overflow: 'hidden',
         },
       ]}
       onPress={onPress}>
       <Typography
-        text={data?.name}
+        text={
+          data?.name?.length > 20
+            ? data?.name?.slice(0, 19) + '...'
+            : data?.name
+        }
         textStyles={{marginRight: 8}}
         variant="heading"
       />
       <Typography
         text={`- ${
-          data?.locations[0]?.details?.formattedAddress?.length > 20
-            ? data?.locations[0]?.details?.formattedAddress?.slice(0, 19) +
-              '...'
-            : data?.locations[0]?.details?.formattedAddress
+          data?.locations[0]?.details?.name?.length > 30
+            ? data?.locations[0]?.details?.name?.slice(0, 30) + '...'
+            : data?.locations[0]?.details?.name
         }`}
       />
       <Typography
         text={`- ${
-          data?.locations[1]?.details?.formattedAddress?.length > 15
-            ? data?.locations[1]?.details?.formattedAddress?.slice(0, 14) +
-              '...'
-            : data?.locations[1]?.details?.formattedAddress
+          data?.locations[1]?.details?.name?.length > 30
+            ? data?.locations[1]?.details?.name?.slice(0, 30) + '...'
+            : data?.locations[1]?.details?.name
         }`}
       />
-      <Typography text={''} />
+      {data?.locations[2] ? (
+        <Typography
+          text={`- ${
+            data?.locations[2]?.details?.name?.length > 30
+              ? data?.locations[2]?.details?.name?.slice(0, 30) + '...'
+              : data?.locations[2]?.details?.name
+          }`}
+        />
+      ) : (
+        <Typography text={''} />
+      )}
       <View
         style={{
           flexDirection: 'row',

@@ -26,7 +26,6 @@ export const NearbyLocations = observer(({route}) => {
         style={{
           backgroundColor: Color.beigeBg,
           padding: 16,
-          flex: 1,
         }}>
         <Header />
 
@@ -61,9 +60,7 @@ export const NearbyLocations = observer(({route}) => {
                     }}
                     resizeMode={FastImage.resizeMode.cover}
                     source={{
-                      uri: generatePhotoUrl(
-                        item?.photos[0]?.name?.split('/')?.slice(-1),
-                      ),
+                      uri: item?.details?.photos[0],
                     }}
                   />
                 </View>
@@ -76,7 +73,7 @@ export const NearbyLocations = observer(({route}) => {
                     flexDirection: 'column',
                   }}>
                   <Typography
-                    text={item?.displayName?.text}
+                    text={item?.details?.name}
                     variant="label"
                     textAlign="center"
                     size="medium"
@@ -91,14 +88,14 @@ export const NearbyLocations = observer(({route}) => {
                         // console.log(item?.location);
                         navigation?.navigate('DirectionsMap', {
                           destination: {
-                            latitude: item?.location?.latitude,
-                            longitude: item?.location?.longitude,
+                            latitude: item?.details?.latitude,
+                            longitude: item?.details?.longitude,
                             latitudeDelta: 0.04,
                             longitudeDelta: (0.04 * screenWidth) / screenHeight,
                           },
                         });
                       }}
-                      styles={{flex: 1, margin: 1}}
+                      styles={{flex: 1, margin: 1, padding: 6}}
                     />
                     <ButtonComp
                       text="View Details"
@@ -106,9 +103,9 @@ export const NearbyLocations = observer(({route}) => {
                       textColor="#190b14"
                       size="small"
                       onPress={() => {
-                        loadLocationDetails(item?.id, undefined, navigation);
+                        loadLocationDetails(item?.details?.id, navigation);
                       }}
-                      styles={{flex: 1, margin: 1}}
+                      styles={{flex: 1, margin: 1, padding: 6}}
                     />
                   </View>
                 </View>
