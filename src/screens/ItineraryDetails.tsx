@@ -2,8 +2,8 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {FlatList, Pressable, SafeAreaView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Color, screenHeight, screenWidth} from '../Utils';
-import itineraryStore from '../storeDefinitions';
+import {Color, loadLocationDetails, screenHeight, screenWidth} from '../Utils';
+import itineraryStore, {functionDataStore} from '../storeDefinitions';
 import Typography from '../components/Typography';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
@@ -20,6 +20,7 @@ import {
 import {observer} from 'mobx-react-lite';
 import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoaderKit from 'react-native-loader-kit';
 
 export const ItineraryDetails = observer(({route}) => {
   const {itineraryId} = route?.params;
@@ -33,6 +34,29 @@ export const ItineraryDetails = observer(({route}) => {
 
   return (
     <SafeAreaView>
+      {functionDataStore?.functionData?.loaderVisible && (
+        <View
+          style={{
+            position: 'absolute',
+            height: '100%',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 10,
+          }}>
+          <View
+            style={{
+              padding: 16,
+              borderRadius: 24,
+            }}>
+            <LoaderKit
+              style={{width: 48, height: 48}}
+              name={'BallPulse'}
+              color={Color?.pinkPrimary}
+            />
+          </View>
+        </View>
+      )}
       <View
         style={{
           backgroundColor: Color.beigeBg,
@@ -67,7 +91,7 @@ export const ItineraryDetails = observer(({route}) => {
           contentContainerStyle={{paddingVertical: 8}}
           data={itinerary?.locations}
           renderItem={({item, index}) => (
-            <View
+            <Pressable
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-evenly',
@@ -77,6 +101,9 @@ export const ItineraryDetails = observer(({route}) => {
                 borderRadius: 18,
                 padding: 8,
                 backgroundColor: Color?.grayTag,
+              }}
+              onPress={() => {
+                loadLocationDetails(item?.details?.id, navigation);
               }}>
               <View style={{flex: 1}}>
                 <FastImage
@@ -230,7 +257,7 @@ export const ItineraryDetails = observer(({route}) => {
                   </Pressable>
                 </View>
               </View>
-            </View>
+            </Pressable>
           )}
           snapToAlignment="start"
           decelerationRate="fast"

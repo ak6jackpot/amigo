@@ -137,7 +137,7 @@ export const Splash = observer(() => {
               const {code, message} = error;
               console.log(code, message);
             });
-          navigation.navigate('Home');
+          navigation.navigate('BottomTabs');
         }}
       />
     </View>

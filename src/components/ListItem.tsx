@@ -13,16 +13,17 @@ type ListItemProps = {
   data?: object;
   rightElement?: ReactNode;
   onPressRight?: () => void;
+  expanded?: boolean;
 };
 
 export const ListItem = ({
-  icon,
   variant = 'search',
   onPress,
   data = {},
   textColor = Color?.black,
   rightElement = null,
   onPressRight,
+  expanded = false,
 }: ListItemProps) => {
   switch (variant) {
     case 'search':
@@ -151,10 +152,13 @@ export const ListItem = ({
             width: '100%',
             flexDirection: 'row',
             paddingHorizontal: 2,
-            paddingVertical: 2,
+            paddingVertical: expanded ? 0 : 2,
             borderColor: Color?.grayTag,
             borderWidth: 3,
             borderRadius: 12,
+            borderBottomWidth: expanded ? 0 : 3,
+            borderBottomLeftRadius: expanded ? 0 : 12,
+            borderBottomRightRadius: expanded ? 0 : 12,
           })}>
           <View
             style={{
@@ -163,6 +167,8 @@ export const ListItem = ({
               width: '100%',
               borderRadius: 9,
               padding: 8,
+              borderBottomLeftRadius: expanded ? 0 : 9,
+              borderBottomRightRadius: expanded ? 0 : 9,
             }}>
             <Typography
               variant="label"

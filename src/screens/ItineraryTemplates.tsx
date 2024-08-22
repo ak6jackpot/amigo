@@ -31,6 +31,7 @@ const ItineraryItem = ({item, isExpanded, onPress, navigation}) => {
       <ListItem
         variant="template"
         data={item}
+        expanded={isExpanded}
         onPress={toggleAnimation}
         rightElement={
           <FontAwesomeIcon
@@ -40,73 +41,89 @@ const ItineraryItem = ({item, isExpanded, onPress, navigation}) => {
         }
       />
 
-      {isExpanded && (
-        <Animated.View
-          style={{
-            height: animatedHeight,
-            overflow: 'hidden',
-            backgroundColor: '#f0f7fc',
-            padding: 10,
-            alignItems: 'center',
-          }}>
-          <FlatList
-            contentContainerStyle={{paddingRight: 16, marginBottom: 8}}
-            data={item?.locations}
-            renderItem={({item}) => (
-              <View style={{marginRight: 8}}>
-                <FastImage
-                  style={{
-                    width: 200,
-                    aspectRatio: 1,
-                    borderRadius: 10,
-                  }}
-                  resizeMode={FastImage.resizeMode.cover}
-                  source={{uri: item?.details?.photos[0]}}
-                />
-                <View
-                  style={{
-                    position: 'absolute',
-                    zIndex: 2,
-                    backgroundColor: Color?.black,
-                    opacity: 0.7,
-                    width: '100%',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    bottom: 0,
-                    paddingVertical: 4,
-                  }}>
-                  <Typography
-                    text={
-                      item?.details?.formattedAddress?.length > 25
-                        ? item?.details?.formattedAddress?.slice(0, 24) + '...'
-                        : item?.details?.formattedAddress
-                    }
-                    color={Color?.whiteBg}
-                  />
-                </View>
-              </View>
-            )}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            snapToAlignment="start"
-            decelerationRate="fast"
-          />
-          <ButtonComp
-            text="Use this template"
-            color={Color.buttonPink}
-            textColor="#190b14"
-            size="medium"
-            onPress={() => {
-              navigation.navigate('CreateItinerary', {
-                name: item?.name,
-                description: item?.description,
-                locations: item?.locations,
-              });
-            }}
-            styles={{width: 150, borderRadius: 12}}
-          />
-        </Animated.View>
-      )}
+      <Animated.View
+        style={{
+          height: animatedHeight,
+          overflow: 'hidden',
+          alignItems: 'center',
+        }}>
+        {isExpanded && (
+          <View
+            style={{
+              borderColor: Color?.grayTag,
+              borderWidth: 3,
+              borderTopWidth: 0,
+              borderRadius: 12,
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0,
+              paddingHorizontal: 2,
+            }}>
+            <View
+              style={{
+                backgroundColor: '#f0f7fc',
+                padding: 10,
+              }}>
+              <FlatList
+                contentContainerStyle={{paddingRight: 16}}
+                data={item?.locations}
+                renderItem={({item}) => (
+                  <View style={{marginRight: 8}}>
+                    <FastImage
+                      style={{
+                        width: 200,
+                        aspectRatio: 1,
+                        borderRadius: 10,
+                      }}
+                      resizeMode={FastImage.resizeMode.cover}
+                      source={{uri: item?.details?.photos[0]}}
+                    />
+                    <View
+                      style={{
+                        position: 'absolute',
+                        zIndex: 2,
+                        backgroundColor: Color?.black,
+                        opacity: 0.7,
+                        width: '100%',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        bottom: 0,
+                        paddingVertical: 4,
+                      }}>
+                      <Typography
+                        text={
+                          item?.details?.formattedAddress?.length > 25
+                            ? item?.details?.formattedAddress?.slice(0, 24) +
+                              '...'
+                            : item?.details?.formattedAddress
+                        }
+                        color={Color?.whiteBg}
+                      />
+                    </View>
+                  </View>
+                )}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                snapToAlignment="start"
+                decelerationRate="fast"
+              />
+              <ButtonComp
+                text="Use this template"
+                color={Color.buttonPink}
+                textColor="#190b14"
+                size="medium"
+                onPress={() => {
+                  navigation.navigate('CreateItinerary', {
+                    name: item?.name,
+                    description: item?.description,
+                    locations: item?.locations,
+                  });
+                }}
+                styles={{width: 150, borderRadius: 12}}
+              />
+            </View>
+          </View>
+        )}
+      </Animated.View>
     </View>
   );
 };
