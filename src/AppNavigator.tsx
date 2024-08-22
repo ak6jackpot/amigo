@@ -4,16 +4,18 @@ import {
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useRef} from 'react';
+import {Home} from './screens/Home';
 import {Splash} from './screens/Splash';
 import {LocationDetails} from './screens/LocationDetails';
 import {Featured} from './screens/Featured';
 import {Search} from './screens/Search';
+import {Itineraries} from './screens/Itineraries';
 import {NearbyLocations} from './screens/NearbyLocations';
 import {DirectionsMap} from './screens/DirectionsMap';
 import {ItineraryDetails} from './screens/ItineraryDetails';
 import {CreateItinerary} from './screens/CreateItinerary';
 import {ItineraryTemplates} from './screens/ItineraryTemplates';
-import {BottomTabs} from './BottomTabs';
+import {Tabs} from './Tabs';
 
 export const AppNavigator = () => {
   const navigationRef = useNavigationContainerRef();
@@ -28,8 +30,13 @@ export const AppNavigator = () => {
       }}>
       <Stack.Navigator initialRouteName="Splash">
         <Stack.Screen
-          name={'BottomTabs'}
-          component={BottomTabs}
+          name={'Home'}
+          component={Home}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={'Tabs'}
+          component={Tabs}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -51,6 +58,11 @@ export const AppNavigator = () => {
           name={'Search'}
           component={Search}
           options={{headerShown: false, presentation: 'modal'}}
+        />
+        <Stack.Screen
+          name={'Itineraries'}
+          component={Itineraries}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name={'NearbyLocations'}

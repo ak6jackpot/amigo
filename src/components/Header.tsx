@@ -1,43 +1,71 @@
 import {faBell} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {View} from 'react-native';
+import {Pressable, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Color} from '../Utils';
+import Typography from './Typography';
+import {useNavigation} from '@react-navigation/native';
 
 type HeaderProps = {
   variant?: string;
+  text?: string;
 };
 
-export const Header = ({variant = 'home'}: HeaderProps) => {
+export const Header = ({
+  variant = 'home',
+  text = 'It is the journey that matters...',
+}: HeaderProps) => {
+  const navigation = useNavigation();
   switch (variant) {
     case 'home':
       return (
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'space-between',
             marginBottom: 8,
-            flex: 1,
+            height: 64,
           }}>
-          <FastImage
-            style={{height: 60, aspectRatio: 1}}
-            resizeMode={FastImage.resizeMode.contain}
-            source={require('../assets/images/logo_round.png')}
-          />
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Pressable
+            style={{flex: 1, alignItems: 'flex-start'}}
+            onPress={() => {
+              navigation?.navigate('Tabs');
+            }}>
+            <FastImage
+              style={{height: 60, aspectRatio: 1}}
+              resizeMode={FastImage.resizeMode.contain}
+              source={require('../assets/images/logo_round.png')}
+            />
+          </Pressable>
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              flex: 3,
+              height: 60,
+            }}>
+            <Typography text={text} />
+          </View>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'flex-end',
+            }}>
             <View
               style={{
                 height: 60,
                 aspectRatio: 1,
-                backgroundColor: Color?.gray900,
+                backgroundColor: Color?.buttonPink,
                 borderRadius: 100,
                 alignItems: 'center',
                 justifyContent: 'center',
                 padding: 16,
-                marginRight: 4,
               }}>
-              <FontAwesomeIcon icon={faBell} size={'100%'} color="#fff" />
+              <FontAwesomeIcon
+                icon={faBell}
+                size={'100%'}
+                color={Color?.whiteBg}
+              />
             </View>
           </View>
         </View>
@@ -65,7 +93,6 @@ export const Header = ({variant = 'home'}: HeaderProps) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 padding: 16,
-                marginRight: 4,
               }}>
               <FontAwesomeIcon icon={faBell} size={'100%'} />
             </View>

@@ -10,6 +10,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faDiamondTurnRight} from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
+import {Header} from '../components/Header';
 
 export const LocationDetails = observer(({route}) => {
   const {details, nearbyLocationDetails} = route?.params;
@@ -47,6 +48,15 @@ export const LocationDetails = observer(({route}) => {
           style={{
             backgroundColor: Color.beigeBg,
           }}>
+          <View
+            style={{
+              backgroundColor: Color.beigeBg,
+              padding: 16,
+              paddingBottom: 0,
+            }}>
+            <Header />
+          </View>
+
           <FlashList
             contentContainerStyle={{padding: 8}}
             data={photos}

@@ -10,6 +10,7 @@ import {ListItem} from '../components/ListItem';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCaretDown, faCaretUp} from '@fortawesome/free-solid-svg-icons';
 import FastImage from 'react-native-fast-image';
+import {Header} from '../components/Header';
 
 const ItineraryItem = ({item, isExpanded, onPress, navigation}) => {
   const animatedHeight = useRef(
@@ -157,6 +158,8 @@ export const ItineraryTemplates = observer(() => {
           height: '100%',
           width: '100%',
         }}>
+        <Header />
+
         <Typography text={'Plan your dream Vacation!'} variant="heading" />
         <Typography
           text={

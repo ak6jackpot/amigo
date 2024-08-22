@@ -21,6 +21,7 @@ import {observer} from 'mobx-react-lite';
 import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderKit from 'react-native-loader-kit';
+import {Header} from '../components/Header';
 
 export const ItineraryDetails = observer(({route}) => {
   const {itineraryId} = route?.params;
@@ -64,6 +65,8 @@ export const ItineraryDetails = observer(({route}) => {
           height: '100%',
           width: '100%',
         }}>
+        <Header />
+
         <Typography text={itinerary?.name} variant="heading" />
         <Typography text={itinerary?.description} size="large" />
         {visitedMessage && (

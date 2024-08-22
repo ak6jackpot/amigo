@@ -45,7 +45,7 @@ const ButtonComp = ({
     justifyContent: 'space-evenly',
     flexDirection: 'row',
     borderBottomWidth: 4,
-    borderBottomColor: Color.graySend,
+    borderColor: Color.graySend,
     ...styles,
   };
 

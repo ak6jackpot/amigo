@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {FlatList, Pressable, SafeAreaView, TextInput, View} from 'react-native';
 import {Color, loadLocationDetails} from '../Utils';
 import ButtonComp from '../components/ButtonComp';
@@ -8,7 +8,7 @@ import {FlashList} from '@shopify/flash-list';
 import {cities} from '../data';
 import {Tag} from '../components/Tag';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faSearch, faTrash, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {locationSearchMaps} from '../APIs';
 import {ListItem} from '../components/ListItem';
 import itineraryStore, {functionDataStore} from '../storeDefinitions';

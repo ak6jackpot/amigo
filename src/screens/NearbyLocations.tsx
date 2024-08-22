@@ -13,6 +13,7 @@ import FastImage from 'react-native-fast-image';
 import ButtonComp from '../components/ButtonComp';
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
+import {Header} from '../components/Header';
 
 export const NearbyLocations = observer(({route}) => {
   const {nearbyList} = route?.params;
@@ -27,6 +28,8 @@ export const NearbyLocations = observer(({route}) => {
           padding: 16,
           flex: 1,
         }}>
+        <Header />
+
         <Typography
           variant="heading"
           text={'Check out amazing locations around you!'}

@@ -11,6 +11,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faTrash} from '@fortawesome/free-solid-svg-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {observer} from 'mobx-react-lite';
+import {Header} from '../components/Header';
 
 export const Itineraries = observer(({route}) => {
   const navigation = useNavigation();
@@ -26,6 +27,8 @@ export const Itineraries = observer(({route}) => {
           backgroundColor: Color.beigeBg,
           padding: 16,
         }}>
+        <Header />
+
         <Typography variant="heading" text={'Your Trips'} />
         <View style={{marginVertical: 8}}>
           {itineraryStore?.itineraries?.length > 0 ? (
