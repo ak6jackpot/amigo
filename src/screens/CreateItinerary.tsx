@@ -14,6 +14,7 @@ import {ListItem} from '../components/ListItem';
 import itineraryStore, {functionDataStore} from '../storeDefinitions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderKit from 'react-native-loader-kit';
+import {Snack} from '../components/Snack';
 
 export const CreateItinerary = observer(({route}) => {
   const navigation = useNavigation();
@@ -110,7 +111,17 @@ export const CreateItinerary = observer(({route}) => {
                   onPress={() => {
                     loadLocationDetails(item?.mapsId).then(dets => {
                       dets['visited'] = false;
-                      setLocations(prevLocations => [...prevLocations, dets]);
+                      const x = locations?.find(location => {
+                        return location?.details?.id === item?.mapsId;
+                      });
+                      if (x?.details?.id) {
+                        Snack({
+                          text: 'This destination has already been added!',
+                          variant: 'error',
+                        });
+                      } else {
+                        setLocations(prevLocations => [...prevLocations, dets]);
+                      }
                     });
                   }}
                 />
@@ -146,7 +157,11 @@ export const CreateItinerary = observer(({route}) => {
                   onChangeText={handleSearch}
                 />
                 {searchText !== '' && (
-                  <Pressable onPress={() => setSearchText('')}>
+                  <Pressable
+                    onPress={() => {
+                      setSearchText('');
+                      setSearchResults([]);
+                    }}>
                     <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
                   </Pressable>
                 )}
@@ -164,7 +179,20 @@ export const CreateItinerary = observer(({route}) => {
                     onPress={() => {
                       loadLocationDetails(item?.id, undefined).then(dets => {
                         dets['visited'] = false;
-                        setLocations(prevLocations => [...prevLocations, dets]);
+                        const x = locations?.find(location => {
+                          return location?.details?.id === item?.id;
+                        });
+                        if (x?.details?.id) {
+                          Snack({
+                            text: 'This destination has already been added!',
+                            variant: 'error',
+                          });
+                        } else {
+                          setLocations(prevLocations => [
+                            ...prevLocations,
+                            dets,
+                          ]);
+                        }
                       });
                     }}
                   />
@@ -172,7 +200,11 @@ export const CreateItinerary = observer(({route}) => {
               />
             </View>
 
-            <View style={{width: '100%', aspectRatio: 0.8}}>
+            <View
+              style={{
+                width: '100%',
+                aspectRatio: searchResults?.length > 0 ? 0.9 : 0.8,
+              }}>
               <FlatList
                 contentContainerStyle={{}}
                 data={locations}
@@ -197,14 +229,35 @@ export const CreateItinerary = observer(({route}) => {
                 )}
               />
             </View>
-            {locations?.length > 1 && (
-              <ButtonComp
-                text="Finish"
-                color={Color.buttonPink}
-                textColor="#190b14"
-                width100={true}
-                onPress={() => {
-                  // navigation?.navigate('CreateItinerary');
+          </View>
+        )}
+        {locations?.length > 1 && (
+          <View
+            style={{
+              position: 'absolute',
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+              bottom: 16,
+              alignSelf: 'center',
+            }}>
+            <ButtonComp
+              text="Finish"
+              color={Color.buttonPink}
+              textColor="#190b14"
+              width100={true}
+              onPress={() => {
+                const x = itineraryStore?.itineraries?.find(item => {
+                  return (
+                    item?.id === name?.slice(0, 4) + description?.slice(0, 9)
+                  );
+                });
+                if (x?.id) {
+                  Snack({
+                    text: 'This itinerary already exists! Please create another.',
+                    variant: 'error',
+                  });
+                } else {
                   itineraryStore?.addItinerary({
                     id: name?.slice(0, 4) + description?.slice(0, 9),
                     name: name,
@@ -224,9 +277,9 @@ export const CreateItinerary = observer(({route}) => {
                   }, 500);
                   navigation?.goBack();
                   navigation?.goBack();
-                }}
-              />
-            )}
+                }
+              }}
+            />
           </View>
         )}
       </View>

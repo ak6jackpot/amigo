@@ -123,7 +123,7 @@ export const ItineraryDetails = observer(({route}) => {
               </View>
               <View
                 style={{
-                  flex: 1,
+                  flex: 3,
                   paddingHorizontal: 8,
                   flexDirection: 'column',
                   justifyContent: 'space-between',
@@ -138,15 +138,6 @@ export const ItineraryDetails = observer(({route}) => {
                     variant="heading"
                     size="small"
                     textStyles={{fontSize: 10}}
-                  />
-                  <Typography
-                    text={
-                      item?.details?.description?.length > 100
-                        ? item?.details?.description?.slice(0, 99) + '...'
-                        : item?.details?.description
-                    }
-                    variant="label"
-                    size="small"
                   />
                 </View>
                 <View

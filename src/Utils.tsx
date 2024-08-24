@@ -1,9 +1,5 @@
 import {Dimensions} from 'react-native';
-import {
-  locationDetailsMaps,
-  locationDetailsTA,
-  nearbyLocationSearchMaps,
-} from './APIs';
+import {locationDetailsMaps, nearbyLocationSearchMaps} from './APIs';
 import {API_key_Maps} from '../secrets.json';
 import {functionDataStore} from './storeDefinitions';
 

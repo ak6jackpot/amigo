@@ -9,6 +9,9 @@ apply plugin: "com.facebook.react"
 react {
 }
 
+import groovy.json.JsonSlurper
+def packageJson = new JsonSlurper().parseText(file("$rootDir/../package.json").text)
+
 def enableProguardInReleaseBuilds = true
 
 def jscFlavor = 'org.webkit:android-jsc:+'
@@ -23,8 +26,8 @@ android {
         applicationId "com.amigoAK.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode packageJson["version_code"]
+        versionName packageJson["version"]
     }
     signingConfigs {
         debug {

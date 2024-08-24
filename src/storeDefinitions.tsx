@@ -111,11 +111,13 @@ export const userDataStore = new UserDataStore();
 
 interface Function {
   loaderVisible?: boolean;
+  snackData: any;
 }
 
 class FunctionStore {
   initialFunctionData: Function = {
     loaderVisible: false,
+    snackData: {},
   };
   functionData: Function = this?.initialFunctionData;
 
@@ -142,6 +144,15 @@ class FunctionStore {
     this.setLoaderVisible(false);
   }
 
+  clearSnack() {
+    this.functionData.snackData = {};
+  }
+  showSnack(data: {}) {
+    this.functionData.snackData = {...this.functionData.snackData, ...data};
+    setTimeout(() => {
+      this.clearSnack();
+    }, 5000);
+  }
   reset() {
     this.functionData = {...this.initialFunctionData};
   }

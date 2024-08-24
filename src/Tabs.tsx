@@ -7,6 +7,7 @@ import {faHome, faRoute, faUser} from '@fortawesome/free-solid-svg-icons';
 import {Home} from './screens/Home';
 import {Itineraries} from './screens/Itineraries';
 import {Profile} from './screens/Profile';
+import {StyleSheet, View} from 'react-native';
 
 export const Tabs = observer(() => {
   const Tab = createBottomTabNavigator();
@@ -14,74 +15,84 @@ export const Tabs = observer(() => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      screenOptions={{
+      screenOptions={({route}) => ({
         headerShown: false,
         tabBarActiveTintColor: Color?.black,
-        tabBarStyle: {
-          backgroundColor: Color?.whiteBg,
-          justifyContent: 'center',
-          paddingVertical: 4,
-          elevation: 5,
-          shadowColor: Color?.black,
-          shadowOffset: {width: 0, height: 5},
-          shadowOpacity: 0.8,
-          shadowRadius: 2,
-          marginHorizontal: 48,
-          position: 'absolute',
-          bottom: 12,
-          paddingTop: 12,
-          paddingBottom: 12,
-          alignItems: 'center',
-          borderRadius: 1000,
+        tabBarStyle: styles?.tabContainer,
+        tabBarLabel: '',
+        tabBarIcon: ({focused}) => {
+          return (
+            <View
+              style={{
+                borderBottomColor: Color?.pinkPrimary,
+                borderLeftColor: Color?.graySend,
+                borderRightColor: Color?.graySend,
+                borderBottomWidth: focused ? 6 : 0,
+                borderRightWidth: focused ? 2 : 0,
+                borderLeftWidth: focused ? 2 : 0,
+                paddingHorizontal: 24,
+                paddingVertical: 8,
+                borderRadius: 12,
+                // backgroundColor: focused ? '#faf2f9' : Color?.whiteBg,
+              }}>
+              <FontAwesomeIcon
+                icon={
+                  route?.name === 'Profile'
+                    ? faUser
+                    : route?.name === 'Trips'
+                    ? faRoute
+                    : faHome
+                }
+                size={30}
+                color={Color?.gray900}
+              />
+            </View>
+          );
         },
-      }}>
+      })}>
       <Tab.Screen
-        options={{
-          tabBarShowLabel: false,
-          tabBarIcon: ({focused}) => (
-            <FontAwesomeIcon
-              icon={faUser}
-              size={'100%'}
-              color={focused ? Color?.black : Color?.gray900}
-            />
-          ),
-        }}
         name={'Profile'}
         component={Profile}
+        options={{tabBarShowLabel: false}}
       />
       <Tab.Screen
-        options={{
-          tabBarItemStyle: {
-            borderLeftWidth: 1,
-            borderColor: Color?.gray900,
-            borderRightWidth: 1,
-          },
-          tabBarShowLabel: false,
-          tabBarIcon: ({focused}) => (
-            <FontAwesomeIcon
-              icon={faHome}
-              size={'100%'}
-              color={focused ? Color?.black : Color?.gray900}
-            />
-          ),
-        }}
         name={'Home'}
         component={Home}
+        options={{tabBarShowLabel: false}}
       />
       <Tab.Screen
-        options={{
-          tabBarShowLabel: false,
-          tabBarIcon: ({focused}) => (
-            <FontAwesomeIcon
-              icon={faRoute}
-              size={'100%'}
-              color={focused ? Color?.black : Color?.gray900}
-            />
-          ),
-        }}
         name={'Trips'}
         component={Itineraries}
+        options={{tabBarShowLabel: false}}
       />
     </Tab.Navigator>
   );
+});
+
+const styles = StyleSheet.create({
+  tabContainer: {
+    backgroundColor: Color?.whiteBg,
+    justifyContent: 'center',
+    elevation: 5,
+    shadowColor: Color?.black,
+    shadowOffset: {width: 0, height: 5},
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    marginHorizontal: 48,
+    position: 'absolute',
+    bottom: 12,
+    paddingTop: 4,
+    paddingBottom: 4,
+    alignItems: 'center',
+    borderRadius: 1000,
+    height: 54,
+    marginBottom: 18,
+  },
+  tabItemContainer: {
+    borderColor: Color?.pinkSecodary,
+    borderBottomWidth: 6,
+    marginHorizontal: 12,
+    borderRadius: 12,
+    padding: 4,
+  },
 });

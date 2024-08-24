@@ -65,6 +65,7 @@ export const Search = observer(({route}) => {
         data={searchResults}
         keyExtractor={(item, index) => index.toString()}
         estimatedItemSize={100}
+        keyboardShouldPersistTaps={'always'}
         renderItem={({item}) => (
           <View
             style={{
@@ -76,7 +77,7 @@ export const Search = observer(({route}) => {
               data={item}
               onPress={() => {
                 navigation?.goBack();
-                loadLocationDetails(item?.id, undefined, navigation);
+                loadLocationDetails(item?.id, navigation);
               }}
             />
           </View>

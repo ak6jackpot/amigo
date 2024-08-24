@@ -228,6 +228,7 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
               estimatedItemSize={103}
               showsVerticalScrollIndicator
               scrollEnabled
+              keyboardShouldPersistTaps={'always'}
             />
           </View>
           <View

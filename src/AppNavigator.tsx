@@ -16,8 +16,11 @@ import {ItineraryDetails} from './screens/ItineraryDetails';
 import {CreateItinerary} from './screens/CreateItinerary';
 import {ItineraryTemplates} from './screens/ItineraryTemplates';
 import {Tabs} from './Tabs';
+import {SnackUI} from './components/Snack';
+import {functionDataStore} from './storeDefinitions';
+import {observer} from 'mobx-react-lite';
 
-export const AppNavigator = () => {
+export const AppNavigator = observer(() => {
   const navigationRef = useNavigationContainerRef();
   const routeNameRef = useRef<string>('');
   const Stack = createNativeStackNavigator();
@@ -90,6 +93,9 @@ export const AppNavigator = () => {
           options={{headerShown: false}}
         />
       </Stack.Navigator>
+      {functionDataStore?.functionData?.snackData?.text && (
+        <SnackUI {...functionDataStore?.functionData?.snackData} />
+      )}
     </NavigationContainer>
   );
-};
+});

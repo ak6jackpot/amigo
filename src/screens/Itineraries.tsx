@@ -26,20 +26,19 @@ export const Itineraries = observer(({route}) => {
         style={{
           backgroundColor: Color.beigeBg,
           padding: 16,
+          height: '100%',
+          width: '100%',
         }}>
         <Header />
 
         <Typography variant="heading" text={'Your Trips'} />
         <View style={{marginVertical: 8}}>
           {itineraryStore?.itineraries?.length > 0 ? (
-            <>
+            <View style={{marginVertical: 8, width: '100%', aspectRatio: 0.6}}>
               <FlatList
-                contentContainerStyle={{
-                  marginVertical: 16,
-                  width: '100%',
-                }}
                 data={itineraryStore?.itineraries}
                 keyExtractor={(item, index) => index.toString()}
+                showsVerticalScrollIndicator={false}
                 renderItem={({item}) => (
                   <View style={{marginVertical: 8}}>
                     <ListItem
@@ -66,16 +65,7 @@ export const Itineraries = observer(({route}) => {
                   </View>
                 )}
               />
-              <ButtonComp
-                text="Create another trip"
-                color={Color.buttonPink}
-                textColor="#190b14"
-                width100={true}
-                onPress={() => {
-                  navigation?.navigate('ItineraryTemplates');
-                }}
-              />
-            </>
+            </View>
           ) : (
             <>
               <Typography text={'No trips created yet!'} />
@@ -90,6 +80,27 @@ export const Itineraries = observer(({route}) => {
             </>
           )}
         </View>
+        {itineraryStore?.itineraries?.length > 0 && (
+          <View
+            style={{
+              position: 'absolute',
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+              bottom: 16,
+              alignSelf: 'center',
+            }}>
+            <ButtonComp
+              text="Create another trip"
+              color={Color.buttonPink}
+              textColor="#190b14"
+              width100={true}
+              onPress={() => {
+                navigation?.navigate('ItineraryTemplates');
+              }}
+            />
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );
