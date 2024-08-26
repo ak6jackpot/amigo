@@ -15,6 +15,7 @@ import itineraryStore, {functionDataStore} from '../storeDefinitions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderKit from 'react-native-loader-kit';
 import {Snack} from '../components/Snack';
+import uuid from 'react-native-uuid';
 
 export const CreateItinerary = observer(({route}) => {
   const navigation = useNavigation();
@@ -253,22 +254,8 @@ export const CreateItinerary = observer(({route}) => {
                     itineraryStore?.removeItinerary(route?.params?.id);
 
                     setTimeout(() => {
-                      console.log(itineraryStore?.itineraries, 'before store');
-
-                      console.log({
-                        id: name?.slice(0, 4) + description?.slice(0, 9),
-                        name: name,
-                        description: description,
-                        startDate: new Date('2024-08-01'),
-                        endDate: new Date('2024-08-15'),
-                        locations: locations,
-                        createdBy: 'akshat',
-                        collaborators: ['akshat'],
-                        isPublic: true,
-                      });
-
                       itineraryStore?.addItinerary({
-                        id: name?.slice(0, 4) + description?.slice(0, 9),
+                        id: route?.params?.id,
                         name: name,
                         description: description,
                         startDate: new Date('2024-08-01'),
@@ -295,19 +282,16 @@ export const CreateItinerary = observer(({route}) => {
                     }, 1000);
                   } else {
                     const x = itineraryStore?.itineraries?.find(item => {
-                      return (
-                        item?.id ===
-                        name?.slice(0, 4) + description?.slice(0, 9)
-                      );
+                      return item?.name === name;
                     });
                     if (x?.id) {
                       Snack({
-                        text: 'This itinerary already exists! Please create another.',
+                        text: 'Itinerary with this name already exists! Please create another.',
                         variant: 'error',
                       });
                     } else {
                       itineraryStore?.addItinerary({
-                        id: name?.slice(0, 4) + description?.slice(0, 9),
+                        id: uuid.v4(),
                         name: name,
                         description: description,
                         startDate: new Date('2024-08-01'),

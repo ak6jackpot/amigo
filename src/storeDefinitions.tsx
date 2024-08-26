@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 
 interface Itinerary {
-  id: string;
+  id: any;
   name: string;
   description?: string;
   startDate: Date;

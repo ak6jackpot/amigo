@@ -43,7 +43,6 @@ export const Home = observer(() => {
         JSON?.parse(response)?.map(item => {
           locationSearchMaps(item)?.then(searchresponse => {
             // console.log(searchresponse?.places[0], 'searchresponse');
-
             loadLocationDetails(searchresponse?.places[0]?.id)?.then(
               loadresponse => {
                 final?.push(loadresponse);
@@ -96,6 +95,7 @@ export const Home = observer(() => {
             backgroundColor: Color.beigeBg,
             justifyContent: 'center',
             padding: 16,
+            paddingBottom: 64,
           }}>
           <Header />
           <View

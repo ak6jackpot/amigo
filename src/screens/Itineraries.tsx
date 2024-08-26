@@ -87,7 +87,7 @@ export const Itineraries = observer(({route}) => {
               width: '100%',
               alignItems: 'center',
               justifyContent: 'center',
-              bottom: 16,
+              bottom: 64,
               alignSelf: 'center',
             }}>
             <ButtonComp

@@ -55,7 +55,7 @@ export const ItineraryDetails = observer(({route}) => {
         index,
         index + (direction === 'up' ? -1 : 1),
       );
-      animatedValues.forEach(value => value.setValue(0)); // Reset animations
+      animatedValues.forEach(value => value.setValue(0));
       AsyncStorage?.setItem(
         'itineraries',
         JSON.stringify(itineraryStore?.itineraries),

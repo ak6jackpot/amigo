@@ -34,7 +34,6 @@ export const Tabs = observer(() => {
           alignItems: 'center',
           borderRadius: 1000,
           height: 54,
-          marginBottom: 18,
         },
         tabBarLabel: '',
         tabBarIcon: ({focused}) => {
