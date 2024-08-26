@@ -13,7 +13,7 @@ import {
 import {Translator} from '../components/Translator';
 import {fetchDescriptionOpenAI} from '../APIs';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faDiamondTurnRight} from '@fortawesome/free-solid-svg-icons';
+import {faDiamondTurnRight, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 import {Header} from '../components/Header';
@@ -34,10 +34,7 @@ export const LocationDetails = observer(({route}) => {
   //   }),
   //   'details in locationdetails',
   // );
-  console.log(
-    nearbyLocationDetails[0]?.displayName,
-    'nearby in locationdetails',
-  );
+  // console.log(nearbyLocationDetails, 'nearby in locationdetails');
 
   useEffect(() => {
     if (!details?.description) {
@@ -141,7 +138,7 @@ export const LocationDetails = observer(({route}) => {
                         marginRight: 8,
                       }}
                       onPress={() => {
-                        loadLocationDetails(item?.id, navigation);
+                        loadLocationDetails(item?.id, navigation, true);
                       }}>
                       <View style={{flex: 1}}>
                         <FastImage
@@ -194,9 +191,10 @@ export const LocationDetails = observer(({route}) => {
               padding: 16,
               bottom: 1,
               right: 1,
-              width: '50%',
+              width: '60%',
               alignItems: 'flex-end',
               flexDirection: 'row',
+              justifyContent: 'space-between',
             }}>
             <Pressable
               onPress={() => {
@@ -223,6 +221,28 @@ export const LocationDetails = observer(({route}) => {
                 },
               ]}>
               <FontAwesomeIcon icon={faDiamondTurnRight} size={'100%'} />
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                // console.log(item?.location);
+                navigation?.navigate('AddToItinerary', {
+                  name: name,
+                  id: details?.id,
+                });
+              }}
+              style={({pressed}) => [
+                {
+                  height: 60,
+                  aspectRatio: 1,
+                  backgroundColor: Color?.pinkPrimary,
+                  borderRadius: 100,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: 16,
+                  opacity: pressed ? 0.7 : 1,
+                },
+              ]}>
+              <FontAwesomeIcon icon={faPlus} size={'100%'} />
             </Pressable>
             <Translator place={name} />
           </View>

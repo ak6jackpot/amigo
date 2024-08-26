@@ -19,6 +19,8 @@ import {Tabs} from './Tabs';
 import {SnackUI} from './components/Snack';
 import {functionDataStore} from './storeDefinitions';
 import {observer} from 'mobx-react-lite';
+import {AddToItinerary} from './screens/AddToItinerary';
+import {LocationDetailsModal} from './screens/LocationDetailsModal';
 
 export const AppNavigator = observer(() => {
   const navigationRef = useNavigationContainerRef();
@@ -60,6 +62,16 @@ export const AppNavigator = observer(() => {
         <Stack.Screen
           name={'Search'}
           component={Search}
+          options={{headerShown: false, presentation: 'modal'}}
+        />
+        <Stack.Screen
+          name={'AddToItinerary'}
+          component={AddToItinerary}
+          options={{headerShown: false, presentation: 'modal'}}
+        />
+        <Stack.Screen
+          name={'LocationDetailsModal'}
+          component={LocationDetailsModal}
           options={{headerShown: false, presentation: 'modal'}}
         />
         <Stack.Screen

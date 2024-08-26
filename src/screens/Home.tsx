@@ -283,7 +283,7 @@ export const Home = observer(() => {
             }}
             onPress={() => navigation.navigate('Featured')}>
             <Video
-              source={require('../assets/videos/video_04.mov')}
+              source={require('../assets/videos/video_04.mp4')}
               style={{
                 width: '100%',
                 height: '100%',

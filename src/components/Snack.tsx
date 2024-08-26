@@ -42,7 +42,7 @@ export const SnackUI = ({
               : variant === 'error'
               ? '#de1165'
               : variant === 'quote'
-              ? Color?.whiteBg
+              ? Color?.black
               : '#f6bc2f',
         },
       ]}>

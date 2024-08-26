@@ -151,7 +151,6 @@ export const Translator = ({place = 'Delhi'}: TranslatorProps) => {
   return (
     <View
       style={{
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'flex-end',
       }}>

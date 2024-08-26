@@ -9,6 +9,7 @@ export const screenWidth = Dimensions.get('window').width;
 export const loadLocationDetails = (
   mapsId?: string,
   navigation?: any,
+  modal?: boolean,
 ): Promise<any> => {
   functionDataStore?.showLoader();
   return locationDetailsMaps(mapsId)
@@ -28,11 +29,17 @@ export const loadLocationDetails = (
             nearbyLocationDetails: nearbyResponse,
           };
 
-          navigation &&
-            navigation?.navigate('LocationDetails', {
-              details: result.details,
-              nearbyLocationDetails: result.nearbyLocationDetails,
-            });
+          if (navigation) {
+            modal
+              ? navigation?.navigate('LocationDetailsModal', {
+                  details: result.details,
+                  nearbyLocationDetails: result.nearbyLocationDetails,
+                })
+              : navigation?.navigate('LocationDetails', {
+                  details: result.details,
+                  nearbyLocationDetails: result.nearbyLocationDetails,
+                });
+          }
 
           // console.log(result, '-----2-----');
 

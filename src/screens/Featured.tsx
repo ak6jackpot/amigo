@@ -65,7 +65,7 @@ export const Featured = observer(() => {
             alignItems: 'center',
           }}>
           <Video
-            source={require('../assets/videos/video_04.mov')}
+            source={require('../assets/videos/video_04.mp4')}
             style={{
               height: '100%',
               aspectRatio: 0.25,
