@@ -55,7 +55,7 @@ export const Header = ({
               style={{
                 height: 60,
                 aspectRatio: 1,
-                backgroundColor: Color?.buttonPink,
+                backgroundColor: Color?.pinkPrimary,
                 borderRadius: 100,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -64,7 +64,7 @@ export const Header = ({
               <FontAwesomeIcon
                 icon={faBell}
                 size={'100%'}
-                color={Color?.whiteBg}
+                color={Color?.black}
               />
             </View>
           </View>

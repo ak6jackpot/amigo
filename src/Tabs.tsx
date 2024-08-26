@@ -7,7 +7,7 @@ import {faHome, faRoute, faUser} from '@fortawesome/free-solid-svg-icons';
 import {Home} from './screens/Home';
 import {Itineraries} from './screens/Itineraries';
 import {Profile} from './screens/Profile';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 
 export const Tabs = observer(() => {
   const Tab = createBottomTabNavigator();
@@ -18,7 +18,24 @@ export const Tabs = observer(() => {
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarActiveTintColor: Color?.black,
-        tabBarStyle: styles?.tabContainer,
+        tabBarStyle: {
+          backgroundColor: Color?.whiteBg,
+          justifyContent: 'center',
+          elevation: 5,
+          shadowColor: Color?.black,
+          shadowOffset: {width: 0, height: 5},
+          shadowOpacity: 0.8,
+          shadowRadius: 2,
+          marginHorizontal: 48,
+          position: 'absolute',
+          bottom: 12,
+          paddingTop: 4,
+          paddingBottom: 4,
+          alignItems: 'center',
+          borderRadius: 1000,
+          height: 54,
+          marginBottom: 18,
+        },
         tabBarLabel: '',
         tabBarIcon: ({focused}) => {
           return (
@@ -67,32 +84,4 @@ export const Tabs = observer(() => {
       />
     </Tab.Navigator>
   );
-});
-
-const styles = StyleSheet.create({
-  tabContainer: {
-    backgroundColor: Color?.whiteBg,
-    justifyContent: 'center',
-    elevation: 5,
-    shadowColor: Color?.black,
-    shadowOffset: {width: 0, height: 5},
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    marginHorizontal: 48,
-    position: 'absolute',
-    bottom: 12,
-    paddingTop: 4,
-    paddingBottom: 4,
-    alignItems: 'center',
-    borderRadius: 1000,
-    height: 54,
-    marginBottom: 18,
-  },
-  tabItemContainer: {
-    borderColor: Color?.pinkSecodary,
-    borderBottomWidth: 6,
-    marginHorizontal: 12,
-    borderRadius: 12,
-    padding: 4,
-  },
 });

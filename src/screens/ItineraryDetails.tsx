@@ -1,8 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
-import {FlatList, Pressable, SafeAreaView, View} from 'react-native';
+import React, {useRef} from 'react';
+import {Animated, FlatList, Pressable, SafeAreaView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Color, loadLocationDetails, screenHeight, screenWidth} from '../Utils';
+import {Color, loadLocationDetails} from '../Utils';
 import itineraryStore, {functionDataStore} from '../storeDefinitions';
 import Typography from '../components/Typography';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -18,20 +18,52 @@ import {
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import {observer} from 'mobx-react-lite';
-import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderKit from 'react-native-loader-kit';
 import {Header} from '../components/Header';
+import {Snack} from '../components/Snack';
 
 export const ItineraryDetails = observer(({route}) => {
   const {itineraryId} = route?.params;
   const navigation = useNavigation();
-  const [animationTrigger, setAnimationTrigger] = useState(null);
-  const [visitedMessage, setVisitedMessage] = useState(false);
 
   const itinerary = itineraryStore.itineraries.find(
     item => item.id === itineraryId,
   );
+
+  const animatedValues = useRef(
+    itinerary?.locations.map(() => new Animated.Value(0)),
+  ).current;
+
+  const triggerAnimation = (index, direction) => {
+    const toValue = direction === 'up' ? -100 : 100; // Adjust the value based on your needs
+
+    Animated.parallel([
+      Animated.timing(animatedValues[index], {
+        toValue,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(animatedValues[index + (direction === 'up' ? -1 : 1)], {
+        toValue: -toValue,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      itineraryStore?.reorderLocations(
+        itinerary?.id,
+        index,
+        index + (direction === 'up' ? -1 : 1),
+      );
+      animatedValues.forEach(value => value.setValue(0)); // Reset animations
+      AsyncStorage?.setItem(
+        'itineraries',
+        JSON.stringify(itineraryStore?.itineraries),
+      );
+    });
+  };
+
+  console.log(itinerary?.locations, 'locations outside');
 
   return (
     <SafeAreaView>
@@ -69,87 +101,66 @@ export const ItineraryDetails = observer(({route}) => {
 
         <Typography text={itinerary?.name} variant="heading" />
         <Typography text={itinerary?.description} size="large" />
-        {visitedMessage && (
-          <Animatable.Text
-            animation="fadeIn"
-            style={{
-              position: 'absolute',
-              left: screenWidth / 3,
-              top: screenHeight / 12,
-            }}>
-            <View
-              style={{
-                padding: 8,
-                borderRadius: 500,
-                zIndex: 2,
-                backgroundColor: 'green',
-              }}>
-              <Typography text={'Marked As Visited'} color="white" />
-            </View>
-          </Animatable.Text>
-          // @task -- dynamic text and color
-        )}
 
         <FlatList
           contentContainerStyle={{paddingVertical: 8}}
           data={itinerary?.locations}
           renderItem={({item, index}) => (
-            <Pressable
+            <Animated.View
               style={{
-                flexDirection: 'row',
-                justifyContent: 'space-evenly',
-                marginVertical: 8,
-                borderWidth: 2,
-                borderColor: Color?.graySend,
-                borderRadius: 18,
-                padding: 8,
-                backgroundColor: Color?.grayTag,
-              }}
-              onPress={() => {
-                loadLocationDetails(item?.details?.id, navigation);
+                transform: [{translateY: animatedValues[index]}],
               }}>
-              <View style={{flex: 1}}>
-                <FastImage
-                  style={{
-                    width: '100%',
-                    aspectRatio: 1,
-                    borderRadius: 12,
-                  }}
-                  resizeMode={FastImage.resizeMode.cover}
-                  source={{
-                    uri: item?.details?.photos[0],
-                  }}
-                />
-              </View>
-              <View
+              <Pressable
                 style={{
-                  flex: 3,
-                  paddingHorizontal: 8,
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
+                  flexDirection: 'row',
+                  justifyContent: 'space-evenly',
+                  marginVertical: 8,
+                  borderWidth: 2,
+                  borderColor: Color?.graySend,
+                  borderRadius: 18,
+                  padding: 8,
+                  backgroundColor: Color?.grayTag,
+                }}
+                onPress={() => {
+                  loadLocationDetails(item?.details?.id, navigation);
                 }}>
-                <View>
-                  <Typography
-                    text={
-                      item?.details?.name?.length > 30
-                        ? item?.details?.name?.slice(0, 29) + '...'
-                        : item?.details?.name
-                    }
-                    variant="heading"
-                    size="small"
-                    textStyles={{fontSize: 10}}
+                <View style={{flex: 1}}>
+                  <FastImage
+                    style={{
+                      width: '100%',
+                      aspectRatio: 1,
+                      borderRadius: 12,
+                    }}
+                    resizeMode={FastImage.resizeMode.cover}
+                    source={{
+                      uri: item?.details?.photos[0],
+                    }}
                   />
                 </View>
                 <View
                   style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-evenly',
+                    flex: 3,
+                    paddingHorizontal: 8,
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
                   }}>
-                  <Animatable.View
-                    animation={
-                      animationTrigger === index ? 'bounceIn' : undefined
-                    }
-                    iterationCount={1}>
+                  <View>
+                    <Typography
+                      text={
+                        item?.details?.name?.length > 30
+                          ? item?.details?.name?.slice(0, 29) + '...'
+                          : item?.details?.name
+                      }
+                      variant="heading"
+                      size="small"
+                      textStyles={{fontSize: 10}}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-evenly',
+                    }}>
                     <Pressable
                       style={{
                         borderWidth: 1,
@@ -157,23 +168,22 @@ export const ItineraryDetails = observer(({route}) => {
                         borderColor: Color?.graySend,
                       }}
                       onPress={() => {
-                        setAnimationTrigger(index);
-                        !item?.visited && setVisitedMessage(true);
+                        !item?.visited &&
+                          Snack({
+                            text: 'Marked as Visited!',
+                            variant: 'success',
+                          });
                         itineraryStore?.toggleLocationVisited(
                           itinerary?.id,
                           item?.details?.id,
                         );
 
                         setTimeout(() => {
-                          setAnimationTrigger(null);
                           AsyncStorage?.setItem(
                             'itineraries',
                             JSON.stringify(itineraryStore?.itineraries),
                           );
                         }, 500);
-                        setTimeout(() => {
-                          setVisitedMessage(false);
-                        }, 1500);
                       }}>
                       {item?.visited ? (
                         <FontAwesomeIcon
@@ -185,73 +195,56 @@ export const ItineraryDetails = observer(({route}) => {
                         <FontAwesomeIcon icon={checkRegular} size={20} />
                       )}
                     </Pressable>
-                  </Animatable.View>
-                  <Pressable
-                    style={{
-                      borderWidth: 1,
-                      borderRadius: 1000,
-                      borderColor: Color?.graySend,
-                    }}
-                    onPress={() => {
-                      itineraryStore?.reorderLocations(
-                        itinerary?.id,
-                        index,
-                        index - 1,
-                      );
-                      setTimeout(() => {
-                        AsyncStorage?.setItem(
-                          'itineraries',
-                          JSON.stringify(itineraryStore?.itineraries),
+                    <Pressable
+                      style={{
+                        borderWidth: 1,
+                        borderRadius: 1000,
+                        borderColor: Color?.graySend,
+                      }}
+                      onPress={() => {
+                        if (index > 0) {
+                          triggerAnimation(index, 'up');
+                        }
+                      }}>
+                      <FontAwesomeIcon icon={faCircleUp} size={20} />
+                    </Pressable>
+                    <Pressable
+                      style={{
+                        borderWidth: 1,
+                        borderRadius: 1000,
+                        borderColor: Color?.graySend,
+                      }}
+                      onPress={() => {
+                        if (index < itinerary?.locations.length - 1) {
+                          triggerAnimation(index, 'down');
+                        }
+                      }}>
+                      <FontAwesomeIcon icon={faCircleDown} size={20} />
+                    </Pressable>
+                    <Pressable
+                      style={{
+                        borderWidth: 1,
+                        borderRadius: 1000,
+                        borderColor: Color?.graySend,
+                      }}
+                      onPress={() => {
+                        itineraryStore?.removeLocation(
+                          itinerary.id,
+                          item?.details?.id,
                         );
-                      }, 500);
-                    }}>
-                    <FontAwesomeIcon icon={faCircleUp} size={20} />
-                  </Pressable>
-                  <Pressable
-                    style={{
-                      borderWidth: 1,
-                      borderRadius: 1000,
-                      borderColor: Color?.graySend,
-                    }}
-                    onPress={() => {
-                      itineraryStore?.reorderLocations(
-                        itinerary?.id,
-                        index,
-                        index + 1,
-                      );
-
-                      setTimeout(() => {
-                        AsyncStorage?.setItem(
-                          'itineraries',
-                          JSON.stringify(itineraryStore?.itineraries),
-                        );
-                      }, 500);
-                    }}>
-                    <FontAwesomeIcon icon={faCircleDown} size={20} />
-                  </Pressable>
-                  <Pressable
-                    style={{
-                      borderWidth: 1,
-                      borderRadius: 1000,
-                      borderColor: Color?.graySend,
-                    }}
-                    onPress={() => {
-                      itineraryStore?.removeLocation(
-                        itinerary.id,
-                        item?.details?.id,
-                      );
-                      setTimeout(() => {
-                        AsyncStorage?.setItem(
-                          'itineraries',
-                          JSON.stringify(itineraryStore?.itineraries),
-                        );
-                      }, 500);
-                    }}>
-                    <FontAwesomeIcon icon={faTrashCan} size={20} />
-                  </Pressable>
+                        setTimeout(() => {
+                          AsyncStorage?.setItem(
+                            'itineraries',
+                            JSON.stringify(itineraryStore?.itineraries),
+                          );
+                        }, 500);
+                      }}>
+                      <FontAwesomeIcon icon={faTrashCan} size={20} />
+                    </Pressable>
+                  </View>
                 </View>
-              </View>
-            </Pressable>
+              </Pressable>
+            </Animated.View>
           )}
           snapToAlignment="start"
           decelerationRate="fast"
@@ -277,6 +270,7 @@ export const ItineraryDetails = observer(({route}) => {
                     name: itinerary?.name,
                     description: itinerary?.description,
                     locations: itinerary?.locations,
+                    id: itinerary?.id,
                   });
                 }}>
                 <View
@@ -322,6 +316,7 @@ export const ItineraryDetails = observer(({route}) => {
                     name: itinerary?.name,
                     description: itinerary?.description,
                     locations: itinerary?.locations,
+                    id: itinerary?.id,
                   });
                 }}>
                 <View

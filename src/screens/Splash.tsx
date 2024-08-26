@@ -122,9 +122,13 @@ export const Splash = observer(() => {
 
       <ButtonComp
         text="Let's Get started!"
-        color={Color.buttonPink}
+        color={Color.pinkPrimary}
         textColor="#190b14"
         onPress={() => {
+          // Snack({
+          //   text: 'This destination has already been added!',
+          //   variant: 'error',
+          // });
           GetLocation.getCurrentPosition({
             enableHighAccuracy: true,
             timeout: 60000,

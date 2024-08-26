@@ -108,7 +108,7 @@ const ItineraryItem = ({item, isExpanded, onPress, navigation}) => {
               />
               <ButtonComp
                 text="Use this template"
-                color={Color.buttonPink}
+                color={Color.pinkPrimary}
                 textColor="#190b14"
                 size="medium"
                 onPress={() => {
@@ -178,7 +178,7 @@ export const ItineraryTemplates = observer(() => {
 
         <ButtonComp
           text="Create one from scratch"
-          color={Color.buttonPink}
+          color={Color.pinkPrimary}
           textColor="#190b14"
           width100={true}
           onPress={() => {

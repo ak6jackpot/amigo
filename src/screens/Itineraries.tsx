@@ -71,7 +71,7 @@ export const Itineraries = observer(({route}) => {
               <Typography text={'No trips created yet!'} />
               <ButtonComp
                 text="Create Now"
-                color={Color.buttonPink}
+                color={Color.pinkPrimary}
                 textColor="#190b14"
                 onPress={() => {
                   navigation?.navigate('ItineraryTemplates');
@@ -92,7 +92,7 @@ export const Itineraries = observer(({route}) => {
             }}>
             <ButtonComp
               text="Create another trip"
-              color={Color.buttonPink}
+              color={Color.pinkPrimary}
               textColor="#190b14"
               width100={true}
               onPress={() => {

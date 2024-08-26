@@ -231,57 +231,106 @@ export const CreateItinerary = observer(({route}) => {
             </View>
           </View>
         )}
-        {locations?.length > 1 && (
-          <View
-            style={{
-              position: 'absolute',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              bottom: 16,
-              alignSelf: 'center',
-            }}>
-            <ButtonComp
-              text="Finish"
-              color={Color.buttonPink}
-              textColor="#190b14"
-              width100={true}
-              onPress={() => {
-                const x = itineraryStore?.itineraries?.find(item => {
-                  return (
-                    item?.id === name?.slice(0, 4) + description?.slice(0, 9)
-                  );
-                });
-                if (x?.id) {
-                  Snack({
-                    text: 'This itinerary already exists! Please create another.',
-                    variant: 'error',
-                  });
-                } else {
-                  itineraryStore?.addItinerary({
-                    id: name?.slice(0, 4) + description?.slice(0, 9),
-                    name: name,
-                    description: description,
-                    startDate: new Date('2024-08-01'),
-                    endDate: new Date('2024-08-15'),
-                    locations: locations,
-                    createdBy: 'akshat',
-                    collaborators: ['akshat'],
-                    isPublic: true,
-                  });
-                  setTimeout(() => {
-                    AsyncStorage?.setItem(
-                      'itineraries',
-                      JSON.stringify(itineraryStore?.itineraries),
-                    );
-                  }, 500);
-                  navigation?.goBack();
-                  navigation?.goBack();
-                }
-              }}
-            />
-          </View>
-        )}
+        {locations?.length > 1 &&
+          name?.length > 4 &&
+          description?.length > 9 && (
+            <View
+              style={{
+                position: 'absolute',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                bottom: 16,
+                alignSelf: 'center',
+              }}>
+              <ButtonComp
+                text={route?.params?.id ? 'Save' : 'Finish'}
+                color={Color.pinkPrimary}
+                textColor="#190b14"
+                width100={true}
+                onPress={() => {
+                  if (route?.params?.id) {
+                    itineraryStore?.removeItinerary(route?.params?.id);
+
+                    setTimeout(() => {
+                      console.log(itineraryStore?.itineraries, 'before store');
+
+                      console.log({
+                        id: name?.slice(0, 4) + description?.slice(0, 9),
+                        name: name,
+                        description: description,
+                        startDate: new Date('2024-08-01'),
+                        endDate: new Date('2024-08-15'),
+                        locations: locations,
+                        createdBy: 'akshat',
+                        collaborators: ['akshat'],
+                        isPublic: true,
+                      });
+
+                      itineraryStore?.addItinerary({
+                        id: name?.slice(0, 4) + description?.slice(0, 9),
+                        name: name,
+                        description: description,
+                        startDate: new Date('2024-08-01'),
+                        endDate: new Date('2024-08-15'),
+                        locations: locations,
+                        createdBy: 'akshat',
+                        collaborators: ['akshat'],
+                        isPublic: true,
+                      });
+                      console.log(itineraryStore?.itineraries, 'after store');
+                    }, 500);
+
+                    setTimeout(() => {
+                      console.log('before async');
+
+                      AsyncStorage?.setItem(
+                        'itineraries',
+                        JSON.stringify(itineraryStore?.itineraries),
+                      );
+                      console.log('after async');
+
+                      navigation?.goBack();
+                      // navigation?.goBack();
+                    }, 1000);
+                  } else {
+                    const x = itineraryStore?.itineraries?.find(item => {
+                      return (
+                        item?.id ===
+                        name?.slice(0, 4) + description?.slice(0, 9)
+                      );
+                    });
+                    if (x?.id) {
+                      Snack({
+                        text: 'This itinerary already exists! Please create another.',
+                        variant: 'error',
+                      });
+                    } else {
+                      itineraryStore?.addItinerary({
+                        id: name?.slice(0, 4) + description?.slice(0, 9),
+                        name: name,
+                        description: description,
+                        startDate: new Date('2024-08-01'),
+                        endDate: new Date('2024-08-15'),
+                        locations: locations,
+                        createdBy: 'akshat',
+                        collaborators: ['akshat'],
+                        isPublic: true,
+                      });
+                      setTimeout(() => {
+                        AsyncStorage?.setItem(
+                          'itineraries',
+                          JSON.stringify(itineraryStore?.itineraries),
+                        );
+                      }, 500);
+                      navigation?.goBack();
+                      navigation?.goBack();
+                    }
+                  }
+                }}
+              />
+            </View>
+          )}
       </View>
     </SafeAreaView>
   );

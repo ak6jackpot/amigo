@@ -3,6 +3,7 @@ import {Pressable, View} from 'react-native';
 import Typography from './Typography';
 import {Color} from '../Utils';
 import {functionDataStore} from '../storeDefinitions';
+import * as Animatable from 'react-native-animatable';
 
 export type SnackType = {
   text: string;
@@ -19,40 +20,42 @@ export const SnackUI = ({
   actionText,
   variant = 'quote',
 }: SnackType) => (
-  <Pressable
-    onPress={() => {
-      actionFunction ? actionFunction() : functionDataStore?.clearSnack();
-    }}
-    style={({pressed}) => [
-      {opacity: pressed ? 0.7 : 1},
-      {
-        position: 'absolute',
-        width: '100%',
-        padding: 16,
-        bottom: 56,
-        zIndex: 9999,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor:
-          variant === 'success'
-            ? '#0e8345'
-            : variant === 'error'
-            ? '#de1165'
-            : variant === 'quote'
-            ? Color?.whiteBg
-            : '#f6bc2f',
-      },
-    ]}>
-    <View style={{}}>
-      <Typography color={Color?.whiteBg} text={text} size="medium" />
-    </View>
-    <View style={{}}>
-      {actionText ? (
-        <Typography color={Color?.whiteBg} text={actionText} size="medium" />
-      ) : null}
-    </View>
-  </Pressable>
+  <Animatable.View animation={'bounceInUp'} iterationCount={1}>
+    <Pressable
+      onPress={() => {
+        actionFunction ? actionFunction() : functionDataStore?.clearSnack();
+      }}
+      style={({pressed}) => [
+        {opacity: pressed ? 0.7 : 1},
+        {
+          position: 'absolute',
+          width: '100%',
+          padding: 16,
+          bottom: 56,
+          zIndex: 9999,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          backgroundColor:
+            variant === 'success'
+              ? '#0e8345'
+              : variant === 'error'
+              ? '#de1165'
+              : variant === 'quote'
+              ? Color?.whiteBg
+              : '#f6bc2f',
+        },
+      ]}>
+      <View style={{}}>
+        <Typography color={Color?.whiteBg} text={text} size="medium" />
+      </View>
+      <View style={{}}>
+        {actionText ? (
+          <Typography color={Color?.whiteBg} text={actionText} size="medium" />
+        ) : null}
+      </View>
+    </Pressable>
+  </Animatable.View>
 );
 
 export const Snack = ({
