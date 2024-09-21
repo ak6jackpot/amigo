@@ -27,41 +27,61 @@ import {Color, loadLocationDetails} from '../Utils';
 import LoaderKit from 'react-native-loader-kit';
 import {observer} from 'mobx-react-lite';
 import {cities} from '../data';
+import GetLocation from 'react-native-get-location';
 
 export const Home = observer(() => {
   const navigation = useNavigation();
 
   const fetchNearby = () => {
-    functionDataStore?.showLoader();
-    fetchNearbyOpenAI(
-      userDataStore?.userData?.currentLocation?.latitude,
-      userDataStore?.userData?.currentLocation?.longitude,
-    )
-      ?.then(response => {
-        // console.log(JSON?.parse(response));
-        const final: any[] = [];
-        JSON?.parse(response)?.map(item => {
-          locationSearchMaps(item)?.then(searchresponse => {
-            // console.log(searchresponse?.places[0], 'searchresponse');
-            loadLocationDetails(searchresponse?.places[0]?.id)?.then(
-              loadresponse => {
-                final?.push(loadresponse);
-              },
-            );
+    if (
+      userDataStore?.userData?.currentLocation?.latitude &&
+      userDataStore?.userData?.currentLocation?.longitude
+    ) {
+      functionDataStore?.showLoader();
+      fetchNearbyOpenAI(
+        userDataStore?.userData?.currentLocation?.latitude,
+        userDataStore?.userData?.currentLocation?.longitude,
+      )
+        ?.then(response => {
+          // console.log(JSON?.parse(response));
+          const final: any[] = [];
+          JSON?.parse(response)?.map(item => {
+            locationSearchMaps(item)?.then(searchresponse => {
+              // console.log(searchresponse?.places[0], 'searchresponse');
+              loadLocationDetails(searchresponse?.places[0]?.id)?.then(
+                loadresponse => {
+                  final?.push(loadresponse);
+                },
+              );
+            });
           });
-        });
 
-        setTimeout(() => {
+          setTimeout(() => {
+            functionDataStore?.hideLoader();
+            navigation?.navigate('NearbyLocations', {
+              nearbyList: final,
+            });
+          }, 3000);
+        })
+        .catch(err => {
+          console.log(err);
           functionDataStore?.hideLoader();
-          navigation?.navigate('NearbyLocations', {
-            nearbyList: final,
-          });
-        }, 3000);
+        });
+    } else {
+      GetLocation.getCurrentPosition({
+        enableHighAccuracy: true,
+        timeout: 60000,
       })
-      .catch(err => {
-        console.log(err);
-        functionDataStore?.hideLoader();
-      });
+        .then(location => {
+          // console.log(location, 'location');
+          userDataStore?.setUserData({currentLocation: location});
+          fetchNearby();
+        })
+        .catch(error => {
+          const {code, message} = error;
+          console.log(code, message);
+        });
+    }
   };
 
   return (

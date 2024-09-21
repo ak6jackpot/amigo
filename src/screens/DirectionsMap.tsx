@@ -1,6 +1,6 @@
 import {faMinus, faPlus, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Platform, Pressable, StyleSheet, View} from 'react-native';
 import MapView, {
   Marker,
@@ -15,6 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import Typography from '../components/Typography';
 import * as Animatable from 'react-native-animatable';
 import {observer} from 'mobx-react-lite';
+import GetLocation from 'react-native-get-location';
 
 export const DirectionsMap = observer(({route}) => {
   const {destination} = route?.params;
@@ -34,6 +35,25 @@ export const DirectionsMap = observer(({route}) => {
     longitudeDelta: (userDeltaInit * screenWidth) / screenHeight,
   };
 
+  useEffect(() => {
+    if (
+      !userDataStore?.userData?.currentLocation?.latitude ||
+      !userDataStore?.userData?.currentLocation?.longitude
+    ) {
+      GetLocation.getCurrentPosition({
+        enableHighAccuracy: true,
+        timeout: 60000,
+      })
+        .then(location => {
+          // console.log(location, 'location');
+          userDataStore?.setUserData({currentLocation: location});
+        })
+        .catch(error => {
+          const {code, message} = error;
+          console.log(code, message);
+        });
+    }
+  }, []);
   const navigation = useNavigation();
   // console.log(destination, userLocation, 'in directions');
 

@@ -71,6 +71,12 @@ export const AddToItinerary = observer(({route}) => {
                             text:
                               route?.params?.name + ' added to ' + item?.name,
                             variant: 'success',
+                            actionText: 'View',
+                            actionFunction: () => {
+                              navigation?.navigate('ItineraryDetails', {
+                                itineraryId: item?.id,
+                              });
+                            },
                           });
 
                           setTimeout(() => {

@@ -151,7 +151,7 @@ class FunctionStore {
     this.functionData.snackData = {...this.functionData.snackData, ...data};
     setTimeout(() => {
       this.clearSnack();
-    }, 5000);
+    }, data?.duration);
   }
   reset() {
     this.functionData = {...this.initialFunctionData};

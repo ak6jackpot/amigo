@@ -127,7 +127,11 @@ export const Splash = observer(() => {
         onPress={() => {
           // Snack({
           //   text: 'This destination has already been added!',
-          //   variant: 'error',
+          //   variant: 'quote',
+          //   actionText: 'View',
+          //   actionFunction: () => {
+          //     navigation?.navigate('Tabs');
+          //   },
           // });
           GetLocation.getCurrentPosition({
             enableHighAccuracy: true,

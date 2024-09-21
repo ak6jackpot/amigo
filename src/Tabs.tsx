@@ -26,7 +26,7 @@ export const Tabs = observer(() => {
           shadowOffset: {width: 0, height: 5},
           shadowOpacity: 0.8,
           shadowRadius: 2,
-          marginHorizontal: 48,
+          marginHorizontal: 96,
           position: 'absolute',
           bottom: 12,
           paddingTop: 4,
@@ -66,11 +66,11 @@ export const Tabs = observer(() => {
           );
         },
       })}>
-      <Tab.Screen
+      {/* <Tab.Screen
         name={'Profile'}
         component={Profile}
         options={{tabBarShowLabel: false}}
-      />
+      /> */}
       <Tab.Screen
         name={'Home'}
         component={Home}
