@@ -26,14 +26,14 @@ export const Tabs = observer(() => {
           shadowOffset: {width: 0, height: 5},
           shadowOpacity: 0.8,
           shadowRadius: 2,
-          marginHorizontal: 96,
+          marginHorizontal: 80,
           position: 'absolute',
           bottom: 12,
           paddingTop: 4,
           paddingBottom: 4,
           alignItems: 'center',
           borderRadius: 1000,
-          height: 54,
+          height: 60,
         },
         tabBarLabel: '',
         tabBarIcon: ({focused}) => {
@@ -44,12 +44,11 @@ export const Tabs = observer(() => {
                 borderLeftColor: Color?.graySend,
                 borderRightColor: Color?.graySend,
                 borderBottomWidth: focused ? 6 : 0,
-                borderRightWidth: focused ? 2 : 0,
-                borderLeftWidth: focused ? 2 : 0,
+                borderRightWidth: focused ? 4 : 0,
+                borderLeftWidth: focused ? 4 : 0,
                 paddingHorizontal: 24,
                 paddingVertical: 8,
                 borderRadius: 12,
-                // backgroundColor: focused ? '#faf2f9' : Color?.whiteBg,
               }}>
               <FontAwesomeIcon
                 icon={

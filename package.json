@@ -1,7 +1,7 @@
 {
   "name": "amigo",
-  "version": "1.0.6",
-  "version_code": 106,
+  "version": "1.0.7",
+  "version_code": 107,
   "private": true,
   "scripts": {
     "android": "react-native run-android",
