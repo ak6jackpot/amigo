@@ -215,7 +215,6 @@ export const CreateItinerary = observer(({route}) => {
                     data={item}
                     variant="city"
                     onPress={() => {
-                      // navigation?.goBack();
                       // loadLocationDetails(item?.id, undefined, navigation);
                     }}
                     rightElement={<FontAwesomeIcon icon={faXmark} />}
@@ -278,7 +277,6 @@ export const CreateItinerary = observer(({route}) => {
                       console.log('after async');
 
                       navigation?.goBack();
-                      // navigation?.goBack();
                     }, 1000);
                   } else {
                     const x = itineraryStore?.itineraries?.find(item => {
@@ -307,7 +305,6 @@ export const CreateItinerary = observer(({route}) => {
                           JSON.stringify(itineraryStore?.itineraries),
                         );
                       }, 500);
-                      navigation?.goBack();
                       navigation?.goBack();
                     }
                   }

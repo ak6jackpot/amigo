@@ -224,7 +224,7 @@ export const Home = observer(() => {
                       },
                     ]}
                     onPress={() => {
-                      navigation?.navigate('ItineraryTemplates');
+                      navigation?.navigate('CreateItinerary');
                     }}>
                     <View
                       style={{
@@ -261,7 +261,7 @@ export const Home = observer(() => {
                     height: 72,
                   }}
                   onPress={() => {
-                    navigation?.navigate('Itineraries');
+                    navigation?.navigate('CreateItinerary');
                   }}
                 />
               </View>

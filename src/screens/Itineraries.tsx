@@ -74,7 +74,7 @@ export const Itineraries = observer(({route}) => {
                 color={Color.pinkPrimary}
                 textColor="#190b14"
                 onPress={() => {
-                  navigation?.navigate('ItineraryTemplates');
+                  navigation?.navigate('CreateItinerary');
                 }}
               />
             </>
@@ -96,7 +96,7 @@ export const Itineraries = observer(({route}) => {
               textColor="#190b14"
               width100={true}
               onPress={() => {
-                navigation?.navigate('ItineraryTemplates');
+                navigation?.navigate('CreateItinerary');
               }}
             />
           </View>

@@ -1,13 +1,12 @@
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {observer} from 'mobx-react-lite';
 import React from 'react';
-import {Color} from './Utils';
-import {faHome, faRoute, faUser} from '@fortawesome/free-solid-svg-icons';
+import {StyleSheet} from 'react-native';
+import TabMenu from './components/TabMenu';
 import {Home} from './screens/Home';
 import {Itineraries} from './screens/Itineraries';
 import {Profile} from './screens/Profile';
-import {View} from 'react-native';
+import {faHouse, faRoute, faUser} from '@fortawesome/free-solid-svg-icons';
 
 export const Tabs = observer(() => {
   const Tab = createBottomTabNavigator();
@@ -15,71 +14,58 @@ export const Tabs = observer(() => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      screenOptions={({route}) => ({
-        headerShown: false,
-        tabBarActiveTintColor: Color?.black,
-        tabBarStyle: {
-          backgroundColor: Color?.whiteBg,
-          justifyContent: 'center',
-          elevation: 5,
-          shadowColor: Color?.black,
-          shadowOffset: {width: 0, height: 5},
-          shadowOpacity: 0.8,
-          shadowRadius: 2,
-          marginHorizontal: 80,
-          position: 'absolute',
-          bottom: 12,
-          paddingTop: 4,
-          paddingBottom: 4,
-          alignItems: 'center',
-          borderRadius: 1000,
-          height: 60,
-        },
-        tabBarLabel: '',
-        tabBarIcon: ({focused}) => {
-          return (
-            <View
-              style={{
-                borderBottomColor: Color?.pinkPrimary,
-                borderLeftColor: Color?.graySend,
-                borderRightColor: Color?.graySend,
-                borderBottomWidth: focused ? 6 : 0,
-                borderRightWidth: focused ? 4 : 0,
-                borderLeftWidth: focused ? 4 : 0,
-                paddingHorizontal: 24,
-                paddingVertical: 8,
-                borderRadius: 12,
-              }}>
-              <FontAwesomeIcon
-                icon={
-                  route?.name === 'Profile'
-                    ? faUser
-                    : route?.name === 'Trips'
-                    ? faRoute
-                    : faHome
-                }
-                size={30}
-                color={Color?.gray900}
-              />
-            </View>
-          );
-        },
-      })}>
-      {/* <Tab.Screen
+      screenOptions={{
+        tabBarStyle: {...styles.tabContainer},
+        tabBarShowLabel: false,
+      }}>
+      <Tab.Screen
         name={'Profile'}
         component={Profile}
-        options={{tabBarShowLabel: false}}
-      /> */}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <TabMenu screen={'Profile'} focused={focused} icon={faUser} />
+          ),
+        }}
+      />
+
       <Tab.Screen
         name={'Home'}
         component={Home}
-        options={{tabBarShowLabel: false}}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <TabMenu screen={'Home'} focused={focused} icon={faHouse} />
+          ),
+        }}
       />
       <Tab.Screen
         name={'Trips'}
         component={Itineraries}
-        options={{tabBarShowLabel: false}}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <TabMenu screen={'Trips'} focused={focused} icon={faRoute} />
+          ),
+        }}
       />
     </Tab.Navigator>
   );
+});
+
+const styles = StyleSheet.create({
+  tabContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    height: 70,
+    backgroundColor: '#F8F7FB',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    elevation: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingHorizontal: 20,
+    alignItems: 'center',
+  },
 });
