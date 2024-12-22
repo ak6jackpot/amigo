@@ -2,16 +2,15 @@ import React, {useEffect} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import Typography from '../components/Typography';
 import ButtonComp from '../components/ButtonComp';
-import itineraryStore from '../storeDefinitions';
-import {Color} from '../Utils';
+import itineraryStore from '../store';
+import {Color, loadLocationDetails} from '../Utils';
 import {FlatList} from 'react-native-gesture-handler';
 import {ListItem} from '../components/ListItem';
 import {useNavigation} from '@react-navigation/native';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faTrash} from '@fortawesome/free-solid-svg-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {observer} from 'mobx-react-lite';
 import {Header} from '../components/Header';
+import {Snack} from '../components/Snack';
 
 export const Itineraries = observer(({route}) => {
   const navigation = useNavigation();
@@ -45,21 +44,46 @@ export const Itineraries = observer(({route}) => {
                       variant="trip"
                       data={item}
                       onPress={() => {
-                        navigation?.navigate('ItineraryDetails', {
-                          itineraryId: item?.id,
-                        });
-                      }}
-                      rightElement={
-                        <FontAwesomeIcon icon={faTrash} color={'#e35f59'} />
-                      }
-                      onPressRight={() => {
-                        itineraryStore?.removeItinerary(item.id);
-                        setTimeout(() => {
-                          AsyncStorage?.setItem(
-                            'itineraries',
-                            JSON.stringify(itineraryStore?.itineraries),
-                          );
-                        }, 500);
+                        if (
+                          item?.locations?.some(location => {
+                            return location?.details?.name?.includes(
+                              route?.params?.name,
+                            );
+                          })
+                        ) {
+                          Snack({
+                            text:
+                              route?.params?.name +
+                              ' is already added to this itinerary',
+                            variant: 'error',
+                          });
+                        } else {
+                          console.log();
+
+                          loadLocationDetails(route?.params?.id).then(dets => {
+                            dets['visited'] = false;
+                            itineraryStore?.addLocation(item?.id, dets);
+                          });
+                          Snack({
+                            text:
+                              route?.params?.name + ' added to ' + item?.name,
+                            variant: 'success',
+                            actionText: 'View',
+                            actionFunction: () => {
+                              navigation?.navigate('ItineraryDetails', {
+                                itineraryId: item?.id,
+                              });
+                            },
+                          });
+
+                          setTimeout(() => {
+                            AsyncStorage?.setItem(
+                              'itineraries',
+                              JSON.stringify(itineraryStore?.itineraries),
+                            );
+                            navigation?.goBack();
+                          }, 1000);
+                        }
                       }}
                     />
                   </View>
@@ -67,29 +91,26 @@ export const Itineraries = observer(({route}) => {
               />
             </View>
           ) : (
-            <>
+            <View
+              style={{
+                marginVertical: 8,
+                width: '100%',
+                aspectRatio: 0.6,
+              }}>
               <Typography text={'No trips created yet!'} />
-              <ButtonComp
-                text="Create Now"
-                color={Color.pinkPrimary}
-                textColor="#190b14"
-                onPress={() => {
-                  navigation?.navigate('CreateItinerary');
-                }}
-              />
-            </>
+            </View>
           )}
         </View>
-        {itineraryStore?.itineraries?.length > 0 && (
-          <View
-            style={{
-              position: 'absolute',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              bottom: 64,
-              alignSelf: 'center',
-            }}>
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            bottom: 64,
+            alignSelf: 'center',
+          }}>
+          {itineraryStore?.itineraries?.length > 0 ? (
             <ButtonComp
               text="Create another trip"
               color={Color.pinkPrimary}
@@ -99,8 +120,17 @@ export const Itineraries = observer(({route}) => {
                 navigation?.navigate('CreateItinerary');
               }}
             />
-          </View>
-        )}
+          ) : (
+            <ButtonComp
+              text="Create Now"
+              color={Color.pinkPrimary}
+              textColor="#190b14"
+              onPress={() => {
+                navigation?.navigate('CreateItinerary');
+              }}
+            />
+          )}
+        </View>
       </View>
     </SafeAreaView>
   );

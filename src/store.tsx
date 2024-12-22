@@ -82,12 +82,52 @@ const itineraryStore = new ItineraryStore();
 export default itineraryStore;
 
 interface UserData {
-  currentLocation?: {};
+  currentLocation?: object;
+  name: string;
+  phone: string;
+  email: string;
+  address: {
+    addressLine1: string;
+    addressLine2: string;
+    city: string;
+    state: string;
+    country: string;
+    pincode: string;
+  };
+  countryCode: string;
+  currency: string;
+  preferences: {
+    destinationType: string;
+    numberOfTravellers: number;
+    tripDuration: number;
+    keyActivities: string[];
+    budget: number;
+  };
 }
 
 class UserDataStore {
   initialUserData: UserData = {
     currentLocation: {},
+    name: 'Akshat',
+    phone: '9902635821',
+    email: 'akshatsingh8140@gmail.com',
+    address: {
+      addressLine1: '24282, Building 2 Tower 4',
+      addressLine2: 'Prestige Falcon City',
+      city: 'Bangalore',
+      state: 'Karnataka',
+      country: 'India',
+      pincode: '560062',
+    },
+    currency: 'INR',
+    countryCode: '+91',
+    preferences: {
+      destinationType: 'Mountain',
+      numberOfTravellers: 2,
+      tripDuration: 6,
+      keyActivities: ['Sky Diving', 'Scuba Diving'],
+      budget: 100000,
+    },
   };
   userData: UserData = this?.initialUserData;
 

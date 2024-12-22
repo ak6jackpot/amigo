@@ -1,7 +1,7 @@
 import {Dimensions} from 'react-native';
 import {locationDetailsMaps, nearbyLocationSearchMaps} from './APIs';
 import {API_key_Maps} from '../secrets.json';
-import {functionDataStore} from './storeDefinitions';
+import {functionDataStore} from './store';
 
 export const screenHeight = Dimensions.get('window').height;
 export const screenWidth = Dimensions.get('window').width;

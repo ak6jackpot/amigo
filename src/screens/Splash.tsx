@@ -17,7 +17,7 @@ import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
 import {useNavigation} from '@react-navigation/native';
 import GetLocation from 'react-native-get-location';
-import itineraryStore, {userDataStore} from '../storeDefinitions';
+import itineraryStore, {userDataStore} from '../store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {observer} from 'mobx-react-lite';
 

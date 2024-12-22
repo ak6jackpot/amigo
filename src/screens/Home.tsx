@@ -19,10 +19,7 @@ import ButtonComp from '../components/ButtonComp';
 import {Header} from '../components/Header';
 import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
-import itineraryStore, {
-  functionDataStore,
-  userDataStore,
-} from '../storeDefinitions';
+import itineraryStore, {functionDataStore, userDataStore} from '../store';
 import {Color, loadLocationDetails} from '../Utils';
 import LoaderKit from 'react-native-loader-kit';
 import {observer} from 'mobx-react-lite';
@@ -179,12 +176,14 @@ export const Home = observer(() => {
                 justifyContent: 'space-between',
               }}>
               <Typography text={'Upcoming Trips'} variant="heading" />
-              <Pressable
-                onPress={() => {
-                  navigation?.navigate('Itineraries');
-                }}>
-                <Typography text={'See all'} />
-              </Pressable>
+              {itineraryStore?.itineraries?.length > 0 && (
+                <Pressable
+                  onPress={() => {
+                    navigation?.navigate('Itineraries');
+                  }}>
+                  <Typography text={'See all'} />
+                </Pressable>
+              )}
             </View>
             {itineraryStore?.itineraries?.length > 0 ? (
               <FlatList

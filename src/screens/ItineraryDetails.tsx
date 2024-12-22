@@ -3,7 +3,7 @@ import React, {useRef} from 'react';
 import {Animated, FlatList, Pressable, SafeAreaView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Color, loadLocationDetails} from '../Utils';
-import itineraryStore, {functionDataStore} from '../storeDefinitions';
+import itineraryStore, {functionDataStore} from '../store';
 import Typography from '../components/Typography';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {

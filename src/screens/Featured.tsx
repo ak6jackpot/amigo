@@ -4,7 +4,7 @@ import Video from 'react-native-video';
 import {Color, screenHeight, screenWidth} from '../Utils';
 import {StampImage} from '../components/StampImage';
 import Typography from '../components/Typography';
-import {functionDataStore} from '../storeDefinitions';
+import {functionDataStore} from '../store';
 import LoaderKit from 'react-native-loader-kit';
 import {featuredData} from '../data';
 import {observer} from 'mobx-react-lite';

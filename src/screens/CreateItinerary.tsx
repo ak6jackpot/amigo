@@ -11,7 +11,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {locationSearchMaps} from '../APIs';
 import {ListItem} from '../components/ListItem';
-import itineraryStore, {functionDataStore} from '../storeDefinitions';
+import itineraryStore, {functionDataStore} from '../store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderKit from 'react-native-loader-kit';
 import {Snack} from '../components/Snack';

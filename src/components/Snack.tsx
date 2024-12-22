@@ -2,7 +2,7 @@
 import {Pressable, View} from 'react-native';
 import Typography from './Typography';
 import {Color} from '../Utils';
-import {functionDataStore} from '../storeDefinitions';
+import {functionDataStore} from '../store';
 import * as Animatable from 'react-native-animatable';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';

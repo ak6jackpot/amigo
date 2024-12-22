@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import Typography from '../components/Typography';
 import ButtonComp from '../components/ButtonComp';
-import itineraryStore from '../storeDefinitions';
+import itineraryStore from '../store';
 import {Color, loadLocationDetails} from '../Utils';
 import {FlatList} from 'react-native-gesture-handler';
 import {ListItem} from '../components/ListItem';
@@ -94,29 +94,26 @@ export const AddToItinerary = observer(({route}) => {
               />
             </View>
           ) : (
-            <>
+            <View
+              style={{
+                marginVertical: 8,
+                width: '100%',
+                aspectRatio: 0.6,
+              }}>
               <Typography text={'No trips created yet!'} />
-              <ButtonComp
-                text="Create Now"
-                color={Color.pinkPrimary}
-                textColor="#190b14"
-                onPress={() => {
-                  navigation?.navigate('CreateItinerary');
-                }}
-              />
-            </>
+            </View>
           )}
         </View>
-        {itineraryStore?.itineraries?.length > 0 && (
-          <View
-            style={{
-              position: 'absolute',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              bottom: 64,
-              alignSelf: 'center',
-            }}>
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            bottom: 64,
+            alignSelf: 'center',
+          }}>
+          {itineraryStore?.itineraries?.length > 0 ? (
             <ButtonComp
               text="Create another trip"
               color={Color.pinkPrimary}
@@ -126,8 +123,17 @@ export const AddToItinerary = observer(({route}) => {
                 navigation?.navigate('CreateItinerary');
               }}
             />
-          </View>
-        )}
+          ) : (
+            <ButtonComp
+              text="Create Now"
+              color={Color.pinkPrimary}
+              textColor="#190b14"
+              onPress={() => {
+                navigation?.navigate('CreateItinerary');
+              }}
+            />
+          )}
+        </View>
       </View>
     </SafeAreaView>
   );
