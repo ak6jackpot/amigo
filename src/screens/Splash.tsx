@@ -41,8 +41,6 @@ export const Splash = observer(() => {
   }, []);
 
   const AsyncGet = async () => {
-    console.log('async get');
-
     await AsyncStorage.multiGet([
       'consent',
       'sessionId',
@@ -83,7 +81,7 @@ export const Splash = observer(() => {
           biometricRequired,
           disclaimer,
           firstTimeAppOpen,
-          '<-- async get',
+          'splash -- async get',
         );
 
         idDataStore?.setIDData({
@@ -91,27 +89,33 @@ export const Splash = observer(() => {
         });
 
         if (sessionId !== null && merchantId !== null) {
+          console.log('splash -- previously logged in');
+
           idDataStore?.setIDData({
             sessionId: sessionId,
             merchantId: merchantId,
           });
-          appInitialisation(navigation).then(async resp => {
-            const appOpenLink = await captureAppOpenDeepLink();
-
-            setTimeout(() => {
-              handleDeepLink(appOpenLink, navigation);
-            }, 500);
+          userDataStore?.setUserData({
+            phone: phone,
           });
-        } else if (sessionId == null || merchantId == null) {
-          setTimeout(() => {
-            SheetManagerSuper('Login');
-          }, 1300);
+          appInitialisation(navigation).then(async resp => {
+            console.log('splash -- fetching loc and navigating');
+
+            GetLocation.getCurrentPosition({
+              enableHighAccuracy: true,
+              timeout: 60000,
+            }).then(location => {
+              // console.log(location, 'location');
+              userDataStore?.setUserData({currentLocation: location});
+            });
+            navigation.navigate('Tabs');
+          });
         } else {
-          console.log(sessionId, merchantId, '//from splash screen');
+          console.log('splash -- navigating to login');
+          SheetManagerSuper('Login');
         }
       })
-      .catch(error => console.log(error, '//async get error'));
-    // console.log('//from splash, async is getting called');
+      .catch(error => console.log(error, 'splash -- async get error'));
   };
 
   useFocusEffect(
@@ -208,27 +212,6 @@ export const Splash = observer(() => {
         size="small"
       />
       <Typography text={'without any hassle'} variant="label" size="small" />
-
-      <ButtonComp
-        text="Let's Get started!"
-        color={Color.pinkPrimary}
-        textColor="#190b14"
-        onPress={() => {
-          GetLocation.getCurrentPosition({
-            enableHighAccuracy: true,
-            timeout: 60000,
-          })
-            .then(location => {
-              // console.log(location, 'location');
-              userDataStore?.setUserData({currentLocation: location});
-            })
-            .catch(error => {
-              const {code, message} = error;
-              console.log(code, message);
-            });
-          navigation.navigate('Tabs');
-        }}
-      />
     </View>
   );
 });

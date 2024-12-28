@@ -1,3 +1,5 @@
+import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
@@ -5,19 +7,24 @@ import {
   ActivityIndicator,
   Keyboard,
   Platform,
-  TextInput,
+  Pressable,
   View,
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import ButtonComp from '../components/ButtonComp';
 import PINCode from '../components/PINCode';
 import {Snack} from '../components/Snack';
+import {TextField} from '../components/TextField';
 import Typography from '../components/Typography';
-import {hideAllSheets, hideMultipleSheets} from '../utils/SheetManagerSuper';
+import {
+  SheetManagerSuper,
+  hideAllSheets,
+  hideMultipleSheets,
+} from '../utils/SheetManagerSuper';
 import serverCall from '../utils/serverCall';
 import {idDataStore, userDataStore} from '../utils/store';
-import {allSheetNames} from './sheets';
 import {countryList} from './Country';
+import {allSheetNames} from './sheets';
 
 export const Login = () => {
   const timerCount = 30;
@@ -60,7 +67,7 @@ export const Login = () => {
       whatsapp: true,
       deviceId: idDataStore?.idData?.deviceId,
     };
-    serverCall('generateOtpToken', requestBody, 0)
+    serverCall('generateOtp', requestBody, 0)
       .then(async result => {
         const {merchant_id, phone, session_id} = result?.data?.data || {};
         const status = result?.status;
@@ -155,15 +162,41 @@ export const Login = () => {
         )}
         <View
           style={{flexDirection: 'row', alignItems: 'center', width: '100%'}}>
-          <TextInput
+          <TextField
             ref={inputRef}
             onChangeText={onChangePhone}
             value={phone}
+            label={'Phone Number'}
+            helperText={
+              country?.value == '+91'
+                ? 'Please use your Aadhar linked number for seamless experience'
+                : 'Please use your Passport linked number for seamless experience'
+            }
             maxLength={15} //for enabling auto fill
             keyboardType="phone-pad"
             autoFocus={Platform.OS === 'ios' ? true : false}
             placeholder="Enter your phone number"
             autoComplete={'tel'}
+            startInsetElement={
+              <Pressable
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                }}
+                onPress={() => {
+                  SheetManagerSuper('Country', {
+                    payload: {setCountry},
+                  });
+                }}>
+                <Typography text={country?.title} variant="heading" />
+                <FontAwesomeIcon
+                  icon={faChevronDown}
+                  style={{marginLeft: 8}}
+                  size={8}
+                />
+              </Pressable>
+            }
           />
         </View>
         {otpSent ? (
@@ -181,7 +214,7 @@ export const Login = () => {
                     deviceId: rootStore?.ID?.idData?.deviceId,
                   };
                   setActivityIndicatorVisible(true);
-                  serverCall('validateOtpToken', requestBody, 0)
+                  serverCall('validateOtp', requestBody, 0)
                     .then(result => {
                       // console.log(result?.data);
                       const status = result?.status;
@@ -206,7 +239,7 @@ export const Login = () => {
                           const requestBody = {
                             phone: country?.value + phone,
                           };
-                          serverCall('createMerchant', requestBody)
+                          serverCall('createUser', requestBody)
                             .then(result => {
                               console.log(
                                 'create merchant API response:',
@@ -316,7 +349,7 @@ export const Login = () => {
           </View>
         ) : null}
       </View>
-      <View style={{paddingHorizontal: 16, paddingTop: 16}}>
+      <View style={{padding: 16}}>
         {!otpSent && (
           <>
             <ButtonComp

@@ -45,32 +45,32 @@ const ButtonComp = ({
   };
 
   let textStyles: TextStyle = {
-    color: 'black',
+    color: Color.CTAtext,
   };
 
   switch (size) {
     case 'x-small':
       textStyles.fontSize = 12;
       textStyles.lineHeight = 16;
-      textStyles.fontFamily = 'UberMove-Regular';
+      textStyles.fontFamily = 'Ubuntu-Regular';
       buttonStyles = {...buttonStyles, minHeight: 30};
       break;
     case 'small':
       textStyles.fontSize = 14;
       textStyles.lineHeight = 20;
-      textStyles.fontFamily = 'UberMove-Medium';
+      textStyles.fontFamily = 'Ubuntu-Medium';
       buttonStyles = {...buttonStyles, minHeight: 36};
       break;
     case 'medium':
       textStyles.fontSize = 16;
       textStyles.lineHeight = 24;
-      textStyles.fontFamily = 'UberMove-Bold';
+      textStyles.fontFamily = 'Ubuntu-Bold';
       buttonStyles = {...buttonStyles, minHeight: 48};
       break;
     case 'large':
       textStyles.fontSize = 18;
       textStyles.lineHeight = 24;
-      textStyles.fontFamily = 'UberMove-Bold';
+      textStyles.fontFamily = 'Ubuntu-Bold';
       buttonStyles = {...buttonStyles, minHeight: 56};
       break;
   }
@@ -82,13 +82,13 @@ const ButtonComp = ({
         case 'primary':
           buttonStyles = {
             ...buttonStyles,
-            backgroundColor: activeColor ? activeColor : Color.black,
+            backgroundColor: activeColor ? activeColor : Color.CTA,
           };
           break;
         case 'secondary':
           buttonStyles = {
             ...buttonStyles,
-            backgroundColor: Color.gray900,
+            backgroundColor: Color.CTA,
           };
           break;
         case 'tertiary':
@@ -102,7 +102,7 @@ const ButtonComp = ({
         case 'tertiary':
           buttonStyles = {
             ...buttonStyles,
-            backgroundColor: Color.black,
+            backgroundColor: Color.CTA,
           };
           break;
       }
@@ -114,7 +114,7 @@ const ButtonComp = ({
           buttonStyles = {
             ...buttonStyles,
             opacity: 0.7,
-            backgroundColor: Color.gray900,
+            backgroundColor: Color.CTAdisabled,
           };
           break;
         case 'tertiary':
@@ -186,16 +186,10 @@ const ButtonComp = ({
     variant == 'primary' && state != 'disabled'
       ? {opacity: pressed ? 0.7 : 1}
       : pressed && {
-          backgroundColor: Color.graySend,
+          backgroundColor: Color.CTAdisabled,
         },
     customStyle,
   ];
-
-  // console.log(
-  //   'from btn super',
-  //   buttonStyles?.backgroundColor,
-  //   checkBrightness(String(buttonStyles?.backgroundColor)),
-  // );
 
   return (
     <Pressable
@@ -207,7 +201,7 @@ const ButtonComp = ({
         <FontAwesomeIcon
           size={textStyles?.lineHeight}
           icon={iconLeft}
-          color={Color.whiteBg}
+          color={Color.content}
           style={
             shape == 'rect' || shape == 'pill'
               ? {
@@ -219,12 +213,15 @@ const ButtonComp = ({
       )}
       {state == 'loading' ? (
         <>
-          <ActivityIndicator color={'#266ef1'} size={textStyles?.lineHeight} />
+          <ActivityIndicator
+            color={Color.loader}
+            size={textStyles?.lineHeight}
+          />
           {loadingText && (
             <Typography
               variant="label"
               size={size}
-              color={Color.whiteBg}
+              color={Color.content}
               text={loadingText}
               capitalize={false}
             />
@@ -235,7 +232,13 @@ const ButtonComp = ({
           <Typography
             variant="label"
             size={size}
-            color={!!textColor ? textColor : Color.whiteBg}
+            color={
+              !!textColor
+                ? textColor
+                : state == 'disabled'
+                ? Color.contentInverted
+                : Color.content
+            }
             text={text}
             capitalize={false}
           />
@@ -245,7 +248,7 @@ const ButtonComp = ({
         <FontAwesomeIcon
           size={textStyles?.fontSize}
           icon={iconRight || faHandSparkles}
-          color={iconLeft ? 'transparent' : Color.whiteBg}
+          color={iconLeft ? 'transparent' : Color.content}
         />
       )}
     </Pressable>

@@ -2,6 +2,7 @@ import {registerSheet} from 'react-native-actions-sheet';
 import {EditPreference} from './EditPreference';
 import {Login} from './Login';
 import {Logout} from './Logout';
+import {Country} from './Country';
 
 export var allSheetNames: string[] = [];
 
@@ -13,3 +14,4 @@ const registerAndAppendSheet = (sheetName: string, sheetComponent: any) => {
 registerAndAppendSheet('EditPreference', EditPreference);
 registerAndAppendSheet('Login', Login);
 registerAndAppendSheet('Logout', Logout);
+registerAndAppendSheet('Country', Country);

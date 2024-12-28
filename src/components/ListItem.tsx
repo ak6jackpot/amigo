@@ -2,9 +2,10 @@ import React, {ReactNode} from 'react';
 import {Pressable, View} from 'react-native';
 import Typography from './Typography';
 import {Color, randomColorGenerator} from '../utils/displayUtils';
+import {throttle} from '../utils/functionalUtils';
 
 type ListItemProps = {
-  variant?: 'search' | 'trip' | 'city' | 'template';
+  variant?: 'search' | 'trip' | 'city' | 'template' | 'country';
   icon?: any;
   text?: string;
   title?: string;
@@ -197,6 +198,41 @@ export const ListItem = ({
               {rightElement}
             </Pressable>
           )}
+        </Pressable>
+      );
+    case 'country':
+      return (
+        <Pressable
+          style={({pressed}) => [
+            {
+              opacity: pressed ? 0.7 : 1,
+              flexDirection: 'row',
+              padding: 16,
+              alignItems: 'center',
+              borderTopWidth: 0.5,
+              borderColor: Color.gray900,
+              justifyContent: 'space-between',
+            },
+          ]}
+          onPress={onPress && throttle(onPress, 1000)}>
+          <View style={{flexDirection: 'row', alignItems: 'center', flex: 3}}>
+            <View style={{flex: 1}}>
+              <Typography text={data?.title} variant="heading" size="small" />
+            </View>
+            <View style={{flex: 4}}>
+              <Typography text={data?.name} capitalize={false} />
+            </View>
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              flex: 1,
+              justifyContent: 'flex-end',
+            }}>
+            <Typography text={data?.value} variant="label" capitalize={false} />
+          </View>
         </Pressable>
       );
   }

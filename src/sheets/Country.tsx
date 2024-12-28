@@ -1,12 +1,13 @@
-import {FlashList} from '@shopify/flash-list';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import Fuse from 'fuse.js';
 import React, {useRef, useState} from 'react';
-import {TextInput, View} from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
+import {View} from 'react-native';
+import ActionSheet, {FlatList} from 'react-native-actions-sheet';
 import {ListItem} from '../components/ListItem';
+import {TextField} from '../components/TextField';
 import Typography from '../components/Typography';
-import {hideMultipleSheets} from '../utils/SheetManagerSuper';
-import {allSheetNames} from './sheets';
+import {screenHeight} from '../utils/displayUtils';
 export const countryList = [
   {title: '🇮🇳', value: '+91', name: 'India', maxLength: 10},
   {title: '🇺🇸', value: '+1', name: 'USA', maxLength: 10},
@@ -18,21 +19,25 @@ export const Country = props => {
 
   return (
     <ActionSheet ref={sheetRef} gestureEnabled={false} closable={true}>
-      <View style={{width: '100%', height: '100%'}}>
+      <View style={{width: '100%', maxHeight: screenHeight / 3, padding: 16}}>
         <View
           style={{
             padding: 8,
           }}>
-          <TextInput
+          <TextField
             placeholder="Search Country ..."
-            onChangeText={searchText => {
-              setSearchText(searchText);
+            onChangeText={search => {
+              setSearchText(search);
             }}
             value={searchText}
+            insetElement={<FontAwesomeIcon icon={faSearch} />}
+            label={''}
+            helperText={''}
+            variant={'label'}
           />
         </View>
 
-        <FlashList
+        <FlatList
           data={
             searchText?.length != 0
               ? new Fuse(countryList, {
@@ -48,12 +53,11 @@ export const Country = props => {
               variant="country"
               data={item}
               onPress={() => {
-                props?.payload?.setCountry(item);
-                hideMultipleSheets(allSheetNames);
+                props?.payload?.setCountry && props?.payload?.setCountry(item);
+                sheetRef.current.hide();
               }}
             />
           )}
-          estimatedItemSize={100}
           ListEmptyComponent={
             <View style={{padding: 16}}>
               <Typography

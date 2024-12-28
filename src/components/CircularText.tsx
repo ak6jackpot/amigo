@@ -13,7 +13,7 @@ export const CircularText = ({text = '', fontsize = '40'}) => (
         strokeWidth={0}
       />
     </G>
-    <Text fill="#000" fontSize={fontsize}>
+    <Text fill="#000" fontSize={fontsize} fontFamily="Ubuntu-Regular">
       <TextPath href="#circle">
         <TSpan dy={-14}>{text}</TSpan>
       </TextPath>
