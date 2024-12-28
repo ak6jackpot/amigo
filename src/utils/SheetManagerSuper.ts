@@ -1,7 +1,8 @@
 import {SheetManager} from 'react-native-actions-sheet';
+import {allSheetNames} from '../sheets/sheets';
 
 export type sheets = {
-  name: 'EditPreference';
+  name: 'EditPreference' | 'Logout' | 'Login' | 'Country';
   params?: object;
 };
 export const SheetManagerSuper = (
@@ -20,4 +21,8 @@ export const SheetManagerSuper = (
 
 export const hideMultipleSheets = (sheetNames: string[]) => {
   sheetNames?.map((sheetName: string) => SheetManager.hide(sheetName));
+};
+
+export const hideAllSheets = () => {
+  allSheetNames?.map((sheetName: string) => SheetManager.hide(sheetName));
 };

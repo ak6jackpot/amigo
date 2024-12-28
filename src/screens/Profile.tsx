@@ -18,10 +18,10 @@ import {observer} from 'mobx-react-lite';
 import React from 'react';
 import {View} from 'react-native';
 import {List} from 'react-native-paper';
-import {SheetManagerSuper} from '../SheetManagerSuper';
-import {Color} from '../Utils';
+import {SheetManagerSuper} from '../utils/SheetManagerSuper';
+import {Color} from '../utils/displayUtils';
 import {Header} from '../components/Header';
-import {userDataStore} from '../store';
+import {userDataStore} from '../utils/store';
 
 export const Profile = observer(({route}) => {
   return (

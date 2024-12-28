@@ -3,21 +3,16 @@ import {Pressable, SafeAreaView, ScrollView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Typography from '../components/Typography';
 import {FlashList} from '@shopify/flash-list';
-import {
-  Color,
-  generatePhotoUrl,
-  loadLocationDetails,
-  screenHeight,
-  screenWidth,
-} from '../Utils';
+import {Color, screenHeight, screenWidth} from '../utils/displayUtils';
 import {Translator} from '../components/Translator';
-import {fetchDescriptionOpenAI} from '../APIs';
+import {fetchDescriptionOpenAI} from '../utils/serviceAPIcalls';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faDiamondTurnRight, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 import {Header} from '../components/Header';
-import itineraryStore from '../store';
+import {itineraryDataStore} from '../utils/store';
+import {generatePhotoUrl, loadLocationDetails} from '../utils/locationUtils';
 
 export const LocationDetails = observer(({route}) => {
   const {details, nearbyLocationDetails} = route?.params;
@@ -223,7 +218,7 @@ export const LocationDetails = observer(({route}) => {
               ]}>
               <FontAwesomeIcon icon={faDiamondTurnRight} size={'100%'} />
             </Pressable>
-            {itineraryStore?.itineraries?.length > 0 && (
+            {itineraryDataStore?.itineraries?.length > 0 && (
               <Pressable
                 onPress={() => {
                   // console.log(item?.location);

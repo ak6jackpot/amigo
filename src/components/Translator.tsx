@@ -12,8 +12,8 @@ import {
 } from 'react-native';
 import Typography from './Typography';
 import {FlashList} from '@shopify/flash-list';
-import {fetchTranslationOpenAI} from '../APIs';
-import {Color} from '../Utils';
+import {fetchTranslationOpenAI} from '../utils/serviceAPIcalls';
+import {Color} from '../utils/displayUtils';
 
 type TranslatorProps = {
   place: string;

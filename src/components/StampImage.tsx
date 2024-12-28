@@ -8,7 +8,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Typography from './Typography';
-import {Color, loadLocationDetails} from '../Utils';
+import {Color} from '../utils/displayUtils';
+import {loadLocationDetails} from '../utils/locationUtils';
 
 export const StampImage = ({data = {}}) => {
   const [focused, setFocused] = useState(false);

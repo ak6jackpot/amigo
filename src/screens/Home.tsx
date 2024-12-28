@@ -12,19 +12,24 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Video from 'react-native-video';
-import {fetchNearbyOpenAI, locationSearchMaps} from '../APIs';
+import {fetchNearbyOpenAI, locationSearchMaps} from '../utils/serviceAPIcalls';
 import {RightArrow} from '../assets/images/RightArrow';
 import {ActivityCard} from '../components/ActivityCard';
 import ButtonComp from '../components/ButtonComp';
 import {Header} from '../components/Header';
 import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
-import itineraryStore, {functionDataStore, userDataStore} from '../store';
-import {Color, loadLocationDetails} from '../Utils';
+import {
+  functionDataStore,
+  userDataStore,
+  itineraryDataStore,
+} from '../utils/store';
+import {Color} from '../utils/displayUtils';
 import LoaderKit from 'react-native-loader-kit';
 import {observer} from 'mobx-react-lite';
-import {cities} from '../data';
+import {cities} from '../data/data';
 import GetLocation from 'react-native-get-location';
+import {loadLocationDetails} from '../utils/locationUtils';
 
 export const Home = observer(() => {
   const navigation = useNavigation();
@@ -176,7 +181,7 @@ export const Home = observer(() => {
                 justifyContent: 'space-between',
               }}>
               <Typography text={'Upcoming Trips'} variant="heading" />
-              {itineraryStore?.itineraries?.length > 0 && (
+              {itineraryDataStore?.itineraries?.length > 0 && (
                 <Pressable
                   onPress={() => {
                     navigation?.navigate('Itineraries');
@@ -185,10 +190,10 @@ export const Home = observer(() => {
                 </Pressable>
               )}
             </View>
-            {itineraryStore?.itineraries?.length > 0 ? (
+            {itineraryDataStore?.itineraries?.length > 0 ? (
               <FlatList
                 contentContainerStyle={{paddingRight: 16, paddingVertical: 8}}
-                data={itineraryStore?.itineraries}
+                data={itineraryDataStore?.itineraries}
                 renderItem={({item}) => (
                   <ActivityCard
                     data={item}

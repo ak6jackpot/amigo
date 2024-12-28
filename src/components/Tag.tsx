@@ -1,10 +1,9 @@
 import {faCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Pressable, View} from 'react-native';
 import Typography from './Typography';
-import {Color, loadLocationDetails} from '../Utils';
+import {Color} from '../utils/displayUtils';
 
 type TagProps = {
   text?: string;

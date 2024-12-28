@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import Typography from '../components/Typography';
 import ButtonComp from '../components/ButtonComp';
-import itineraryStore from '../store';
-import {Color, loadLocationDetails} from '../Utils';
+import {itineraryDataStore} from '../utils/store';
+import {Color} from '../utils/displayUtils';
 import {FlatList} from 'react-native-gesture-handler';
 import {ListItem} from '../components/ListItem';
 import {useNavigation} from '@react-navigation/native';
@@ -11,13 +11,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {observer} from 'mobx-react-lite';
 import {Header} from '../components/Header';
 import {Snack} from '../components/Snack';
+import {loadLocationDetails} from '../utils/locationUtils';
 
 export const Itineraries = observer(({route}) => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    console.log(itineraryStore?.itineraries, '-----------');
-  }, [itineraryStore?.itineraries]);
+    console.log(itineraryDataStore?.itineraries, '-----------');
+  }, [itineraryDataStore?.itineraries]);
 
   return (
     <SafeAreaView>
@@ -32,10 +33,10 @@ export const Itineraries = observer(({route}) => {
 
         <Typography variant="heading" text={'Your Trips'} />
         <View style={{marginVertical: 8}}>
-          {itineraryStore?.itineraries?.length > 0 ? (
+          {itineraryDataStore?.itineraries?.length > 0 ? (
             <View style={{marginVertical: 8, width: '100%', aspectRatio: 0.6}}>
               <FlatList
-                data={itineraryStore?.itineraries}
+                data={itineraryDataStore?.itineraries}
                 keyExtractor={(item, index) => index.toString()}
                 showsVerticalScrollIndicator={false}
                 renderItem={({item}) => (
@@ -62,7 +63,7 @@ export const Itineraries = observer(({route}) => {
 
                           loadLocationDetails(route?.params?.id).then(dets => {
                             dets['visited'] = false;
-                            itineraryStore?.addLocation(item?.id, dets);
+                            itineraryDataStore?.addLocation(item?.id, dets);
                           });
                           Snack({
                             text:
@@ -79,7 +80,7 @@ export const Itineraries = observer(({route}) => {
                           setTimeout(() => {
                             AsyncStorage?.setItem(
                               'itineraries',
-                              JSON.stringify(itineraryStore?.itineraries),
+                              JSON.stringify(itineraryDataStore?.itineraries),
                             );
                             navigation?.goBack();
                           }, 1000);
@@ -110,7 +111,7 @@ export const Itineraries = observer(({route}) => {
             bottom: 64,
             alignSelf: 'center',
           }}>
-          {itineraryStore?.itineraries?.length > 0 ? (
+          {itineraryDataStore?.itineraries?.length > 0 ? (
             <ButtonComp
               text="Create another trip"
               color={Color.pinkPrimary}

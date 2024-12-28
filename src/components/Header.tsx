@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {Pressable, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Color} from '../Utils';
+import {Color} from '../utils/displayUtils';
 import Typography from './Typography';
 import {useNavigation} from '@react-navigation/native';
 

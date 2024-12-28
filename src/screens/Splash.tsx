@@ -8,32 +8,121 @@ import {
   faRoute,
   faUmbrellaBeach,
 } from '@fortawesome/free-solid-svg-icons';
-import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
-import {Color, screenHeight, screenWidth} from '../Utils';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {observer} from 'mobx-react-lite';
+import React, {useCallback, useEffect} from 'react';
+import {BackHandler, Text, View} from 'react-native';
+import GetLocation from 'react-native-get-location';
 import ButtonComp from '../components/ButtonComp';
 import {Disc} from '../components/Disc';
 import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
-import {useNavigation} from '@react-navigation/native';
-import GetLocation from 'react-native-get-location';
-import itineraryStore, {userDataStore} from '../store';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {observer} from 'mobx-react-lite';
+import {
+  SheetManagerSuper,
+  hideMultipleSheets,
+} from '../utils/SheetManagerSuper';
+import {appInitialisation} from '../utils/appInitialisation';
+import {Color, screenHeight, screenWidth} from '../utils/displayUtils';
+import {idDataStore, userDataStore} from '../utils/store';
 
 export const Splash = observer(() => {
   const navigation = useNavigation();
 
-  const AsyncGet = async () => {
-    AsyncStorage?.getItem('itineraries').then(res => {
-      JSON?.parse(res)?.map(item => {
-        itineraryStore?.addItinerary(item);
-      });
-    });
+  const handleBackButton = () => {
+    BackHandler.exitApp();
+    return true;
   };
   useEffect(() => {
-    AsyncGet();
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    };
   }, []);
+
+  const AsyncGet = async () => {
+    console.log('async get');
+
+    await AsyncStorage.multiGet([
+      'consent',
+      'sessionId',
+      'merchantId',
+      'phone',
+      'biometricRequired',
+      'disclaimer',
+      'firstTimeAppOpen',
+    ])
+      .then(async response => {
+        const [
+          consent,
+          session,
+          merchant,
+          phoneNumber,
+          biometricRequired,
+          disclaimer,
+          firstTimeAppOpen,
+        ] = [
+          response[0][1],
+          response[1][1],
+          response[2][1],
+          response[3][1],
+          response[4][1],
+          response[5][1],
+          response[6][1],
+        ];
+
+        let sessionId = session;
+        let merchantId = merchant;
+        let phone = phoneNumber;
+
+        console.log(
+          consent,
+          session,
+          merchant,
+          phoneNumber,
+          biometricRequired,
+          disclaimer,
+          firstTimeAppOpen,
+          '<-- async get',
+        );
+
+        idDataStore?.setIDData({
+          biometricRequired: biometricRequired,
+        });
+
+        if (sessionId !== null && merchantId !== null) {
+          idDataStore?.setIDData({
+            sessionId: sessionId,
+            merchantId: merchantId,
+          });
+          appInitialisation(navigation).then(async resp => {
+            const appOpenLink = await captureAppOpenDeepLink();
+
+            setTimeout(() => {
+              handleDeepLink(appOpenLink, navigation);
+            }, 500);
+          });
+        } else if (sessionId == null || merchantId == null) {
+          setTimeout(() => {
+            SheetManagerSuper('Login');
+          }, 1300);
+        } else {
+          console.log(sessionId, merchantId, '//from splash screen');
+        }
+      })
+      .catch(error => console.log(error, '//async get error'));
+    // console.log('//from splash, async is getting called');
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      AsyncGet();
+      return () => {
+        hideMultipleSheets(['Login']);
+      };
+    }, []),
+  );
+
   return (
     <View
       style={{
@@ -125,14 +214,6 @@ export const Splash = observer(() => {
         color={Color.pinkPrimary}
         textColor="#190b14"
         onPress={() => {
-          // Snack({
-          //   text: 'This destination has already been added!',
-          //   variant: 'quote',
-          //   actionText: 'View',
-          //   actionFunction: () => {
-          //     navigation?.navigate('Tabs');
-          //   },
-          // });
           GetLocation.getCurrentPosition({
             enableHighAccuracy: true,
             timeout: 60000,

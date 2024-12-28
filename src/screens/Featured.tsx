@@ -1,12 +1,12 @@
 import React, {useRef} from 'react';
 import {Animated, View} from 'react-native';
 import Video from 'react-native-video';
-import {Color, screenHeight, screenWidth} from '../Utils';
+import {Color, screenHeight, screenWidth} from '../utils/displayUtils';
 import {StampImage} from '../components/StampImage';
 import Typography from '../components/Typography';
-import {functionDataStore} from '../store';
+import {functionDataStore} from '../utils/store';
 import LoaderKit from 'react-native-loader-kit';
-import {featuredData} from '../data';
+import {featuredData} from '../data/data';
 import {observer} from 'mobx-react-lite';
 
 export const Featured = observer(() => {

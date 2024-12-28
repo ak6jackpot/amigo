@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React, {useEffect, useRef} from 'react';
 import {Animated, View} from 'react-native';
 import {CircularText} from './CircularText';
-import {Color} from '../Utils';
+import {Color} from '../utils/displayUtils';
 
 type DiscProps = {
   size?: 'small' | 'medium' | 'large';

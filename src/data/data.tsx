@@ -1,12 +1,12 @@
-import agra from './assets/images/Agra.jpg';
-import barcelona from './assets/images/Barcelona.jpg';
-import colosseum from './assets/images/Colosseum.jpg';
-import dubai from './assets/images/Dubai.jpg';
-import france from './assets/images/France.jpg';
-import newyork from './assets/images/NewYork.jpg';
-import paris from './assets/images/Paris.jpg';
-import peru from './assets/images/Peru.jpg';
-import rio from './assets/images/Rio.jpg';
+import agra from '../assets/images/Agra.jpg';
+import barcelona from '../assets/images/Barcelona.jpg';
+import colosseum from '../assets/images/Colosseum.jpg';
+import dubai from '../assets/images/Dubai.jpg';
+import france from '../assets/images/France.jpg';
+import newyork from '../assets/images/NewYork.jpg';
+import paris from '../assets/images/Paris.jpg';
+import peru from '../assets/images/Peru.jpg';
+import rio from '../assets/images/Rio.jpg';
 
 export const cities = [
   {

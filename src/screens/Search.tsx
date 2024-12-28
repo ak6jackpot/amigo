@@ -4,11 +4,12 @@ import Typography from '../components/Typography';
 import {ListItem} from '../components/ListItem';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {FlashList} from '@shopify/flash-list';
-import {locationSearchMaps} from '../APIs';
+import {locationSearchMaps} from '../utils/serviceAPIcalls';
 import {faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
-import {Color, loadLocationDetails} from '../Utils';
+import {Color} from '../utils/displayUtils';
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
+import {loadLocationDetails} from '../utils/locationUtils';
 
 export const Search = observer(({route}) => {
   const [searchText, setSearchText] = useState('');

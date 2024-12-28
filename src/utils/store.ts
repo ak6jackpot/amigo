@@ -76,10 +76,13 @@ class ItineraryStore {
       }
     }
   }
+
+  reset() {
+    this.itineraries = [];
+  }
 }
 
-const itineraryStore = new ItineraryStore();
-export default itineraryStore;
+export const itineraryDataStore = new ItineraryStore();
 
 interface UserData {
   currentLocation?: object;
@@ -148,6 +151,60 @@ class UserDataStore {
 }
 
 export const userDataStore = new UserDataStore();
+
+interface Id {
+  merchantId: string;
+  sessionId: string;
+  clientId: string;
+  media_source: string;
+  campaign: string;
+  ip_address: string;
+  appsFlyerId: string;
+  biometricRequired: string;
+  publicKeySystem: string;
+  privateKeySystem: string;
+  publicKeyServer: string;
+  firebaseAppInstanceId: string;
+  deviceId: string;
+  lastApiCallTime: number;
+}
+
+class IDStore {
+  initialIdData: Id = {
+    merchantId: '',
+    sessionId: '',
+    clientId: '',
+    media_source: '',
+    campaign: '',
+    ip_address: '',
+    appsFlyerId: '',
+    biometricRequired: 'false',
+    publicKeySystem: '',
+    privateKeySystem: '',
+    publicKeyServer: '',
+    firebaseAppInstanceId: '',
+    deviceId: '',
+    lastApiCallTime: 0,
+  };
+  idData: Id = this.initialIdData;
+
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  setIDData(value: any) {
+    this.idData = {
+      ...this.idData,
+      ...value,
+    };
+  }
+
+  reset() {
+    this.idData = {...this.initialIdData};
+  }
+}
+
+export const idDataStore = new IDStore();
 
 interface Function {
   loaderVisible?: boolean;

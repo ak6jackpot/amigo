@@ -18,6 +18,7 @@
     "@react-native-async-storage/async-storage": "^1.24.0",
     "@shopify/flash-list": "^1.6.3",
     "axios": "^1.6.8",
+    "fuse.js": "^7.0.0",
     "mobx": "^6.12.3",
     "mobx-react": "^9.1.0",
     "mobx-react-lite": "^4.0.5",

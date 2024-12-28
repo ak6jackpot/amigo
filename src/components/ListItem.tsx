@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
 import {Pressable, View} from 'react-native';
 import Typography from './Typography';
-import {Color, randomColorGenerator} from '../Utils';
+import {Color, randomColorGenerator} from '../utils/displayUtils';
 
 type ListItemProps = {
   variant?: 'search' | 'trip' | 'city' | 'template';

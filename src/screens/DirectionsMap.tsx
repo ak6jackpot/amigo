@@ -9,8 +9,8 @@ import MapView, {
 } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {API_key_Maps} from '../../secrets.json';
-import {Color, screenHeight, screenWidth} from '../Utils';
-import {userDataStore} from '../store';
+import {Color, screenHeight, screenWidth} from '../utils/displayUtils';
+import {userDataStore} from '../utils/store';
 import {useNavigation} from '@react-navigation/native';
 import Typography from '../components/Typography';
 import * as Animatable from 'react-native-animatable';

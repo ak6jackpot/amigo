@@ -2,18 +2,13 @@ import React from 'react';
 import {SafeAreaView, View} from 'react-native';
 import Typography from '../components/Typography';
 import {FlashList} from '@shopify/flash-list';
-import {
-  Color,
-  generatePhotoUrl,
-  loadLocationDetails,
-  screenHeight,
-  screenWidth,
-} from '../Utils';
+import {Color, screenHeight, screenWidth} from '../utils/displayUtils';
 import FastImage from 'react-native-fast-image';
 import ButtonComp from '../components/ButtonComp';
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 import {Header} from '../components/Header';
+import {loadLocationDetails} from '../utils/locationUtils';
 
 export const NearbyLocations = observer(({route}) => {
   const {nearbyList} = route?.params;

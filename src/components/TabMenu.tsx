@@ -2,7 +2,7 @@ import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Color} from '../Utils';
+import {Color} from '../utils/displayUtils';
 import * as Animatable from 'react-native-animatable';
 
 type TabMenuType = {

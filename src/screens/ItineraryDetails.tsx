@@ -2,8 +2,8 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useRef} from 'react';
 import {Animated, FlatList, Pressable, SafeAreaView, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Color, loadLocationDetails} from '../Utils';
-import itineraryStore, {functionDataStore} from '../store';
+import {Color} from '../utils/displayUtils';
+import {functionDataStore, itineraryDataStore} from '../utils/store';
 import Typography from '../components/Typography';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
@@ -22,12 +22,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderKit from 'react-native-loader-kit';
 import {Header} from '../components/Header';
 import {Snack} from '../components/Snack';
+import {loadLocationDetails} from '../utils/locationUtils';
 
 export const ItineraryDetails = observer(({route}) => {
   const {itineraryId} = route?.params;
   const navigation = useNavigation();
 
-  const itinerary = itineraryStore.itineraries.find(
+  const itinerary = itineraryDataStore.itineraries.find(
     item => item.id === itineraryId,
   );
 
@@ -50,7 +51,7 @@ export const ItineraryDetails = observer(({route}) => {
         useNativeDriver: true,
       }),
     ]).start(() => {
-      itineraryStore?.reorderLocations(
+      itineraryDataStore?.reorderLocations(
         itinerary?.id,
         index,
         index + (direction === 'up' ? -1 : 1),
@@ -58,7 +59,7 @@ export const ItineraryDetails = observer(({route}) => {
       animatedValues.forEach(value => value.setValue(0));
       AsyncStorage?.setItem(
         'itineraries',
-        JSON.stringify(itineraryStore?.itineraries),
+        JSON.stringify(itineraryDataStore?.itineraries),
       );
     });
   };
@@ -173,7 +174,7 @@ export const ItineraryDetails = observer(({route}) => {
                             text: 'Marked as Visited!',
                             variant: 'success',
                           });
-                        itineraryStore?.toggleLocationVisited(
+                        itineraryDataStore?.toggleLocationVisited(
                           itinerary?.id,
                           item?.details?.id,
                         );
@@ -181,7 +182,7 @@ export const ItineraryDetails = observer(({route}) => {
                         setTimeout(() => {
                           AsyncStorage?.setItem(
                             'itineraries',
-                            JSON.stringify(itineraryStore?.itineraries),
+                            JSON.stringify(itineraryDataStore?.itineraries),
                           );
                         }, 500);
                       }}>
@@ -228,14 +229,14 @@ export const ItineraryDetails = observer(({route}) => {
                         borderColor: Color?.graySend,
                       }}
                       onPress={() => {
-                        itineraryStore?.removeLocation(
+                        itineraryDataStore?.removeLocation(
                           itinerary.id,
                           item?.details?.id,
                         );
                         setTimeout(() => {
                           AsyncStorage?.setItem(
                             'itineraries',
-                            JSON.stringify(itineraryStore?.itineraries),
+                            JSON.stringify(itineraryDataStore?.itineraries),
                           );
                         }, 500);
                       }}>

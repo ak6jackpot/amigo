@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {API_key_TA} from '../secrets.json';
-import {API_key_Maps} from '../secrets.json';
-import {API_key_OpenAI} from '../secrets.json';
-import {generatePhotoUrl} from './Utils';
+import {API_key_TA} from '../../secrets.json';
+import {API_key_Maps} from '../../secrets.json';
+import {API_key_OpenAI} from '../../secrets.json';
+import {generatePhotoUrl} from './locationUtils';
 
 export const locationSearchTA = async (
   searchQuery: string,

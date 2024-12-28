@@ -2,20 +2,21 @@ import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 import React, {useState} from 'react';
 import {FlatList, Pressable, SafeAreaView, TextInput, View} from 'react-native';
-import {Color, loadLocationDetails} from '../Utils';
+import {Color} from '../utils/displayUtils';
 import ButtonComp from '../components/ButtonComp';
 import {FlashList} from '@shopify/flash-list';
-import {cities} from '../data';
+import {cities} from '../data/data';
 import {Tag} from '../components/Tag';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
-import {locationSearchMaps} from '../APIs';
+import {locationSearchMaps} from '../utils/serviceAPIcalls';
 import {ListItem} from '../components/ListItem';
-import itineraryStore, {functionDataStore} from '../store';
+import {functionDataStore, itineraryDataStore} from '../utils/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderKit from 'react-native-loader-kit';
 import {Snack} from '../components/Snack';
 import uuid from 'react-native-uuid';
+import {loadLocationDetails} from '../utils/locationUtils';
 
 export const CreateItinerary = observer(({route}) => {
   const navigation = useNavigation();
@@ -250,10 +251,10 @@ export const CreateItinerary = observer(({route}) => {
                 width100={true}
                 onPress={() => {
                   if (route?.params?.id) {
-                    itineraryStore?.removeItinerary(route?.params?.id);
+                    itineraryDataStore?.removeItinerary(route?.params?.id);
 
                     setTimeout(() => {
-                      itineraryStore?.addItinerary({
+                      itineraryDataStore?.addItinerary({
                         id: route?.params?.id,
                         name: name,
                         description: description,
@@ -264,7 +265,10 @@ export const CreateItinerary = observer(({route}) => {
                         collaborators: ['akshat'],
                         isPublic: true,
                       });
-                      console.log(itineraryStore?.itineraries, 'after store');
+                      console.log(
+                        itineraryDataStore?.itineraries,
+                        'after store',
+                      );
                     }, 500);
 
                     setTimeout(() => {
@@ -272,14 +276,14 @@ export const CreateItinerary = observer(({route}) => {
 
                       AsyncStorage?.setItem(
                         'itineraries',
-                        JSON.stringify(itineraryStore?.itineraries),
+                        JSON.stringify(itineraryDataStore?.itineraries),
                       );
                       console.log('after async');
 
                       navigation?.goBack();
                     }, 1000);
                   } else {
-                    const x = itineraryStore?.itineraries?.find(item => {
+                    const x = itineraryDataStore?.itineraries?.find(item => {
                       return item?.name === name;
                     });
                     if (x?.id) {
@@ -288,7 +292,7 @@ export const CreateItinerary = observer(({route}) => {
                         variant: 'error',
                       });
                     } else {
-                      itineraryStore?.addItinerary({
+                      itineraryDataStore?.addItinerary({
                         id: uuid.v4(),
                         name: name,
                         description: description,
@@ -302,7 +306,7 @@ export const CreateItinerary = observer(({route}) => {
                       setTimeout(() => {
                         AsyncStorage?.setItem(
                           'itineraries',
-                          JSON.stringify(itineraryStore?.itineraries),
+                          JSON.stringify(itineraryDataStore?.itineraries),
                         );
                       }, 500);
                       navigation?.goBack();

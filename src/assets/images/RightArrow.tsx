@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Svg, {G, Path} from 'react-native-svg';
-import {Color} from '../../Utils';
+import {Color} from '../../utils/displayUtils';
 
 type RightArrowProps = {
   size?: string;

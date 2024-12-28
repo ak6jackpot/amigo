@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {Pressable, View} from 'react-native';
 import Typography from './Typography';
-import {Color} from '../Utils';
+import {Color} from '../utils/displayUtils';
 
 type ActivityCardProps = {
   data: object;

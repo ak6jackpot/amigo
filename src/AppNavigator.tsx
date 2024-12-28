@@ -17,7 +17,7 @@ import {CreateItinerary} from './screens/CreateItinerary';
 import {ItineraryTemplates} from './screens/ItineraryTemplates';
 import {Tabs} from './Tabs';
 import {SnackUI} from './components/Snack';
-import {functionDataStore} from './store';
+import {functionDataStore} from './utils/store';
 import {observer} from 'mobx-react-lite';
 import {AddToItinerary} from './screens/AddToItinerary';
 import {LocationDetailsModal} from './screens/LocationDetailsModal';
