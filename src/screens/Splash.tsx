@@ -11,7 +11,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {BackHandler, Text, View} from 'react-native';
 import GetLocation from 'react-native-get-location';
 import ButtonComp from '../components/ButtonComp';
@@ -28,7 +28,7 @@ import {idDataStore, userDataStore} from '../utils/store';
 
 export const Splash = observer(() => {
   const navigation = useNavigation();
-
+  const [buttonVisible, setButtonVisible] = useState(false);
   const handleBackButton = () => {
     BackHandler.exitApp();
     return true;
@@ -90,7 +90,7 @@ export const Splash = observer(() => {
 
         if (sessionId !== null && merchantId !== null) {
           console.log('splash -- previously logged in');
-
+          setButtonVisible(false);
           idDataStore?.setIDData({
             sessionId: sessionId,
             merchantId: merchantId,
@@ -112,7 +112,7 @@ export const Splash = observer(() => {
           });
         } else {
           console.log('splash -- navigating to login');
-          SheetManagerSuper('Login');
+          setButtonVisible(true);
         }
       })
       .catch(error => console.log(error, 'splash -- async get error'));
@@ -212,6 +212,17 @@ export const Splash = observer(() => {
         size="small"
       />
       <Typography text={'without any hassle'} variant="label" size="small" />
+      {buttonVisible && (
+        <ButtonComp
+          text="Let's Get started!"
+          customStyle={{marginVertical: 12, width: '50%'}}
+          textColor="#190b14"
+          onPress={() => {
+            // SheetManagerSuper('Login');
+            navigation.navigate('Tabs');
+          }}
+        />
+      )}
     </View>
   );
 });

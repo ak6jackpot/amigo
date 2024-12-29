@@ -17,6 +17,7 @@ import LoaderKit from 'react-native-loader-kit';
 import {Snack} from '../components/Snack';
 import uuid from 'react-native-uuid';
 import {loadLocationDetails} from '../utils/locationUtils';
+import {TextField} from '../components/TextField';
 
 export const CreateItinerary = observer(({route}) => {
   const navigation = useNavigation();
@@ -70,36 +71,32 @@ export const CreateItinerary = observer(({route}) => {
           height: '100%',
           width: '100%',
         }}>
-        <TextInput
-          style={{
-            fontFamily: 'Ubuntu-Regular',
-            color: Color?.black,
-            borderRadius: 12,
-            borderWidth: 1,
-            borderColor: Color?.gray900,
-            padding: 16,
-          }}
-          autoFocus={route?.params?.name ? false : true}
-          placeholder="Enter a Name for your trip"
-          placeholderTextColor={Color?.gray900}
-          maxLength={20}
-          value={name}
+        <TextField
           onChangeText={setName}
+          value={name}
+          autoFocus={route?.params?.name ? false : true}
+          maxLength={20}
+          placeholder="Enter a name for your trip"
+          insetElement={
+            name !== '' && (
+              <Pressable onPress={() => {}}>
+                <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
+              </Pressable>
+            )
+          }
         />
-        <TextInput
-          style={{
-            fontFamily: 'Ubuntu-Regular',
-            color: Color?.black,
-            borderRadius: 12,
-            borderWidth: 1,
-            padding: 16,
-            borderColor: Color?.gray900,
-          }}
-          placeholder="Enter a Description for your trip"
-          placeholderTextColor={Color?.gray900}
+        <TextField
+          onChangeText={setDescription}
           value={description}
           maxLength={60}
-          onChangeText={setDescription}
+          placeholder="Enter a description for your trip"
+          insetElement={
+            searchText !== '' && (
+              <Pressable onPress={() => {}}>
+                <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
+              </Pressable>
+            )
+          }
         />
         {name?.length > 4 && description?.length > 9 && (
           <View style={{marginVertical: 8}}>
@@ -134,40 +131,31 @@ export const CreateItinerary = observer(({route}) => {
               decelerationRate="fast"
             />
             <View style={{marginVertical: 8}}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  backgroundColor: Color?.whiteBg,
-                  borderRadius: 50,
-                  paddingHorizontal: 12,
-                  elevation: 2,
-                  marginBottom: 16,
-                }}>
-                <FontAwesomeIcon icon={faSearch} size={20} color="#888" />
-                <TextInput
-                  style={{
-                    flex: 1,
-                    marginLeft: 8,
-                    fontSize: 16,
-                    fontFamily: 'Ubuntu-Regular',
-                    padding: 16,
-                  }}
-                  placeholder="Search a city, location, or description"
-                  placeholderTextColor={Color?.gray900}
-                  value={searchText}
-                  onChangeText={handleSearch}
-                />
-                {searchText !== '' && (
-                  <Pressable
-                    onPress={() => {
-                      setSearchText('');
-                      setSearchResults([]);
-                    }}>
-                    <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
-                  </Pressable>
-                )}
-              </View>
+              <TextField
+                onChangeText={handleSearch}
+                value={searchText}
+                placeholder="Search a city, location, or description"
+                startInsetElement={
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    size={20}
+                    color="#888"
+                    style={{alignSelf: 'center'}}
+                  />
+                }
+                insetElement={
+                  searchText !== '' && (
+                    <Pressable
+                      onPress={() => {
+                        setSearchText('');
+                        setSearchResults([]);
+                      }}>
+                      <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
+                    </Pressable>
+                  )
+                }
+              />
+
               <FlatList
                 data={
                   searchResults?.length > 3
@@ -179,23 +167,27 @@ export const CreateItinerary = observer(({route}) => {
                   <ListItem
                     data={item}
                     onPress={() => {
-                      loadLocationDetails(item?.id, undefined).then(dets => {
-                        dets['visited'] = false;
-                        const x = locations?.find(location => {
-                          return location?.details?.id === item?.id;
-                        });
-                        if (x?.details?.id) {
-                          Snack({
-                            text: 'This destination has already been added!',
-                            variant: 'error',
+                      loadLocationDetails(item?.id, undefined)
+                        .then(dets => {
+                          dets['visited'] = false;
+                          const x = locations?.find(location => {
+                            return location?.details?.id === item?.id;
                           });
-                        } else {
-                          setLocations(prevLocations => [
-                            ...prevLocations,
-                            dets,
-                          ]);
-                        }
-                      });
+                          if (x?.details?.id) {
+                            Snack({
+                              text: 'This destination has already been added!',
+                              variant: 'error',
+                            });
+                          } else {
+                            setLocations(prevLocations => [
+                              ...prevLocations,
+                              dets,
+                            ]);
+                          }
+                        })
+                        .catch(err => {
+                          console.log(err);
+                        });
                     }}
                   />
                 )}
@@ -216,7 +208,13 @@ export const CreateItinerary = observer(({route}) => {
                     data={item}
                     variant="city"
                     onPress={() => {
-                      // loadLocationDetails(item?.id, undefined, navigation);
+                      console.log(item);
+
+                      loadLocationDetails(
+                        item?.details?.id,
+                        undefined,
+                        navigation,
+                      );
                     }}
                     rightElement={<FontAwesomeIcon icon={faXmark} />}
                     onPressRight={() => {

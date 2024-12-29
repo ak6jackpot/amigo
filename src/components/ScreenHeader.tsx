@@ -7,15 +7,15 @@ import {Color} from '../utils/displayUtils';
 import Typography from './Typography';
 import {useNavigation} from '@react-navigation/native';
 
-type HeaderProps = {
+type ScreenHeaderProps = {
   variant?: string;
   text?: string;
 };
 
-export const Header = ({
+export const ScreenHeader = ({
   variant = 'home',
   text = 'It is the journey that matters...',
-}: HeaderProps) => {
+}: ScreenHeaderProps) => {
   const navigation = useNavigation();
   switch (variant) {
     case 'home':

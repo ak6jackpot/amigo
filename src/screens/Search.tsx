@@ -10,6 +10,7 @@ import {Color} from '../utils/displayUtils';
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
 import {loadLocationDetails} from '../utils/locationUtils';
+import {TextField} from '../components/TextField';
 
 export const Search = observer(({route}) => {
   const [searchText, setSearchText] = useState('');
@@ -29,39 +30,29 @@ export const Search = observer(({route}) => {
         padding: 16,
         flex: 1,
       }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          backgroundColor: Color?.whiteBg,
-          borderRadius: 50,
-          paddingHorizontal: 12,
-          elevation: 2,
-          marginBottom: 16,
-        }}>
-        <FontAwesomeIcon icon={faSearch} size={20} color="#888" />
-        <TextInput
-          style={{
-            flex: 1,
-            marginLeft: 8,
-            fontSize: 16,
-            fontFamily: 'Ubuntu-Regular',
-            padding: 8,
-          }}
-          placeholder="Search a city, location, or description"
-          placeholderTextColor={Color?.gray900}
-          value={searchText}
-          autoFocus={true}
-          onChangeText={handleSearch}
-        />
-        <Pressable
-          onPress={() => {
-            setSearchText('');
-            setSearchResults([]);
-          }}>
-          <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
-        </Pressable>
-      </View>
+      <TextField
+        onChangeText={handleSearch}
+        value={searchText}
+        autoFocus={true}
+        placeholder="Search a city, location, or description"
+        startInsetElement={
+          <FontAwesomeIcon
+            icon={faSearch}
+            size={20}
+            color="#888"
+            style={{alignSelf: 'center'}}
+          />
+        }
+        insetElement={
+          <Pressable
+            onPress={() => {
+              setSearchText('');
+              setSearchResults([]);
+            }}>
+            <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
+          </Pressable>
+        }
+      />
       <FlashList
         data={searchResults}
         keyExtractor={(item, index) => index.toString()}

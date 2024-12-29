@@ -16,7 +16,7 @@ import {fetchNearbyOpenAI, locationSearchMaps} from '../utils/serviceAPIcalls';
 import {RightArrow} from '../assets/images/RightArrow';
 import {ActivityCard} from '../components/ActivityCard';
 import ButtonComp from '../components/ButtonComp';
-import {Header} from '../components/Header';
+import {ScreenHeader} from '../components/ScreenHeader';
 import {Tag} from '../components/Tag';
 import Typography from '../components/Typography';
 import {
@@ -119,7 +119,7 @@ export const Home = observer(() => {
             padding: 16,
             paddingBottom: 64,
           }}>
-          <Header />
+          <ScreenHeader />
           <View
             style={{
               alignItems: 'center',
@@ -254,15 +254,13 @@ export const Home = observer(() => {
                   height: 96,
                 }}>
                 <ButtonComp
-                  color={Color?.pinkPrimary}
                   textColor="black"
-                  size="medium"
-                  text="You don't have any trip coming up. Plan one now! ➡"
-                  styles={{
+                  size="small"
+                  text={"You don't have any trip coming up.\nPlan one now! ➡"}
+                  customStyle={{
                     width: '75%',
                     marginVertical: 8,
-                    textAlign: 'center',
-                    height: 72,
+                    borderRadius: 24,
                   }}
                   onPress={() => {
                     navigation?.navigate('CreateItinerary');

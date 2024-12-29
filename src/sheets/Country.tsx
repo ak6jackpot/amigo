@@ -30,7 +30,9 @@ export const Country = props => {
               setSearchText(search);
             }}
             value={searchText}
-            insetElement={<FontAwesomeIcon icon={faSearch} />}
+            startInsetElement={
+              <FontAwesomeIcon icon={faSearch} style={{alignSelf: 'center'}} />
+            }
             label={''}
             helperText={''}
             variant={'label'}

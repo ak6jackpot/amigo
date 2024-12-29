@@ -20,7 +20,7 @@ import {
 import {observer} from 'mobx-react-lite';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderKit from 'react-native-loader-kit';
-import {Header} from '../components/Header';
+import {ScreenHeader} from '../components/ScreenHeader';
 import {Snack} from '../components/Snack';
 import {loadLocationDetails} from '../utils/locationUtils';
 
@@ -98,7 +98,7 @@ export const ItineraryDetails = observer(({route}) => {
           height: '100%',
           width: '100%',
         }}>
-        <Header />
+        <ScreenHeader />
 
         <Typography text={itinerary?.name} variant="heading" />
         <Typography text={itinerary?.description} size="large" />

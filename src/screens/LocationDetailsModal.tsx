@@ -10,7 +10,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faDiamondTurnRight, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
 import {observer} from 'mobx-react-lite';
-import {Header} from '../components/Header';
+import {ScreenHeader} from '../components/ScreenHeader';
 import {generatePhotoUrl, loadLocationDetails} from '../utils/locationUtils';
 
 export const LocationDetailsModal = observer(({route}) => {
@@ -53,7 +53,7 @@ export const LocationDetailsModal = observer(({route}) => {
               padding: 16,
               paddingBottom: 0,
             }}>
-            <Header />
+            <ScreenHeader />
           </View>
 
           <FlashList

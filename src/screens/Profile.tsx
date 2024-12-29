@@ -20,7 +20,7 @@ import {View} from 'react-native';
 import {List} from 'react-native-paper';
 import {SheetManagerSuper} from '../utils/SheetManagerSuper';
 import {Color} from '../utils/displayUtils';
-import {Header} from '../components/Header';
+import {ScreenHeader} from '../components/ScreenHeader';
 import {userDataStore} from '../utils/store';
 
 export const Profile = observer(({route}) => {
@@ -30,7 +30,7 @@ export const Profile = observer(({route}) => {
         backgroundColor: Color.beigeBg,
         padding: 16,
       }}>
-      <Header />
+      <ScreenHeader />
 
       <List.Section>
         <List.Accordion

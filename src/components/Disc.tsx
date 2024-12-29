@@ -24,18 +24,16 @@ export const Disc = ({
 }: DiscProps) => {
   const rotateValue = useRef(new Animated.Value(0)).current;
 
-  // Interpolation to map the rotation value to degrees
   const rotateAnimation = rotateValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
   });
 
-  // Function to trigger the rotation animation
   const startRotating = () => {
     Animated.loop(
       Animated.timing(rotateValue, {
         toValue: 1,
-        duration: 10000, // 2 seconds for one complete rotation
+        duration: 10000,
         useNativeDriver: true,
       }),
     ).start();

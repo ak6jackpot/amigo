@@ -9,7 +9,7 @@ import {ListItem} from '../components/ListItem';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {observer} from 'mobx-react-lite';
-import {Header} from '../components/Header';
+import {ScreenHeader} from '../components/ScreenHeader';
 import {Snack} from '../components/Snack';
 import {loadLocationDetails} from '../utils/locationUtils';
 
@@ -29,7 +29,7 @@ export const Itineraries = observer(({route}) => {
           height: '100%',
           width: '100%',
         }}>
-        <Header />
+        <ScreenHeader />
 
         <Typography variant="heading" text={'Your Trips'} />
         <View style={{marginVertical: 8}}>

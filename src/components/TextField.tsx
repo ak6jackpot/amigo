@@ -2,7 +2,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import React, {forwardRef, ReactNode, useCallback} from 'react';
 import {TextInput, TextStyle, View, ViewStyle} from 'react-native';
 import Typography from './Typography';
-import {primitives} from '../utils/displayUtils';
+import {Color, primitives} from '../utils/displayUtils';
 
 export type TextFieldProps = {
   label?: string;
@@ -40,6 +40,7 @@ export type TextFieldProps = {
   onFocus?: () => void;
   onBlur?: () => void;
   insetElementStyle?: ViewStyle;
+  startInsetElementWide?: boolean;
 };
 
 export const TextField = forwardRef((props: TextFieldProps, ref) => {
@@ -63,6 +64,7 @@ export const TextField = forwardRef((props: TextFieldProps, ref) => {
     onFocus,
     onBlur,
     insetElementStyle,
+    startInsetElementWide = false,
   } = props;
 
   let styles: TextStyle = {color: primitives?.black, flex: 1};
@@ -256,10 +258,11 @@ export const TextField = forwardRef((props: TextFieldProps, ref) => {
             aspectRatio: 6.9,
             flexDirection: 'row',
             alignItems: 'center',
-            backgroundColor: '#eee',
-            borderRadius: 12,
+            backgroundColor: Color.whiteBg,
+            borderRadius: 100,
             borderWidth: 2,
             marginVertical: 8,
+            borderColor: '#fae1cd',
             paddingLeft: startInsetElement ? 0 : 8,
             paddingRight: insetElement ? 0 : 8,
             overflow: 'hidden',
@@ -271,7 +274,7 @@ export const TextField = forwardRef((props: TextFieldProps, ref) => {
         )}
         <View
           style={{
-            flex: 4 - (startInsetElement ? 1 : 0),
+            flex: startInsetElementWide ? 4 : 7 - (startInsetElement ? 1 : 0),
           }}>
           <TextInput
             placeholderTextColor="#6b6b6b"
