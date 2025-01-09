@@ -137,12 +137,16 @@ export const Login = () => {
     <ActionSheet
       ref={sheetRef}
       closable={true}
-      closeOnTouchBackdrop={false}
-      closeOnPressBack={false}
+      closeOnTouchBackdrop={true}
+      closeOnPressBack={true}
       containerStyle={{
         backgroundColor: Color.background,
       }}>
-      <SheetHeader />
+      <SheetHeader
+        onPressLeft={() => {
+          sheetRef?.current?.hide();
+        }}
+      />
       <View
         style={{
           padding: 16,

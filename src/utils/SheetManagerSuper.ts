@@ -9,7 +9,7 @@ export const SheetManagerSuper = (
   name: sheets['name'],
   params?: sheets['params'],
 ) => {
-  console.log(name, SheetManager.get(name), '// sheet to show');
+  // console.log(name, SheetManager.get(name), '// sheet to show');
   SheetManager.show(name, params);
   const sheetAlreadyLive = SheetManager.get(name) ? true : false;
 

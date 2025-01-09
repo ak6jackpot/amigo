@@ -108,7 +108,7 @@ export const Itineraries = observer(({route}) => {
             width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
-            bottom: 64,
+            bottom: 96,
             alignSelf: 'center',
           }}>
           {itineraryDataStore?.itineraries?.length > 0 ? (

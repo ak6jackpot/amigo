@@ -55,9 +55,7 @@ export const Profile = observer(({route}) => {
                 <FontAwesomeIcon icon={faPerson} />
               </View>
             )}
-            onPress={() => {
-              SheetManagerSuper('EditPreference');
-            }}
+            disabled
           />
           <List.Item
             title="Phone number"
@@ -72,7 +70,7 @@ export const Profile = observer(({route}) => {
                 <FontAwesomeIcon icon={faMobile} />
               </View>
             )}
-            onPress={() => {}}
+            disabled
           />
           <List.Item
             title="Email ID"
@@ -85,7 +83,7 @@ export const Profile = observer(({route}) => {
                 <FontAwesomeIcon icon={faMailBulk} />
               </View>
             )}
-            onPress={() => {}}
+            disabled
           />
           <List.Item
             title="Address"
@@ -102,7 +100,7 @@ export const Profile = observer(({route}) => {
                 <FontAwesomeIcon icon={faLocation} />
               </View>
             )}
-            onPress={() => {}}
+            disabled
           />
         </List.Accordion>
       </List.Section>
@@ -129,7 +127,11 @@ export const Profile = observer(({route}) => {
                 <FontAwesomeIcon icon={faMountainCity} />
               </View>
             )}
-            onPress={() => {}}
+            onPress={() => {
+              SheetManagerSuper('EditPreference', {
+                payload: {variant: 'destinationType'},
+              });
+            }}
           />
           <List.Item
             title="Number of travellers"
@@ -142,7 +144,11 @@ export const Profile = observer(({route}) => {
                 <FontAwesomeIcon icon={faUsers} />
               </View>
             )}
-            onPress={() => {}}
+            onPress={() => {
+              SheetManagerSuper('EditPreference', {
+                payload: {variant: 'numberOfTravellers'},
+              });
+            }}
           />
           <List.Item
             title="Duration of Trip"
@@ -157,7 +163,11 @@ export const Profile = observer(({route}) => {
                 <FontAwesomeIcon icon={faClock} />
               </View>
             )}
-            onPress={() => {}}
+            onPress={() => {
+              SheetManagerSuper('EditPreference', {
+                payload: {variant: 'tripDuration'},
+              });
+            }}
           />
           <List.Item
             title="Key Activities"
@@ -176,7 +186,11 @@ export const Profile = observer(({route}) => {
                 <FontAwesomeIcon icon={faParachuteBox} />
               </View>
             )}
-            onPress={() => {}}
+            onPress={() => {
+              SheetManagerSuper('EditPreference', {
+                payload: {variant: 'keyActivities'},
+              });
+            }}
           />
           <List.Item
             title="Budget"
@@ -193,7 +207,11 @@ export const Profile = observer(({route}) => {
                 <FontAwesomeIcon icon={faMoneyBill1Wave} />
               </View>
             )}
-            onPress={() => {}}
+            onPress={() => {
+              SheetManagerSuper('EditPreference', {
+                payload: {variant: 'budget'},
+              });
+            }}
           />
         </List.Accordion>
       </List.Section>

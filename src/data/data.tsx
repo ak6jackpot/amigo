@@ -1445,3 +1445,26 @@ export const tripTemplates = [
     isPublic: true,
   },
 ];
+
+export const preferences = {
+  destinationType: {
+    title: 'Select your preferred destination',
+    options: ['Mountain', 'Beach'],
+  },
+  numberOfTravellers: {
+    title: 'Select the number of travellers',
+    options: ['Solo', 'Couple', 'Trio', 'Group'],
+  },
+  tripDuration: {
+    title: 'Adjust your trip duration',
+    options: null,
+  },
+  keyActivities: {
+    title: 'Select or add activities you wish to do',
+    options: ['Sky diving', 'Bungy Jumping', 'Snorkeling'],
+  },
+  budget: {
+    title: 'Adjust your budget',
+    options: null,
+  },
+};

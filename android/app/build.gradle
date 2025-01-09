@@ -33,7 +33,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode packageJson["version_code"]
         versionName packageJson["version"]
-        manifestPlaceholders = [GOOGLE_MAPS_API_KEY: secureProperties.getProperty("GOOGLE_MAPS_API_KEY")]
+        manifestPlaceholders = [GOOGLE_MAPS_API_KEY: secureProperties.getProperty("GOOGLE_MAPS_API_KEY"),
+                                appAuthRedirectScheme: 'io.identityserver.demo.auth']
     }
     signingConfigs {
         debug {

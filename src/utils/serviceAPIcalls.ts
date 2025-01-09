@@ -3,6 +3,7 @@ import {API_key_TA} from '../../secrets.json';
 import {API_key_Maps} from '../../secrets.json';
 import {API_key_OpenAI} from '../../secrets.json';
 import {generatePhotoUrl} from './locationUtils';
+import {userDataStore} from './store';
 
 export const locationSearchTA = async (
   searchQuery: string,
@@ -286,6 +287,58 @@ export const fetchNearbyOpenAI = async (
             content: parameter
               ? `Give me a list of ${parameter} in and around the city with these coordinates - ${latitude},${longitude}. Provide only the array of names (detailed) like ["The Eiffel Tower - Paris", "Opera House - Sydney"], nothing else.`
               : `Give me a list of tourist attractions in and around the city with these coordinates - ${latitude},${longitude}. Provide only the array of names (detailed) like ["The Eiffel Tower - Paris", "Opera House - Sydney"], nothing else.`,
+          },
+        ],
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${API_key_OpenAI}`,
+        },
+      },
+    )
+    .then(response => {
+      // console.log(response?.data?.choices[0]?.message, '// description API');
+
+      return response?.data?.choices[0]?.message?.content;
+    })
+    .catch(error => {
+      console.log(error?.response?.data);
+    });
+};
+
+export const generateItineraryOpenAI = async (
+  destinationType?: string,
+  numberOfTravellers?: number,
+  tripDuration?: number,
+  keyActivities?: string[],
+  budget?: string,
+) => {
+  const DT =
+    destinationType || userDataStore?.userData?.preferences?.destinationType;
+  const NT =
+    numberOfTravellers ||
+    userDataStore?.userData?.preferences?.numberOfTravellers;
+  const TD = tripDuration || userDataStore?.userData?.preferences?.tripDuration;
+  const KA =
+    keyActivities || userDataStore?.userData?.preferences?.keyActivities;
+  const BD =
+    budget ||
+    userDataStore?.userData?.currency +
+      ' ' +
+      userDataStore?.userData?.preferences?.budget;
+
+  return await axios
+    .post(
+      'https://api.openai.com/v1/chat/completions',
+      {
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'user',
+            content: `I am planning a trip for ${NT} people. The trip duration will be around ${TD} days. The total budget is around ${BD}. We prefer the destination to be of the type - ${DT}. Some activites that we would like to indulge in include ${KA.map(
+              item => item + ',',
+            )}.  Provide a detailed itinerary in json format, for e.g. {destination1: {name: 'xyz', timeSpent:'2', etc etc}}, nothing else.`,
           },
         ],
       },
