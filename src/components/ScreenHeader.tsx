@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {Pressable, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Color} from '../utils/displayUtils';
+import {Color, getImageURL} from '../utils/displayUtils';
 import Typography from './Typography';
 import {useNavigation} from '@react-navigation/native';
 
@@ -34,7 +34,7 @@ export const ScreenHeader = ({
             <FastImage
               style={{height: 60, aspectRatio: 1}}
               resizeMode={FastImage.resizeMode.contain}
-              source={require('../assets/images/logo_round.png')}
+              source={{uri: getImageURL('logo_round', 'png')}}
             />
           </Pressable>
           <View
@@ -81,7 +81,7 @@ export const ScreenHeader = ({
           <FastImage
             style={{height: 60, aspectRatio: 1}}
             resizeMode={FastImage.resizeMode.contain}
-            source={require('../assets/images/logo_round.png')}
+            source={{uri: getImageURL('logo_round', 'png')}}
           />
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <View

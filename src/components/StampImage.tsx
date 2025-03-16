@@ -8,7 +8,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Typography from './Typography';
-import {Color} from '../utils/displayUtils';
+import {Color, getImageURL} from '../utils/displayUtils';
 import {loadLocationDetails} from '../utils/locationUtils';
 
 export const StampImage = ({data = {}}) => {
@@ -57,7 +57,7 @@ export const StampImage = ({data = {}}) => {
             zIndex: 2,
           }}
           resizeMode={FastImage.resizeMode.contain}
-          source={require('../assets/images/frame.png')}
+          source={{uri: getImageURL('frame', 'png')}}
         />
         <FastImage
           style={{
@@ -69,7 +69,7 @@ export const StampImage = ({data = {}}) => {
             opacity: focused ? 1 : 0.8,
           }}
           resizeMode={FastImage.resizeMode.contain}
-          source={data?.image}
+          source={{uri: getImageURL(data?.image)}}
         />
       </Animated.View>
       {focused && (

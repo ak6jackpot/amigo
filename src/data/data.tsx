@@ -1,13 +1,3 @@
-import agra from '../assets/images/Agra.jpg';
-import barcelona from '../assets/images/Barcelona.jpg';
-import colosseum from '../assets/images/Colosseum.jpg';
-import dubai from '../assets/images/Dubai.jpg';
-import france from '../assets/images/France.jpg';
-import newyork from '../assets/images/NewYork.jpg';
-import paris from '../assets/images/Paris.jpg';
-import peru from '../assets/images/Peru.jpg';
-import rio from '../assets/images/Rio.jpg';
-
 export const cities = [
   {
     label: '🇺🇸  New York',
@@ -63,63 +53,63 @@ export const cities = [
 
 export const featuredData = [
   {
-    image: dubai,
+    image: 'Dubai',
     text1: 'The Palms Jumerah',
     text2: 'Dubai',
     mapsId: 'ChIJFTtlwikVXz4RFj5Kdq68yj0',
     tripAdvId: '15016790',
   },
   {
-    image: agra,
+    image: 'Agra',
     text1: 'Taj Mahal',
     text2: 'Agra',
     mapsId: 'ChIJbf8C1yFxdDkR3n12P4DkKt0',
     tripAdvId: '317329',
   },
   {
-    image: barcelona,
+    image: 'Barcelona',
     text1: 'Basilica de la Sagrada Familia',
     text2: 'Barcelona',
     mapsId: 'ChIJk_s92NyipBIRUMnDG8Kq2Js',
     tripAdvId: '190166',
   },
   {
-    image: colosseum,
+    image: 'Colosseum',
     text1: 'The Colosseum',
     text2: 'Rome',
     mapsId: 'ChIJrRMgU7ZhLxMRxAOFkC7I8Sg',
     tripAdvId: '292124',
   },
   {
-    image: peru,
+    image: 'Peru',
     text1: 'Machu Picchu',
     text2: 'Peru',
     mapsId: 'ChIJVVVViV-abZERJxqgpA43EDo',
     tripAdvId: '294318',
   },
   {
-    image: rio,
+    image: 'Rio',
     text1: 'Christ the Redeemer',
     text2: 'Rio de Janeiro',
     mapsId: 'ChIJP6FKmNV_mQAR3gKVAdeEyZ0',
     tripAdvId: '554128',
   },
   {
-    image: newyork,
+    image: 'NewYork',
     text1: 'Empire State Building',
     text2: 'New York',
     mapsId: 'ChIJaXQRs6lZwokRY6EFpJnhNNE',
     tripAdvId: '104365',
   },
   {
-    image: france,
+    image: 'France',
     text1: 'Louvre',
     text2: 'Paris',
     mapsId: 'ChIJQdQyeiZu5kcRUfQHfB-OCLA',
     tripAdvId: '188757',
   },
   {
-    image: paris,
+    image: 'Paris',
     text1: 'Eiffel Tower',
     text2: 'Paris',
     mapsId: 'ChIJLU7jZClu5kcR4PcOOO6p3I0',

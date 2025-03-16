@@ -173,3 +173,7 @@ export const randomColorGenerator = () => {
     Math.floor(Math.random() * colors?.length + 1) % colors?.length
   ];
 };
+
+export const getImageURL = (name: string, format: string = 'jpg') => {
+  return `https://fe-assets-all.s3.ap-south-1.amazonaws.com/amigo/${name}.${format}`;
+};

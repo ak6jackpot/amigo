@@ -128,9 +128,9 @@ export const Profile = observer(({route}) => {
               </View>
             )}
             onPress={() => {
-              SheetManagerSuper('EditPreference', {
-                payload: {variant: 'destinationType'},
-              });
+              // SheetManagerSuper('EditPreference', {
+              //   payload: {variant: 'destinationType'},
+              // });
             }}
           />
           <List.Item
@@ -145,9 +145,9 @@ export const Profile = observer(({route}) => {
               </View>
             )}
             onPress={() => {
-              SheetManagerSuper('EditPreference', {
-                payload: {variant: 'numberOfTravellers'},
-              });
+              // SheetManagerSuper('EditPreference', {
+              //   payload: {variant: 'numberOfTravellers'},
+              // });
             }}
           />
           <List.Item
@@ -164,9 +164,9 @@ export const Profile = observer(({route}) => {
               </View>
             )}
             onPress={() => {
-              SheetManagerSuper('EditPreference', {
-                payload: {variant: 'tripDuration'},
-              });
+              // SheetManagerSuper('EditPreference', {
+              //   payload: {variant: 'tripDuration'},
+              // });
             }}
           />
           <List.Item
@@ -187,9 +187,9 @@ export const Profile = observer(({route}) => {
               </View>
             )}
             onPress={() => {
-              SheetManagerSuper('EditPreference', {
-                payload: {variant: 'keyActivities'},
-              });
+              // SheetManagerSuper('EditPreference', {
+              //   payload: {variant: 'keyActivities'},
+              // });
             }}
           />
           <List.Item
@@ -208,9 +208,9 @@ export const Profile = observer(({route}) => {
               </View>
             )}
             onPress={() => {
-              SheetManagerSuper('EditPreference', {
-                payload: {variant: 'budget'},
-              });
+              // SheetManagerSuper('EditPreference', {
+              //   payload: {variant: 'budget'},
+              // });
             }}
           />
         </List.Accordion>

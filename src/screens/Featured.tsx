@@ -1,7 +1,12 @@
 import React, {useRef} from 'react';
 import {Animated, View} from 'react-native';
 import Video from 'react-native-video';
-import {Color, screenHeight, screenWidth} from '../utils/displayUtils';
+import {
+  Color,
+  getImageURL,
+  screenHeight,
+  screenWidth,
+} from '../utils/displayUtils';
 import {StampImage} from '../components/StampImage';
 import Typography from '../components/Typography';
 import {functionDataStore} from '../utils/store';
@@ -65,7 +70,7 @@ export const Featured = observer(() => {
             alignItems: 'center',
           }}>
           <Video
-            source={require('../assets/videos/video_04.mp4')}
+            source={{uri: getImageURL('video_04', 'mp4')}}
             style={{
               height: '100%',
               aspectRatio: 0.25,

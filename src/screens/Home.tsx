@@ -24,7 +24,7 @@ import {
   userDataStore,
   itineraryDataStore,
 } from '../utils/store';
-import {Color} from '../utils/displayUtils';
+import {Color, getImageURL} from '../utils/displayUtils';
 import LoaderKit from 'react-native-loader-kit';
 import {observer} from 'mobx-react-lite';
 import {cities} from '../data/data';
@@ -305,7 +305,7 @@ export const Home = observer(() => {
             }}
             onPress={() => navigation.navigate('Featured')}>
             <Video
-              source={require('../assets/videos/video_04.mp4')}
+              source={{uri: getImageURL('video_04', 'mp4')}}
               style={{
                 width: '100%',
                 height: '100%',
@@ -356,7 +356,7 @@ export const Home = observer(() => {
                 <FastImage
                   style={{flex: 1, height: '100%'}}
                   resizeMode={FastImage.resizeMode.contain}
-                  source={require('../assets/images/local.jpg')}
+                  source={{uri: getImageURL('local')}}
                 />
                 <View
                   style={{

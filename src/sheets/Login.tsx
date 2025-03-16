@@ -24,7 +24,7 @@ import {
   hideAllSheets,
   hideMultipleSheets,
 } from '../utils/SheetManagerSuper';
-import {Color} from '../utils/displayUtils';
+import {Color, getImageURL} from '../utils/displayUtils';
 import serverCall from '../utils/serverCall';
 import {idDataStore, userDataStore} from '../utils/store';
 import {countryList} from './Country';
@@ -418,7 +418,7 @@ export const Login = () => {
                 <FastImage
                   style={{height: 24, aspectRatio: 1, marginRight: 4}}
                   resizeMode={FastImage.resizeMode.contain}
-                  source={require('../assets/images/google.png')}
+                  source={{uri: getImageURL('google', 'png')}}
                 />
                 <Typography
                   text={`${
